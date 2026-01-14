@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments and environment files
+.venv
+.env
+
+# Custom ignore rules
+*.log
+*.tmp
+.DS_Store
+__marimo__/
+acme/
