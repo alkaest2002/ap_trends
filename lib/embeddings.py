@@ -12,49 +12,53 @@ client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
 
 
 def get_batch_embeddings(
-    texts: str | list[str],
-    model: str = "text-embedding-3-large",
+    texts: list[str],
+    embedding_model_name: str = "text-embedding-3-large",
     batch_size: int = 100,
     delay_between_batches: float = 1.0
-) -> list[float] | list[list[float]]:
+) -> tuple[str, list[float] | list[list[float]]]:
     """Get embeddings for a given text or list of texts using OpenAI API with batch processing.
 
     Args:
-        texts (str | list[str]): Text or list of texts to get embeddings for.
-        model (str, optional): Model to use. Defaults to "text-embedding-3-large".
+        texts (list[str]): List of texts to get embeddings for.
+        embedding_model_name (str, optional): Embedding model to use. Defaults to "text-embedding-3-large".
         batch_size (int, optional): Number of texts to process in each batch. Defaults to 100.
         delay_between_batches (float, optional): Delay in seconds between batches. Defaults to 1.0.
 
     Returns:
-        Union[List[float], List[List[float]]]: Embedding vector(s). Returns a single list for
+        tuple[str, list[float] | list[list[float]]]: Embedding model name and embedding vector(s).
         single text input, or list of lists for multiple texts.
 
+    Raises:
+        ValueError: If the 'texts' list is empty.
+        Exception: For any errors during API calls.
+
     """
-    # Handle single text input
-    if isinstance(texts, str):
-        # Replace newlines, which can negatively affect performance.
-        cleaned_text = texts.replace("\n", " ")
-        return client.embeddings.create(input=[cleaned_text], model=model).data[0].embedding
-
-    # Handle list of texts
+    # Raise error if texts is empty
     if not texts:
-        return []
+        error_msg: str = "The 'texts' list is empty. Please provide at least one text."
+        raise ValueError(error_msg)
 
-    # Clean all texts
-    cleaned_texts = [text.replace("\n", " ") for text in texts]
+    # Remove newlines from texts to improve consistency
+    cleaned_texts: list[str] = [text.replace("\n", " ") for text in texts]
 
-    all_embeddings = []
+    # Initialize list to hold all embeddings
+    all_embeddings: list[list[float]] = []
 
     # Process in batches
     for i in range(0, len(cleaned_texts), batch_size):
-        batch = cleaned_texts[i:i + batch_size]
+
+        # Get the current batch
+        batch: list[str] = cleaned_texts[i:i + batch_size]
 
         try:
             # Call OpenAI API for the batch
-            response = client.embeddings.create(input=batch, model=model)
+            response = client.embeddings.create(input=batch, model=embedding_model_name)
 
             # Extract embeddings from response
-            batch_embeddings = [data.embedding for data in response.data]
+            batch_embeddings: list[list[float]] = [data.embedding for data in response.data]
+
+            # Append batch embeddings to all embeddings
             all_embeddings.extend(batch_embeddings)
 
             # Add delay between batches to avoid rate limiting
@@ -63,23 +67,6 @@ def get_batch_embeddings(
 
         except Exception as e:
             print(f"Error processing batch {i // batch_size + 1}: {e}")
-            # You might want to implement retry logic here
             raise
 
-    return all_embeddings
-
-
-def get_embedding(text: str, model: str = "text-embedding-3-large") -> list[float] | list[list[float]]:
-    """Get embedding for a single text using OpenAI API.
-
-    This function is kept for backward compatibility.
-
-    Args:
-        text (str): Text to get embedding for.
-        model (str, optional): Model to use. Defaults to "text-embedding-3-large".
-
-    Returns:
-        list[float] | list[list[float]]: Embedding vector(s).
-
-    """
-    return get_batch_embeddings(text, model)
+    return embedding_model_name, all_embeddings
