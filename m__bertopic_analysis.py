@@ -6,23 +6,34 @@ app = marimo.App(width="full")
 
 @app.cell
 def _():
+    from os import getenv
     from pathlib import Path
 
     import numpy as np
     import pandas as pd
+
     from umap import UMAP
     from hdbscan import HDBSCAN
     from sklearn.feature_extraction.text import CountVectorizer
+    from dotenv import load_dotenv
+    from openai import OpenAI
 
     from bertopic import BERTopic
-    from bertopic.representation import KeyBERTInspired
+    from bertopic.backend import OpenAIBackend
     from bertopic.vectorizers import ClassTfidfTransformer
+    from bertopic.representation import MaximalMarginalRelevance
+
+    # Load env vars
+    load_dotenv()
+
+    # Initiate openai client
+    client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
     return (
         BERTopic,
         ClassTfidfTransformer,
         CountVectorizer,
         HDBSCAN,
-        KeyBERTInspired,
+        MaximalMarginalRelevance,
         Path,
         UMAP,
         np,
@@ -66,7 +77,7 @@ def _(
     ClassTfidfTransformer,
     CountVectorizer,
     HDBSCAN,
-    KeyBERTInspired,
+    MaximalMarginalRelevance,
     UMAP,
 ):
     # Step 1 - Extract embeddings
@@ -86,15 +97,16 @@ def _(
 
     # Step 6 - (Optional) Fine-tune topic representations with
     # a `bertopic.representation` model
-    representation_model = KeyBERTInspired()
+    representation_model = MaximalMarginalRelevance(diversity=0.3)
 
     # All steps together
     topic_model = BERTopic(
-      embedding_model=embedding_model,          # Step 1 - Extract embeddings
-      umap_model=umap_model,                    # Step 2 - Reduce dimensionality
-      hdbscan_model=hdbscan_model,              # Step 3 - Cluster reduced embeddings
-      vectorizer_model=vectorizer_model,        # Step 4 - Tokenize topics
-      ctfidf_model=ctfidf_model,                # Step 5 - Extract topic words
+        embedding_model=embedding_model,          # Step 1 - Extract embeddings
+        umap_model=umap_model,                    # Step 2 - Reduce dimensionality
+        hdbscan_model=hdbscan_model,              # Step 3 - Cluster reduced embeddings
+        vectorizer_model=vectorizer_model,        # Step 4 - Tokenize topics
+        ctfidf_model=ctfidf_model,                # Step 5 - Extract topic words
+        representation_model=representation_model
     )
     return (topic_model,)
 
