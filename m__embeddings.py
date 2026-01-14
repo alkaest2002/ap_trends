@@ -24,7 +24,7 @@ def _(pd):
 
 @app.cell
 def _(EMBEDDING_MODEL_NAME, df, get_batch_embeddings):
-    texts_to_embed = df.text_to_embed.to_list()
+    texts_to_embed = df.doc.to_list()
     _, embeddings = get_batch_embeddings(texts_to_embed, embedding_model_name=EMBEDDING_MODEL_NAME)
     return (embeddings,)
 

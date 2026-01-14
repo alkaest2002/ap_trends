@@ -98,8 +98,8 @@ def _(pd):
             .add(".")
     )
 
-    # Create text to embed (title + excerpt + publication)
-    df["text_to_embed"] = (
+    # Create doc to embed (title + excerpt + publication)
+    df["doc"] = (
         df.title.radd("<title>").add("</title>") 
             + df.excerpt.radd("<excerpt>").add("</excerpt>")
             + df.publication.radd("<journal>").add("</journal>")
