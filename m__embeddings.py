@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.19.1"
+__generated_with = "0.19.2"
 app = marimo.App(width="full")
 
 
 @app.cell
 def _():
     import pandas as pd
+    import numpy as np
     from lib.embeddings import get_batch_embeddings
     return get_batch_embeddings, pd
 
