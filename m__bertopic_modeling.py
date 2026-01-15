@@ -34,8 +34,10 @@ def _():
         CountVectorizer,
         HDBSCAN,
         MaximalMarginalRelevance,
+        OpenAIBackend,
         Path,
         UMAP,
+        client,
         np,
         pd,
     )
@@ -79,10 +81,12 @@ def _(
     CountVectorizer,
     HDBSCAN,
     MaximalMarginalRelevance,
+    OpenAIBackend,
     UMAP,
+    client,
 ):
     # Step 1 - Extract embeddings
-    embedding_model = None
+    embedding_model = OpenAIBackend(client=client)
 
     # Step 2 - Reduce dimensionality
     umap_model = UMAP(n_neighbors=15, n_components=30, min_dist=0.0, metric='cosine')
@@ -121,6 +125,13 @@ def _(docs, embeddings, topic_model):
 @app.cell
 def _(topic_model):
     topic_model.get_topic_info()
+    return
+
+
+@app.cell
+def _(DATASET_FOLDER, topic_model):
+    # Persist
+    topic_model.save(path=DATASET_FOLDER / "bertopic", serialization="safetensors")
     return
 
 
