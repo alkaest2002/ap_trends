@@ -17,6 +17,9 @@ load_dotenv()
 # Initiate openai client
 client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
 
+# Initiate embedding model
+embedding_model = OpenAIBackend(client=client)
+
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
@@ -43,7 +46,7 @@ default_bertopic_settings: dict[str, Any] = {
 def get_bertopic_model() -> Any:
     """Create a BERTopic model."""
     # Step 1 - Embedder
-    embedding_model = OpenAIBackend(client=client)
+    # Done at module level to avoid multiple instantiations
 
     # Step 2 - Reduce dimensionality
     umap_model = UMAP(**default_bertopic_settings["umap"])

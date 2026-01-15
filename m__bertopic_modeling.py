@@ -55,6 +55,12 @@ def _(DATASET_FOLDER, docs, embeddings, get_bertopic_model):
 
     # Persist model
     topic_model.save(path=DATASET_FOLDER / "bertopic", serialization="safetensors")
+    return (topic_model,)
+
+
+@app.cell
+def _(topic_model):
+    topic_model.get_topic_info()
     return
 
 
