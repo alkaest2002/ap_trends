@@ -6,6 +6,26 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
 
+def check_columns_(df: pd.DataFrame, columns: list[str]) -> None:
+    """Check if specified columns are present in the DataFrame.
+
+    Args:
+        df (pd.DataFrame): DataFrame to check.
+        columns (list[str]): List of column names to check for.
+
+    Raises:
+        ValueError: If any of the specified columns are not present in the DataFrame.
+
+    """
+    # Check for missing columns
+    missing_cols = set(columns) - set(df.columns)
+
+    # Raise error if any columns are missing
+    if missing_cols:
+        error_msg: str = f"The following columns are missing from the DataFrame: {', '.join(missing_cols)}"
+        raise ValueError(error_msg)
+
+
 def make_excerpt(df: pd.DataFrame, column: str = "abstract", num_paragraphs: int = 3) -> pd.Series:
     """Create excerpt from column by cleaning up common abbreviations and limiting to first few paragraphs.
 
@@ -17,10 +37,16 @@ def make_excerpt(df: pd.DataFrame, column: str = "abstract", num_paragraphs: int
     Returns:
         pd.Series: Series containing the excerpts.
 
+    Raises:
+        ValueError: If the specified column is not present in the DataFrame.
+
     """
     # Defualt column to abstract if not specified
     if not column:
         column = "abstract"
+
+    # Check if column is present in df
+    check_columns_(df, [column])
 
     # Dictionary of abbreviations to clean up
     abbrev_dict: dict[str, str | Callable] = {
@@ -60,4 +86,40 @@ def make_excerpt(df: pd.DataFrame, column: str = "abstract", num_paragraphs: int
             .str[:num_paragraphs]
             .str.join(". ")
             .add(".")
+            .str.replace(r"^\.$", "", regex=True)
     )
+
+
+def make_text_to_embed(df: pd.DataFrame, columns: list[str] | None = None) -> pd.Series:
+    """Prepare text for embedding by filling NaN values.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the abstracts.
+        columns (list[str]): List of column names to be combined for embedding.
+
+    Returns:
+        pd.Series: Series containing the text ready for embedding.
+
+    Raises:
+        ValueError: If any of the specified columns are not present in the DataFrame.
+
+    """
+    # If no columns specified
+    if not columns:
+        # Default columns to title and abstract if none specified
+        columns = ["title", "excerpt"]
+
+    # Raise error if columns are not present in df (use pd.index intersection)
+    check_columns_(df, columns)
+
+    # Fill NaN values with empty strings
+    text_to_embed: pd.DataFrame = df[columns].fillna("")
+
+    # Iterate over columns
+    for col in columns:
+        # Wrap the text in tags
+        text_to_embed[col] = f"<{col}>" + text_to_embed[col] + f"</{col}>"
+        # Remove empty tags
+        text_to_embed[col] = text_to_embed[col].str.replace(rf"<{col}>\.?</{col}>", "", regex=True)
+
+    return text_to_embed.agg(" ".join, axis=1).str.strip()
