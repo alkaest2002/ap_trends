@@ -42,10 +42,11 @@ def _():
 
 
 @app.cell
-def _(pd):
-    df = pd.read_csv("./data/psycarticles_cleaned.csv")
+def _(Path, pd):
+    DATASET_FOLDER = Path("./datasets/dataset_1/")
+    df = pd.read_csv(DATASET_FOLDER / "psycarticles_cleaned.csv")
     df.head()
-    return (df,)
+    return DATASET_FOLDER, df
 
 
 @app.cell
@@ -56,17 +57,17 @@ def _(df):
 
 
 @app.cell
-def _(Path):
+def _(DATASET_FOLDER):
     embedding_model_name = ""
-    with Path("./data/embeddings/embedding_model_name.txt").open("r") as f:
+    with (DATASET_FOLDER / "embeddings/embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
     embedding_model_name
     return
 
 
 @app.cell
-def _(Path, np):
-    embeddings = np.load(Path("./data/embeddings/embeddings.npy"))
+def _(DATASET_FOLDER, np):
+    embeddings = np.load((DATASET_FOLDER / "embeddings/embeddings.npy"))
     embeddings.shape
     return (embeddings,)
 

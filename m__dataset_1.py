@@ -23,10 +23,10 @@ def _(Path, make_excerpt, make_text_to_embed, pd):
     }
 
     # Dataset folder
-    dataset_folder = Path("./datasets/dataset_1/")
+    DATASET_FOLDER = Path("./datasets/dataset_1/")
 
     # Load dataset
-    df = pd.read_csv(dataset_folder / "psycarticles.csv")
+    df = pd.read_csv(DATASET_FOLDER / "psycarticles.csv")
 
     # Add info to metadada
     metadata["size_before_processing"] = df.shape[0]
@@ -66,13 +66,13 @@ def _(Path, make_excerpt, make_text_to_embed, pd):
     df["excerpt"] = make_excerpt(df)
 
     # Create text to embed (title + excerpt + publication)
-    df["text_to_embed"] = make_text_to_embed(df=df)
+    df["doc"] = make_text_to_embed(df=df)
 
     # Compute final dataset size
     metadata["size_after_processing"] = df.shape[0]
 
     df.info()
-    return dataset_folder, df, metadata
+    return DATASET_FOLDER, df, metadata
 
 
 @app.cell
@@ -88,10 +88,10 @@ def _(metadata):
 
 
 @app.cell
-def _(Path, dataset_folder, df, metadata, orjson):
+def _(DATASET_FOLDER, Path, df, metadata, orjson):
     # Persist
-    df.to_csv(dataset_folder / "psycarticles_cleaned.csv")
-    with Path(dataset_folder / "cleanup_recap.json").open("wb") as f:
+    df.to_csv(DATASET_FOLDER / "psycarticles_cleaned.csv")
+    with Path(DATASET_FOLDER / "cleanup_recap.json").open("wb") as f:
         f.write(orjson.dumps(metadata, option=orjson.OPT_INDENT_2))
     return
 
