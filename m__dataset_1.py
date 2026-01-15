@@ -1,22 +1,26 @@
 import marimo
 
-__generated_with = "0.19.1"
+__generated_with = "0.19.2"
 app = marimo.App(width="full")
 
 
 @app.cell
 def _():
+    from pathlib import Path
     import pandas as pd
-    return (pd,)
+    return Path, pd
 
 
 @app.cell
-def _(pd):
+def _(Path, pd):
     # Init metadata object
     metdata = {}
 
+    # Dataset folder
+    dataset_folder = Path("./datasets/dataset_1/")
+
     # Load dataset
-    df = pd.read_csv("./data/psycarticles.csv")
+    df = pd.read_csv(dataset_folder / "psycarticles.csv")
 
     # Add info to metadada
     metdata["size_after_loading"] = df.shape[0]
@@ -98,15 +102,15 @@ def _(pd):
             .add(".")
     )
 
-    # Create doc to embed (title + excerpt + publication)
-    df["doc"] = (
+    # Create text to embed (title + excerpt + publication)
+    df["text_to_embed"] = (
         df.title.radd("<title>").add("</title>") 
             + df.excerpt.radd("<excerpt>").add("</excerpt>")
             + df.publication.radd("<journal>").add("</journal>")
     )
 
     df.info()
-    return df, metdata
+    return dataset_folder, df, metdata
 
 
 @app.cell
@@ -122,8 +126,8 @@ def _(metdata):
 
 
 @app.cell
-def _(df):
-    df.to_csv("./data/psycarticles_cleaned.csv")
+def _(dataset_folder, df):
+    df.to_csv(dataset_folder / "psycarticles_cleaned.csv")
     return
 
 
