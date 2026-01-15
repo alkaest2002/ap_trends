@@ -15,27 +15,35 @@ def _():
 
 
 @app.cell
-def _(pd):
+def _(Path, pd):
     EMBEDDING_MODEL_NAME = "text-embedding-3-large"
-    df = pd.read_csv("./data/psycarticles_cleaned.csv")
+    dataset_folder = Path("./datasets/dataset_2/")
+
+    df = pd.read_csv(dataset_folder / "psycarticles_cleaned.csv")
     df.shape
-    return EMBEDDING_MODEL_NAME, df
+    return EMBEDDING_MODEL_NAME, dataset_folder, df
+
+
+@app.cell
+def _(df):
+    df.sample(5, random_state=42)
+    return
 
 
 @app.cell
 def _(EMBEDDING_MODEL_NAME, df, get_batch_embeddings):
-    texts_to_embed = df.doc.to_list()
+    texts_to_embed = df.text_to_embed.to_list()
     _, embeddings = get_batch_embeddings(texts_to_embed, embedding_model_name=EMBEDDING_MODEL_NAME)
     return (embeddings,)
 
 
 @app.cell
-def _(EMBEDDING_MODEL_NAME, Path, embeddings, np):
-    embedding_model_name_filepath = Path("./data/embeddings/embedding_model_name.txt")
+def _(EMBEDDING_MODEL_NAME, Path, dataset_folder, embeddings, np):
+    embedding_model_name_filepath = Path(dataset_folder / "embeddings/embedding_model_name.txt")
     with embedding_model_name_filepath.open("w") as f:
         f.write(EMBEDDING_MODEL_NAME)
 
-    embeddings_filepath = Path("./data/embeddings/embeddings.npy")
+    embeddings_filepath = Path(dataset_folder / "embeddings/embeddings.npy")
     np.save(embeddings_filepath, np.array(embeddings))
     return
 
