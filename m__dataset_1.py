@@ -8,11 +8,12 @@ app = marimo.App(width="full")
 def _():
     from pathlib import Path
     import pandas as pd
-    return Path, pd
+    from lib.utils import make_excerpt
+    return Path, make_excerpt, pd
 
 
 @app.cell
-def _(Path, pd):
+def _(Path, make_excerpt, pd):
     # Init metadata object
     metdata = {}
 
@@ -62,45 +63,8 @@ def _(Path, pd):
     # Filter columns
     df = df.loc[:, ["year", "publication", "title","abstract"]].reset_index(drop=True)
 
-    # Dictionary of abbreviations to clean up
-    abbrev_dict = {
-        r"\bet al\.": "et al",
-        r"\be\.g\.": "eg", 
-        r"\bi\.e\.": "ie",
-        r"\bcf\.": "cf",
-        r"\bviz\.": "viz",
-        r"\bvs\.": "vs", 
-        r"\bca\.": "ca",
-        r"\bc\.": "c",
-        r"\bibid\.": "ibid",
-        r"\bop\. cit\.": "op cit",
-        r"\bloc\. cit\.": "loc cit",
-        r"\bq\.v\.": "qv",
-        r"\b[Nn]\.?[Bb]\.": "NB",
-        r"\b[Pp]\.?[Ss]\.": "PS",
-        r"\bff\.": "ff",
-        r"\bpp\.": "pp", 
-        r"\bvols?\.": lambda m: m.group().replace(".", ""),
-        r"\beds?\.": lambda m: m.group().replace(".", ""),
-        r"\btrans\.": "trans",
-        r"\brev\.": "rev",
-        r"\brepr\.": "repr"
-    }
-
-    # Apply all cleanups
-    df["excerpt"] = df["abstract"].fillna("")
-    for pattern, replacement in abbrev_dict.items():
-        df["excerpt"] = df["excerpt"].str.replace(pattern, replacement, regex=True)
-
-    # Create excerpt (hopefully the first few abstract paragraphs)
-    NUNBER_OF_PARA_TO_KEEP = 3
-    df["excerpt"] = (
-        df["excerpt"]
-            .str.split(r"\.\s+", regex=True)
-            .str[:NUNBER_OF_PARA_TO_KEEP]
-            .str.join(". ")
-            .add(".")
-    )
+    # Compute excerpt
+    df["excerpt"] = make_excerpt(df)
 
     # Create text to embed (title + excerpt + publication)
     df["text_to_embed"] = (
@@ -115,7 +79,7 @@ def _(Path, pd):
 
 @app.cell
 def _(df):
-    df.sample(15)
+    df.sample(15, random_state=42)
     return
 
 
