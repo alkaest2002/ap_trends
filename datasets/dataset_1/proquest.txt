@@ -1,0 +1,12 @@
+## ProQuest Command
+(psychology AND aviation) AND (at.exact("Article") AND stype.exact("Scholarly Journals") AND la.exact("ENG") AND PEER(yes))
+
+## Search Strategy:
+• Uses basic "psychology AND aviation" search terms
+• Relies on database indexing to find relevant content
+
+## Quality Filters Applied:
+• **Article Type (at.exact("Article"))** - ensures only journal articles are included
+• **Source Type (stype.exact("Scholarly Journals"))** - excludes popular media and trade publications
+• **Peer Review (PEER(yes))** - guarantees academic rigor and quality control
+• **Language (la.exact("ENG"))** - English publications only
