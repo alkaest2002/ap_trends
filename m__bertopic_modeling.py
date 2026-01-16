@@ -74,7 +74,13 @@ def _(DATASET_FOLDER, df, topic_model):
 
 @app.cell
 def _(topic_model):
-    topic_model.get_topic_info()
+    t= topic_model.get_topic_info()
+    return (t,)
+
+
+@app.cell
+def _(t):
+    t.Representation
     return
 
 

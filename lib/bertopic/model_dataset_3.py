@@ -7,10 +7,14 @@ from bertopic.vectorizers import ClassTfidfTransformer
 from dotenv import load_dotenv
 from hdbscan import HDBSCAN
 from openai import OpenAI
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, CountVectorizer
 from umap import UMAP
 
 from bertopic import BERTopic
+
+stop_words = ENGLISH_STOP_WORDS.union({
+    "<title>", "</title>", "title", "<excerpt>", "</excerpt>", "excerpt",
+})
 
 # Load env vars
 load_dotenv()
@@ -24,21 +28,22 @@ embedding_model = OpenAIBackend(client=client)
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
-        "n_neighbors": 10,
-        "n_components": 15,
+        "n_neighbors": 5,
+        "n_components": 50,
         "min_dist": 0.01,
         "metric": "cosine",
         "random_state": 42
     },
     "hdbscan": {
-        "min_cluster_size": 10,
+        "min_cluster_size": 25,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
         "prediction_data": True
     },
     "vectorizer": {
-        "stop_words": "english",
-        "ngram_range":  (1, 3)
+        "stop_words": list(stop_words),
+        "ngram_range":  (1, 3),
+        "min_df": 5
     },
     "ctfidf": {
         "bm25_weighting": True
@@ -61,10 +66,10 @@ def get_bertopic_model() -> Any:
     hdbscan_model = HDBSCAN(**default_bertopic_settings["hdbscan"])
 
     # Step 4 - Tokenize topics
-    vectorizer_model = CountVectorizer(**default_bertopic_settings["vectorizer"])
+    vectorizer_model = CountVectorizer(**default_bertopic_settings["vectorizer"], )
 
     # Step 5 - Create topic representation
-    ctfidf_model = ClassTfidfTransformer(**default_bertopic_settings["vectorizer"])
+    ctfidf_model = ClassTfidfTransformer(**default_bertopic_settings["ctfidf"])
 
     # Step 6 - (Optional) Fine-tune topic representations
     representation_model = MaximalMarginalRelevance(**default_bertopic_settings["representation"])
