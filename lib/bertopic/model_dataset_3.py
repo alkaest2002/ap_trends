@@ -23,14 +23,14 @@ embedding_model = OpenAIBackend(client=client)
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
-        "n_neighbors": 15,
-        "n_components": 15,
-        "min_dist": 0.0,
+        "n_neighbors": 30,
+        "n_components": 40,
+        "min_dist": 0.01,
         "metric": "cosine",
         "random_state": 42
     },
     "hdbscan": {
-        "min_cluster_size": 4,
+        "min_cluster_size": 5,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
         "prediction_data": True
