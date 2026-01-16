@@ -93,7 +93,7 @@ def _(t):
 
 @app.cell
 def _(t):
-    t.loc[1:, "Representative_Docs"]
+    t.loc[2, "Representative_Docs"]
     return
 
 
