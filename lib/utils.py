@@ -131,6 +131,9 @@ def get_psychology_sections_list() -> list[str]:
     Returns:
         list[str]: List of psychology-related section names.
 
+    Notes:
+        see https://www.apa.org/pubs/databases/training/class-codes
+
     """
     return [
         "general_psychology_history_&_systems",
