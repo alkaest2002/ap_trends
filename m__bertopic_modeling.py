@@ -17,7 +17,7 @@ def _():
 @app.cell
 def _(Path):
     DATASET_FOLDER = Path("./datasets/dataset_3/")
-    MODEL_FOLDER = DATASET_FOLDER
+    MODEL_FOLDER = DATASET_FOLDER / "openai-"
     return (DATASET_FOLDER,)
 
 
