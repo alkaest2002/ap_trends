@@ -10,7 +10,8 @@ def _():
     import orjson
     import pandas as pd
     from lib.utils import make_excerpt, make_text_to_embed
-    return Path, make_excerpt, make_text_to_embed, orjson, pd
+    from langdetect import detect
+    return Path, detect, make_excerpt, make_text_to_embed, orjson, pd
 
 
 @app.cell
@@ -20,7 +21,7 @@ def _(Path):
 
 
 @app.cell
-def _(DATASET_FOLDER, make_excerpt, make_text_to_embed, pd):
+def _(DATASET_FOLDER, detect, make_excerpt, make_text_to_embed, pd):
     # Init metadata object
     metadata = {
         "size_before_processing": None,
@@ -47,8 +48,11 @@ def _(DATASET_FOLDER, make_excerpt, make_text_to_embed, pd):
     df = pd.concat([s1,s2,p1])
     metadata["size_before_processing"] = df.shape[0]
 
+    # add lowercased title
+    df["title_lowercase"] = df.title.str.lower().str.extract(r"^([^\.]+)\.?$")
+
     # Drop duplicate titles
-    df = df.drop_duplicates(subset="title")
+    df = df.drop_duplicates(subset="title_lowercase")
     metadata["lossy_ops"].append(("drop duplicate titles", df.shape[0]))
 
     # replace [No abstract available] with None
@@ -58,7 +62,15 @@ def _(DATASET_FOLDER, make_excerpt, make_text_to_embed, pd):
     df["excerpt"] = make_excerpt(df)
 
     # Create text to embed
-    df["doc"] = make_text_to_embed(df, ["title", "excerpt"])
+    df["doc"] = make_text_to_embed(df, ["title"])
+
+    # Select columns
+    df = df.loc[:, ["year","title","doc"]]
+
+    # 
+    df = df[df.title.apply(detect).eq("en")]
+    metadata["lossy_ops"].append(("drop non english texts", df.shape[0]))
+
 
     # Update metadata
     metadata["size_after_processing"] = df.shape[0]

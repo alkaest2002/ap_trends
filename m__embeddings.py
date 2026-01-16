@@ -17,7 +17,7 @@ def _():
 @app.cell
 def _(Path):
     DATASET_FOLDER = Path("./datasets/dataset_3/")
-    EMBEDDINGS_FOLDER = DATASET_FOLDER / "openai-small" / "embeddings"
+    EMBEDDINGS_FOLDER = DATASET_FOLDER / "openai_small" / "embeddings"
     return DATASET_FOLDER, EMBEDDINGS_FOLDER
 
 
@@ -44,10 +44,10 @@ def _(EMBEDDINGS_MODEL_NAME, df, get_batch_embeddings):
 
 
 @app.cell
-def _(EMBEDDINGS_FOLDER, EMBEDDING_MODEL_NAME, Path, embeddings, np):
+def _(EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME, Path, embeddings, np):
     embedding_model_name_filepath = Path(EMBEDDINGS_FOLDER / "embedding_model_name.txt")
     with embedding_model_name_filepath.open("w") as f:
-        f.write(EMBEDDING_MODEL_NAME)
+        f.write(EMBEDDINGS_MODEL_NAME)
 
     embeddings_filepath = Path(EMBEDDINGS_FOLDER / "embeddings.npy")
     np.save(embeddings_filepath, np.array(embeddings))

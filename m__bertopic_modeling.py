@@ -10,15 +10,16 @@ def _():
 
     import numpy as np
     import pandas as pd
-    from lib.bertopic.model_dataset_3 import get_bertopic_model, default_bertopic_settings
+    from lib.bertopic.dataset_3.openai.model_small import get_bertopic_model, default_bertopic_settings
     return Path, default_bertopic_settings, get_bertopic_model, np, pd
 
 
 @app.cell
 def _(Path):
     DATASET_FOLDER = Path("./datasets/dataset_3/")
-    MODEL_FOLDER = DATASET_FOLDER / "openai-"
-    return (DATASET_FOLDER,)
+    MODEL_FOLDER = DATASET_FOLDER / "openai_small"
+    EMBEDDING_FOLDER = MODEL_FOLDER / "embeddings"
+    return DATASET_FOLDER, EMBEDDING_FOLDER, MODEL_FOLDER
 
 
 @app.cell
@@ -36,17 +37,17 @@ def _(df):
 
 
 @app.cell
-def _(DATASET_FOLDER):
+def _(EMBEDDING_FOLDER):
     embedding_model_name = ""
-    with (DATASET_FOLDER / "embeddings/embedding_model_name.txt").open("r") as f:
+    with (EMBEDDING_FOLDER / "embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
     embedding_model_name
     return
 
 
 @app.cell
-def _(DATASET_FOLDER, np):
-    embeddings = np.load((DATASET_FOLDER / "embeddings/embeddings.npy"))
+def _(EMBEDDING_FOLDER, np):
+    embeddings = np.load((EMBEDDING_FOLDER / "embeddings.npy"))
     embeddings.shape
     return (embeddings,)
 
@@ -58,7 +59,7 @@ def _(default_bertopic_settings):
 
 
 @app.cell
-def _(DATASET_FOLDER, docs, embeddings, get_bertopic_model):
+def _(MODEL_FOLDER, docs, embeddings, get_bertopic_model):
     # Get model
     topic_model = get_bertopic_model()
 
@@ -66,7 +67,7 @@ def _(DATASET_FOLDER, docs, embeddings, get_bertopic_model):
     topics, probs = topic_model.fit_transform(docs, embeddings=embeddings)
 
     # Persist model
-    topic_model.save(path=DATASET_FOLDER / "bertopic", serialization="safetensors")
+    topic_model.save(path=MODEL_FOLDER / "bertopic", serialization="safetensors")
     return (topic_model,)
 
 
@@ -87,6 +88,12 @@ def _(topic_model):
 @app.cell
 def _(t):
     t.iloc[1:,:]
+    return
+
+
+@app.cell
+def _(t):
+    t.loc[1:, "Representative_Docs"]
     return
 
 
