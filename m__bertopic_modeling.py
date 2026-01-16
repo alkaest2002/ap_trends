@@ -15,11 +15,17 @@ def _():
 
 
 @app.cell
-def _(Path, pd):
+def _(Path):
     DATASET_FOLDER = Path("./datasets/dataset_3/")
+    MODEL_FOLDER = DATASET_FOLDER
+    return (DATASET_FOLDER,)
+
+
+@app.cell
+def _(DATASET_FOLDER, pd):
     df = pd.read_csv(DATASET_FOLDER / "dataset.csv")
     df.head()
-    return DATASET_FOLDER, df
+    return (df,)
 
 
 @app.cell
@@ -74,13 +80,13 @@ def _(DATASET_FOLDER, df, topic_model):
 
 @app.cell
 def _(topic_model):
-    t= topic_model.get_topic_info()
+    t = topic_model.get_topic_info()
     return (t,)
 
 
 @app.cell
 def _(t):
-    t.Representation
+    t.iloc[1:,:]
     return
 
 

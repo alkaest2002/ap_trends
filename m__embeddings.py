@@ -17,16 +17,17 @@ def _():
 @app.cell
 def _(Path):
     DATASET_FOLDER = Path("./datasets/dataset_3/")
-    return (DATASET_FOLDER,)
+    EMBEDDINGS_FOLDER = DATASET_FOLDER / "openai-small" / "embeddings"
+    return DATASET_FOLDER, EMBEDDINGS_FOLDER
 
 
 @app.cell
 def _(DATASET_FOLDER, pd):
-    EMBEDDING_MODEL_NAME = "text-embedding-3-large"
+    EMBEDDINGS_MODEL_NAME = "text-embedding-3-small"
 
     df = pd.read_csv(DATASET_FOLDER / "dataset.csv")
     df.shape
-    return EMBEDDING_MODEL_NAME, df
+    return EMBEDDINGS_MODEL_NAME, df
 
 
 @app.cell
@@ -36,19 +37,19 @@ def _(df):
 
 
 @app.cell
-def _(EMBEDDING_MODEL_NAME, df, get_batch_embeddings):
+def _(EMBEDDINGS_MODEL_NAME, df, get_batch_embeddings):
     texts_to_embed = df.doc.to_list()
-    _, embeddings = get_batch_embeddings(texts_to_embed, embedding_model_name=EMBEDDING_MODEL_NAME)
+    _, embeddings = get_batch_embeddings(texts_to_embed, embedding_model_name=EMBEDDINGS_MODEL_NAME)
     return (embeddings,)
 
 
 @app.cell
-def _(DATASET_FOLDER, EMBEDDING_MODEL_NAME, Path, embeddings, np):
-    embedding_model_name_filepath = Path(DATASET_FOLDER / "embeddings/embedding_model_name.txt")
+def _(EMBEDDINGS_FOLDER, EMBEDDING_MODEL_NAME, Path, embeddings, np):
+    embedding_model_name_filepath = Path(EMBEDDINGS_FOLDER / "embedding_model_name.txt")
     with embedding_model_name_filepath.open("w") as f:
         f.write(EMBEDDING_MODEL_NAME)
 
-    embeddings_filepath = Path(DATASET_FOLDER / "embeddings/embeddings.npy")
+    embeddings_filepath = Path(EMBEDDINGS_FOLDER / "embeddings.npy")
     np.save(embeddings_filepath, np.array(embeddings))
     return
 
