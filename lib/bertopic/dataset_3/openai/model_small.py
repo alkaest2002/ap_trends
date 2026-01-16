@@ -10,7 +10,10 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, CountVectorizer
 from umap import UMAP
 
 from bertopic import BERTopic
+from lib.utils import get_psychology_sections_list
 from openai import OpenAI
+
+zero_shot_topics = get_psychology_sections_list()
 
 stop_words = ENGLISH_STOP_WORDS.union({
     "<title>", "</title>", "title", "<excerpt>", "</excerpt>", "excerpt",
@@ -23,19 +26,20 @@ load_dotenv()
 client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
 
 # Initiate embedding model
-embedding_model = OpenAIBackend(client=client)
+embedding_model = OpenAIBackend(client=client, embedding_model="text-embedding-3-small")
 
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
-        "n_neighbors": 5,
-        "n_components": 50,
-        "min_dist": 0.01,
+        "n_neighbors": 15,
+        "n_components": 7,
+        "min_dist": 0.05,
         "metric": "cosine",
         "random_state": 42
     },
     "hdbscan": {
         "min_cluster_size": 25,
+        "min_samples": 8,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
         "prediction_data": True
@@ -49,7 +53,9 @@ default_bertopic_settings: dict[str, Any] = {
         "bm25_weighting": True
     },
     "representation": {
-        "diversity": 0.5
+        "maximal_marginal_relevance": {
+            "diversity": 0.7
+        },
     }
 }
 
@@ -72,14 +78,20 @@ def get_bertopic_model() -> Any:
     ctfidf_model = ClassTfidfTransformer(**default_bertopic_settings["ctfidf"])
 
     # Step 6 - (Optional) Fine-tune topic representations
-    representation_model = MaximalMarginalRelevance(**default_bertopic_settings["representation"])
+    representation_model: list = [
+        MaximalMarginalRelevance(
+            **default_bertopic_settings["representation"]["maximal_marginal_relevance"]
+        ),
+    ]
 
     # All steps together
     return BERTopic(
+        top_n_words=15,
+        zeroshot_topic_list=zero_shot_topics,
         embedding_model=embedding_model,           # Step 1 - Extract embeddings
         umap_model=umap_model,                     # Step 2 - Reduce dimensionality
         hdbscan_model=hdbscan_model,               # Step 3 - Cluster reduced embeddings
         vectorizer_model=vectorizer_model,         # Step 4 - Tokenize topics
         ctfidf_model=ctfidf_model,                 # Step 5 - Extract topic words
-        representation_model=representation_model  # Step 6 - (Optional) Fine-tune topic representations
+        representation_model=representation_model  # Step 6 - (Optional) Fine-tune topic representations  # ty:ignore[invalid-argument-type]
     )
