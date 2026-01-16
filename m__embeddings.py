@@ -15,13 +15,18 @@ def _():
 
 
 @app.cell
-def _(Path, pd):
-    EMBEDDING_MODEL_NAME = "text-embedding-3-large"
-    dataset_folder = Path("./datasets/dataset_2/")
+def _(Path):
+    DATASET_FOLDER = Path("./datasets/dataset_3/")
+    return (DATASET_FOLDER,)
 
-    df = pd.read_csv(dataset_folder / "psycarticles_cleaned.csv")
+
+@app.cell
+def _(DATASET_FOLDER, pd):
+    EMBEDDING_MODEL_NAME = "text-embedding-3-large"
+
+    df = pd.read_csv(DATASET_FOLDER / "dataset.csv")
     df.shape
-    return EMBEDDING_MODEL_NAME, dataset_folder, df
+    return EMBEDDING_MODEL_NAME, df
 
 
 @app.cell
@@ -32,18 +37,18 @@ def _(df):
 
 @app.cell
 def _(EMBEDDING_MODEL_NAME, df, get_batch_embeddings):
-    texts_to_embed = df.text_to_embed.to_list()
+    texts_to_embed = df.doc.to_list()
     _, embeddings = get_batch_embeddings(texts_to_embed, embedding_model_name=EMBEDDING_MODEL_NAME)
     return (embeddings,)
 
 
 @app.cell
-def _(EMBEDDING_MODEL_NAME, Path, dataset_folder, embeddings, np):
-    embedding_model_name_filepath = Path(dataset_folder / "embeddings/embedding_model_name.txt")
+def _(DATASET_FOLDER, EMBEDDING_MODEL_NAME, Path, embeddings, np):
+    embedding_model_name_filepath = Path(DATASET_FOLDER / "embeddings/embedding_model_name.txt")
     with embedding_model_name_filepath.open("w") as f:
         f.write(EMBEDDING_MODEL_NAME)
 
-    embeddings_filepath = Path(dataset_folder / "embeddings/embeddings.npy")
+    embeddings_filepath = Path(DATASET_FOLDER / "embeddings/embeddings.npy")
     np.save(embeddings_filepath, np.array(embeddings))
     return
 

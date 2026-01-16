@@ -80,7 +80,7 @@ def _(df):
 @app.cell
 def _(DATASET_FOLDER, Path, df, metadata, orjson):
     # Persist
-    df.to_csv(DATASET_FOLDER / "dataset_cleaned.csv")
+    df.to_csv(DATASET_FOLDER / "dataset.csv", index=False)
     with Path(DATASET_FOLDER / "cleanup_recap.json").open("wb") as f:
         f.write(orjson.dumps(metadata, option=orjson.OPT_INDENT_2))
     return
