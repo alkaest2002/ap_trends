@@ -1,10 +1,10 @@
 {
   "size_before_processing": 4033,
-  "size_after_processing": 3750,
+  "size_after_processing": 3340,
   "lossy_ops": [
     [
       "drop duplicate titles",
-      3750
+      3340
     ]
   ]
 }
