@@ -26,7 +26,8 @@ default_bertopic_settings: dict[str, Any] = {
         "n_neighbors": 30,
         "n_components": 50,
         "min_dist": 0.01,
-        "metric": "cosine"
+        "metric": "cosine",
+        "random_state": 42
     },
     "hdbscan": {
         "min_cluster_size": 20,
