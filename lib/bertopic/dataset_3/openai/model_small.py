@@ -2,7 +2,7 @@ from os import getenv
 from typing import Any
 
 from bertopic.backend import OpenAIBackend
-from bertopic.representation import MaximalMarginalRelevance
+from bertopic.representation import KeyBERTInspired, MaximalMarginalRelevance
 from bertopic.vectorizers import ClassTfidfTransformer
 from dotenv import load_dotenv
 from hdbscan import HDBSCAN
@@ -47,7 +47,7 @@ default_bertopic_settings: dict[str, Any] = {
     "vectorizer": {
         "stop_words": list(stop_words),
         "ngram_range":  (1, 3),
-        "min_df": 5
+        "min_df": 8
     },
     "ctfidf": {
         "bm25_weighting": True
@@ -82,6 +82,7 @@ def get_bertopic_model() -> Any:
         MaximalMarginalRelevance(
             **default_bertopic_settings["representation"]["maximal_marginal_relevance"]
         ),
+        KeyBERTInspired()
     ]
 
     # All steps together

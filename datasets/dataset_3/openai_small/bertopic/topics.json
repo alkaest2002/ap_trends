@@ -2,1220 +2,1220 @@
   "topic_representations": {
     "-1": [
       [
-        "training",
-        0.01574187470535237
+        "air traffic control",
+        0.8566642414967999
+      ],
+      [
+        "traffic control",
+        0.8485934031368486
+      ],
+      [
+        "air traffic",
+        0.8435431872624239
+      ],
+      [
+        "pilot",
+        0.8431775243529451
+      ],
+      [
+        "aviation pilots",
+        0.8429764719076328
+      ],
+      [
+        "pilot performance",
+        0.8421091991465358
       ],
       [
         "pilots",
-        0.014352943139692216
+        0.8413105962383407
       ],
       [
-        "personality",
-        0.013735166480239131
+        "cockpit",
+        0.8393249026446746
       ],
       [
-        "cognitive",
-        0.013569480562015542
+        "civil aviation",
+        0.8392881167422258
       ],
       [
-        "air",
-        0.013506887337660064
-      ],
-      [
-        "analysis",
-        0.01339669765140474
-      ],
-      [
-        "safety",
-        0.012398505995796769
-      ],
-      [
-        "general",
-        0.010676112264451355
-      ],
-      [
-        "airline",
-        0.010293337854527995
-      ],
-      [
-        "personnel",
-        0.010237012761771877
+        "aircraft",
+        0.8381460432152178
       ]
     ],
     "0": [
       [
         "human factors",
-        0.04494461273544147
+        0.875702469633579
       ],
       [
-        "analysis",
-        0.02486445685815395
+        "flight safety",
+        0.8516760269935549
       ],
       [
-        "errors",
-        0.01954633353915784
+        "aircraft",
+        0.8317210644448588
       ],
       [
-        "aviation safety",
-        0.018852651037397795
+        "commercial aviation",
+        0.8274132546435828
       ],
       [
-        "accident",
-        0.01843349009097958
+        "general aviation",
+        0.8206592020713546
       ],
       [
-        "care",
-        0.01484648050754245
+        "safety",
+        0.8144705582569136
       ],
       [
-        "reliability",
-        0.014658594762243531
+        "factors",
+        0.8124608369965721
       ],
       [
-        "detection",
-        0.014444029852119521
+        "impact",
+        0.8115065836565585
       ],
       [
-        "approach",
-        0.01422918521504562
+        "theory",
+        0.8103079050180713
       ],
       [
-        "qualitative",
-        0.01353207706557081
+        "research",
+        0.8099523571946566
       ]
     ],
     "1": [
       [
-        "head",
-        0.036301263191155765
+        "visual",
+        0.8517983137353005
       ],
       [
-        "field",
-        0.026299614892121684
+        "cockpit",
+        0.8483389121741914
       ],
       [
-        "approaches",
-        0.025834956422635915
+        "pilot performance",
+        0.8429792540645709
       ],
       [
-        "perceptual",
-        0.025410884233809036
+        "pilot",
+        0.8428792700603065
       ],
       [
-        "traffic",
-        0.021028200174831157
+        "aviators",
+        0.8416176533970264
       ],
       [
-        "detection",
-        0.020407790627301817
+        "pilots",
+        0.8403426970644453
+      ],
+      [
+        "flight",
+        0.8348605702955513
+      ],
+      [
+        "experimental",
+        0.8343093330127795
+      ],
+      [
+        "aircraft",
+        0.8337167982750021
       ],
       [
         "flight deck",
-        0.01881084149744933
-      ],
-      [
-        "versus",
-        0.018150631595577883
-      ],
-      [
-        "dynamic",
-        0.018150631595577883
-      ],
-      [
-        "simulator",
-        0.017690390060027945
+        0.8323616999991269
       ]
     ],
     "2": [
       [
-        "mental workload",
-        0.06478663691206926
+        "workload",
+        0.8557100276615719
+      ],
+      [
+        "simulated",
+        0.8349261219660853
+      ],
+      [
+        "task",
+        0.8345417321741292
       ],
       [
         "psychophysiological",
-        0.03694551191367571
+        0.8305841962962331
       ],
       [
-        "flight simulation",
-        0.028584882645770093
+        "simulator",
+        0.8293634535386862
       ],
       [
-        "using",
-        0.027968428253214963
+        "simulation",
+        0.8253426117862401
       ],
       [
-        "real",
-        0.026299614892121684
+        "working",
+        0.8245111382121489
       ],
       [
-        "responses",
-        0.02367707447389103
+        "pilot",
+        0.8236430798549823
       ],
       [
-        "measures",
-        0.0231016902771507
+        "tasks",
+        0.8227284884526499
       ],
       [
-        "subjective",
-        0.021226375746070315
-      ],
-      [
-        "recognition",
-        0.019683776322008316
-      ],
-      [
-        "traffic",
-        0.018691733488738805
+        "pilots",
+        0.8190660765783626
       ]
     ],
     "3": [
       [
         "stress",
-        0.1102814775344087
+        0.857766553644874
       ],
       [
-        "chinese",
-        0.034054860584969635
+        "psychophysiological",
+        0.8388416816006365
       ],
       [
-        "resilience",
-        0.029189845473909515
+        "anxiety",
+        0.8353207460214424
       ],
       [
-        "crew",
-        0.028212452704987793
+        "airline pilots",
+        0.8331967848686039
       ],
       [
-        "job satisfaction",
-        0.026886535827206116
+        "pilots",
+        0.8326495589467247
       ],
       [
-        "competency",
-        0.02227724694545456
+        "aviation pilots",
+        0.8319517474926117
       ],
       [
-        "cross sectional study",
-        0.02080414016387677
+        "impact",
+        0.8313151030382445
       ],
       [
-        "psychosocial",
-        0.019940149147302053
+        "psychological",
+        0.8303572690566672
       ],
       [
-        "civil aviation",
-        0.019934044095428285
+        "research",
+        0.8286366073325993
       ],
       [
-        "strategies",
-        0.019239631739710317
+        "overview",
+        0.8280052182714898
       ]
     ],
     "4": [
       [
-        "fatigue",
-        0.14145011847893768
-      ],
-      [
-        "sleep",
-        0.1036735604125595
-      ],
-      [
-        "controllers",
-        0.051598155981157225
-      ],
-      [
         "air traffic controllers",
-        0.05044914244111632
+        0.8729736273672535
       ],
       [
-        "traffic",
-        0.0385797379207569
+        "traffic controllers",
+        0.8675589288138436
+      ],
+      [
+        "air traffic control",
+        0.8529895118695984
+      ],
+      [
+        "airline pilots",
+        0.8444201332375219
+      ],
+      [
+        "traffic control",
+        0.8392812629302381
+      ],
+      [
+        "air traffic",
+        0.8384465706658965
+      ],
+      [
+        "aviation pilots",
+        0.8339894489718573
+      ],
+      [
+        "pilots",
+        0.8311304391446388
       ],
       [
         "effects",
-        0.03320575213551625
+        0.8254795950558975
       ],
       [
-        "operational",
-        0.029213833519192992
-      ],
-      [
-        "cabin",
-        0.020138498518410052
-      ],
-      [
-        "risk management",
-        0.01953236265799287
-      ],
-      [
-        "different",
-        0.014478875307033632
+        "aircrew",
+        0.8212164920554013
       ]
     ],
     "5": [
       [
-        "training",
-        0.0665837745154356
+        "simulator",
+        0.8690582159414082
       ],
       [
-        "reality",
-        0.05130231200345958
+        "flight training",
+        0.8643818135870264
       ],
       [
-        "virtual",
-        0.042419680707001355
+        "simulated",
+        0.8555869227222843
       ],
       [
-        "effectiveness",
-        0.039832131510644436
+        "pilot",
+        0.8489230669133025
       ],
       [
-        "improving",
-        0.027303387443017208
+        "simulation",
+        0.847535047407725
       ],
       [
-        "fidelity",
-        0.025615965099090077
+        "cockpit",
+        0.8389047272171138
       ],
       [
-        "use",
-        0.025397384262614345
+        "airline pilots",
+        0.8360449806189718
       ],
       [
-        "computer",
-        0.023964083132418084
+        "experimental",
+        0.8351732175392179
       ],
       [
-        "flight simulator",
-        0.0213303711362581
+        "aircraft",
+        0.834779214844119
       ],
       [
-        "meta analysis",
-        0.019184372338143286
+        "aeronautical",
+        0.8345042060518546
       ]
     ],
     "6": [
       [
-        "aviation psychology",
-        0.19597245228634094
+        "psychology",
+        0.8498597745319314
       ],
       [
-        "program",
-        0.06331839413977153
+        "pilot",
+        0.844931582860128
       ],
       [
-        "operational",
-        0.03699154244313399
+        "aerospace",
+        0.8447026874976885
       ],
       [
-        "aeromedical",
-        0.032976716175832116
+        "aeronautical",
+        0.8404032105233636
       ],
       [
-        "air",
-        0.029977868077609767
+        "aircraft",
+        0.838309852939319
       ],
       [
         "psychological",
-        0.027947833106752827
+        0.8343245730285203
       ],
       [
-        "navy",
-        0.02667080329132861
+        "flying",
+        0.8310657012192912
       ],
       [
-        "science",
-        0.0232417940043124
+        "cockpit",
+        0.8308436508578723
       ],
       [
-        "united states",
-        0.02203019689015388
+        "flight",
+        0.8292826779923751
       ],
       [
-        "international",
-        0.02063190925049423
+        "aircrew",
+        0.8229331400590111
       ]
     ],
     "7": [
       [
-        "psychiatric",
-        0.12067324975196099
+        "aircrew",
+        0.8536283478127504
       ],
       [
-        "la",
-        0.09086409678286
+        "pilot",
+        0.8518858159764288
       ],
       [
-        "et",
-        0.06618460155169988
+        "aviation pilots",
+        0.8512905925110248
       ],
       [
-        "selection",
-        0.050140227756435646
+        "pilots",
+        0.8485871167288132
       ],
       [
-        "aviation medicine",
-        0.029817822407668643
+        "aeronautical",
+        0.8432912579164601
       ],
       [
-        "army",
-        0.029154867015573623
+        "aircraft",
+        0.8410875505870449
       ],
       [
-        "considerations",
-        0.02806813467105653
+        "aerospace",
+        0.839839718812111
       ],
       [
-        "flying personnel",
-        0.026028319259512135
+        "civil aviation",
+        0.8385924472875662
       ],
       [
-        "air",
-        0.025981086791636066
+        "aviators",
+        0.8374812505757712
       ],
       [
-        "use",
-        0.02157267061132213
+        "personnel",
+        0.8359723447568002
       ]
     ],
     "8": [
       [
+        "pilot",
+        0.8637168005968161
+      ],
+      [
+        "pilot performance",
+        0.8628886673884806
+      ],
+      [
         "flight training",
-        0.055009345368881815
+        0.8285357395193735
       ],
       [
-        "predicting",
-        0.04451013922729014
+        "experimental",
+        0.8242319212968061
       ],
       [
-        "program",
-        0.044406980026678484
+        "test",
+        0.8213199825968085
       ],
       [
-        "candidates",
-        0.03744744835663592
+        "research",
+        0.8208790020458441
       ],
       [
-        "validation",
-        0.0314133993365221
+        "studies",
+        0.8182462257614275
       ],
       [
-        "psychometric",
-        0.02338123552294842
+        "aviators",
+        0.8174746340333237
       ],
       [
-        "speed",
-        0.022906577407545852
+        "theory",
+        0.816373973144196
       ],
       [
-        "meta",
-        0.021326131089149575
-      ],
-      [
-        "university",
-        0.020674838767454636
-      ],
-      [
-        "neural network",
-        0.017752745978490393
+        "selection",
+        0.8157044023619636
       ]
     ],
     "9": [
       [
-        "aviation medicine",
-        0.07344776579345312
-      ],
-      [
-        "psychophysiological",
-        0.06536868005674044
-      ],
-      [
-        "personnel",
-        0.059815731579430535
-      ],
-      [
-        "aspects",
-        0.04459029494891432
-      ],
-      [
-        "problem",
-        0.03622822952767612
-      ],
-      [
-        "functional",
-        0.035703105004130764
+        "pilots",
+        0.853551686024886
       ],
       [
         "flight training",
-        0.028917630932070542
+        0.8521383474014771
       ],
       [
-        "crews",
-        0.028027109935116774
+        "pilot",
+        0.8489023374555825
       ],
       [
-        "expertise",
-        0.025381423848506463
+        "flight safety",
+        0.8426464269771432
       ],
       [
-        "transport",
-        0.02393825427650278
+        "civil aviation",
+        0.838695753486081
+      ],
+      [
+        "psychophysiological",
+        0.8311869552204697
+      ],
+      [
+        "aircraft",
+        0.8290489351440952
+      ],
+      [
+        "helicopter",
+        0.8285539149580745
+      ],
+      [
+        "medical",
+        0.8273517474551835
+      ],
+      [
+        "flight",
+        0.8269603274616539
       ]
     ],
     "10": [
       [
-        "disorder",
-        0.10189365988709691
+        "depression",
+        0.8341902103789715
+      ],
+      [
+        "anxiety",
+        0.8284827574529093
       ],
       [
         "stress",
-        0.09735259040439054
-      ],
-      [
-        "community",
-        0.07625994771967519
-      ],
-      [
-        "mental health",
-        0.06913669448603839
+        0.8273872436419232
       ],
       [
         "symptoms",
-        0.05899669860357914
+        0.8242061928221562
       ],
       [
-        "epidemiological",
-        0.03472113841525622
+        "disorder",
+        0.8229103049793367
       ],
       [
-        "follow",
-        0.033845346012813506
+        "psychological",
+        0.8191450161276825
       ],
       [
-        "exposure",
-        0.032542395762752994
+        "emergency",
+        0.8184931101662632
       ],
       [
-        "air",
-        0.02779791194598182
+        "impact",
+        0.8124109604326307
       ],
       [
-        "accident",
-        0.025194855550859884
+        "effects",
+        0.8101554992072004
+      ],
+      [
+        "mental health",
+        0.808368756843473
       ]
     ],
     "11": [
       [
-        "personality traits",
-        0.07771423676562932
+        "personality",
+        0.8671162322970517
       ],
       [
-        "cadets",
-        0.03460269725720787
+        "pilot",
+        0.856351780848109
       ],
       [
-        "proficiency",
-        0.028113451908953115
+        "aviation pilots",
+        0.8520254428520806
       ],
       [
-        "leadership",
-        0.021914102740457367
+        "aviators",
+        0.8514568387693673
       ],
       [
-        "collegiate",
-        0.02166605851045503
+        "pilots",
+        0.8508231067728981
       ],
       [
-        "civil aviation",
-        0.019241183506652236
+        "airline pilots",
+        0.8432434075349444
       ],
       [
-        "generation",
-        0.019189102426907658
+        "characteristics",
+        0.8409134819870239
       ],
       [
-        "data",
-        0.01859524422414624
+        "crew",
+        0.8385274723244633
       ],
       [
-        "affecting",
-        0.018336177262788418
+        "flight training",
+        0.8334536293342534
       ],
       [
-        "selected",
-        0.018336177262788418
+        "ability",
+        0.8325874549493013
       ]
     ],
     "12": [
       [
         "automation",
-        0.24909464986010582
+        0.8492807422409531
       ],
       [
-        "cognitive",
-        0.06661518052585136
+        "human performance",
+        0.8401258067708721
       ],
       [
-        "cockpit",
-        0.04681825290426643
+        "pilot",
+        0.8396121788325512
       ],
       [
-        "human machine",
-        0.04551029038077126
+        "automated",
+        0.8373267021763501
       ],
       [
-        "mode",
-        0.03413271778557844
+        "engineering",
+        0.8315488356872809
       ],
       [
-        "design",
-        0.027486138371146808
+        "simulated",
+        0.8310264390134264
       ],
       [
-        "introduction",
-        0.02275514519038563
+        "experimental",
+        0.8309951184289971
       ],
       [
-        "decision making",
-        0.02200286486974376
+        "simulator",
+        0.8306442523296838
       ],
       [
-        "issues",
-        0.021470925721923998
+        "theory",
+        0.8305321079770647
       ],
       [
-        "experiences",
-        0.021470925721923998
+        "machine",
+        0.8302976058789244
       ]
     ],
     "13": [
       [
         "air traffic control",
-        0.09877827944648498
+        0.8800159011631585
       ],
       [
-        "conflict",
-        0.08196286354000856
+        "traffic control",
+        0.8718131479426956
       ],
       [
-        "route",
-        0.04430005979367583
+        "air traffic controllers",
+        0.8679795100531844
       ],
       [
-        "detection",
-        0.0331232082737229
+        "traffic controllers",
+        0.8669557728557573
       ],
       [
-        "en",
-        0.03112523230352016
+        "air traffic",
+        0.8573786344700004
       ],
       [
-        "operational",
-        0.026131640074507495
+        "communication",
+        0.8273798003034581
       ],
       [
-        "workload",
-        0.02570157129199779
+        "aircraft",
+        0.8256754850697828
       ],
       [
-        "data",
-        0.02547605324898323
+        "traffic",
+        0.8231518963942581
       ],
       [
-        "future air",
-        0.023109773312313755
+        "pilot",
+        0.8192570123149728
       ],
       [
-        "airspace",
-        0.02133303904297586
+        "cockpit",
+        0.8188466761180663
       ]
     ],
     "14": [
       [
+        "aviation pilots",
+        0.8530819868070083
+      ],
+      [
+        "pilot",
+        0.8498636180177307
+      ],
+      [
         "mental health",
-        0.16106274963367812
+        0.8458492209563346
       ],
       [
-        "pilot mental",
-        0.06143130049477707
+        "pilots",
+        0.8441044728352628
       ],
       [
-        "understanding",
-        0.04178769371651134
+        "civil aviation",
+        0.8402335726927299
       ],
       [
-        "collegiate aviation",
-        0.036442513242483224
+        "airline pilots",
+        0.8388777772449197
       ],
       [
-        "students",
-        0.029362763860872547
+        "aviators",
+        0.8381582123405401
       ],
       [
-        "depression anxiety",
-        0.02646739915384171
+        "pilot performance",
+        0.8361180855260932
       ],
       [
-        "united states",
-        0.019801461017998234
+        "commercial aviation",
+        0.8329499672741841
       ],
       [
-        "barriers",
-        0.016335702276538258
-      ],
-      [
-        "review",
-        0.015409398707306381
-      ],
-      [
-        "sectional",
-        0.015079774680183974
+        "aerospace",
+        0.8274378125589378
       ]
     ],
     "15": [
       [
-        "19",
-        0.2953774461280289
+        "airline pilots",
+        0.8401279658740319
       ],
       [
-        "impacts",
-        0.04739652778026147
+        "flight safety",
+        0.8346454276130116
+      ],
+      [
+        "psychological",
+        0.8320861462725871
       ],
       [
         "mental health",
-        0.03869420580122016
+        0.8281440297337862
       ],
       [
-        "satisfaction",
-        0.026850368692289406
+        "flights",
+        0.8236404776094073
       ],
       [
-        "air travel",
-        0.025843015100384028
+        "impacts",
+        0.8216424584318187
       ],
       [
-        "international",
-        0.02450370713040703
+        "cockpit",
+        0.8212278075967842
       ],
       [
-        "general",
-        0.02388500768088052
+        "commercial airline",
+        0.8206336874934737
       ],
       [
-        "australian",
-        0.021584963933523556
+        "aviators",
+        0.8174246536527671
       ],
       [
-        "mediating",
-        0.020688545490619815
-      ],
-      [
-        "paper",
-        0.020292858903801676
+        "anxiety",
+        0.8162712889928935
       ]
     ],
     "16": [
       [
-        "decision making",
-        0.09404321023106325
+        "situation awareness",
+        0.9059369585238974
       ],
       [
-        "situational awareness",
-        0.05037499810525057
+        "awareness",
+        0.8714055590007248
       ],
       [
-        "model",
-        0.030770018251571298
+        "situational",
+        0.8553284926524001
       ],
       [
-        "attention",
-        0.025944758023672427
+        "situation",
+        0.8500819583525081
       ],
       [
-        "real time",
-        0.02198864534385549
+        "situations",
+        0.8458621908944017
       ],
       [
-        "crisis",
-        0.020813173324090762
+        "perception",
+        0.8440222276377499
       ],
       [
-        "based",
-        0.019771321521743344
+        "cognitive",
+        0.8432511397892145
       ],
       [
-        "individual differences",
-        0.019285387191745617
+        "cognition",
+        0.8429820297177756
       ],
       [
-        "process",
-        0.018311353140344967
+        "psychological",
+        0.8357474084326911
       ],
       [
-        "understanding",
-        0.016767271327312122
+        "theory",
+        0.8297486813599588
       ]
     ],
     "17": [
       [
-        "safety",
-        0.0492464212071028
-      ],
-      [
-        "involvement",
-        0.04737777619568804
-      ],
-      [
-        "self efficacy",
-        0.0410589289493431
-      ],
-      [
-        "hazardous",
-        0.04016922940698881
-      ],
-      [
-        "general",
-        0.03407555496771096
-      ],
-      [
         "aviation pilots",
-        0.03366945663889506
+        0.8636183588830365
       ],
       [
-        "perceived",
-        0.027856711668668134
+        "pilots",
+        0.8593474085808008
       ],
       [
-        "climate",
-        0.02704730949611987
+        "airline pilots",
+        0.8551221779505798
       ],
       [
-        "predictors",
-        0.025203927381589993
+        "pilot",
+        0.8532764720098075
       ],
       [
-        "personality",
-        0.02406864208186877
+        "aviators",
+        0.845192282357815
+      ],
+      [
+        "pilot performance",
+        0.8431811613081871
+      ],
+      [
+        "risk",
+        0.8346198973714758
+      ],
+      [
+        "perceptions",
+        0.8315078510544022
+      ],
+      [
+        "perception",
+        0.8256735187408375
+      ],
+      [
+        "safety",
+        0.8256647769541707
       ]
     ],
     "18": [
       [
-        "exposure",
-        0.1120360191470683
+        "effects",
+        0.8365086501293645
       ],
       [
-        "environmental",
-        0.08624665726901469
+        "impact",
+        0.8345223151213318
       ],
       [
-        "airport",
-        0.050312033070207936
+        "studies",
+        0.8318402227627917
       ],
       [
-        "cognitive performance",
-        0.04848098913163319
+        "impacts",
+        0.8285027464799244
       ],
       [
-        "reduce",
-        0.03372108823349664
+        "aircraft",
+        0.8268951890967421
       ],
       [
-        "sectional study",
-        0.03372108823349664
+        "effect",
+        0.8258334499931318
       ],
       [
-        "preliminary",
-        0.0300906856331508
+        "research",
+        0.8218380661527042
       ],
       [
-        "et",
-        0.02917172698915286
+        "aeronautical",
+        0.8207841962359824
       ],
       [
-        "modeling",
-        0.02759948138974647
+        "airplane",
+        0.8179808055511126
       ],
       [
-        "evaluation",
-        0.027469316777516243
+        "flight",
+        0.8170568915822026
       ]
     ],
     "19": [
       [
-        "air travel",
-        0.09897402266996584
+        "airline",
+        0.8376108088732371
       ],
       [
-        "influence",
-        0.0714925902530926
+        "quality",
+        0.8345962651990374
       ],
       [
-        "climate",
-        0.06223544069711969
+        "flight",
+        0.8293657820565687
       ],
       [
-        "transport",
-        0.04050312221467348
+        "research",
+        0.8286057543765954
       ],
       [
-        "enhancing",
-        0.033957148505700877
+        "service",
+        0.8250343970536137
       ],
       [
-        "behaviour",
-        0.03214186260176041
+        "impact",
+        0.8230934958223584
       ],
       [
-        "case study",
-        0.028629960515474236
+        "literature review",
+        0.8196856381483065
       ],
       [
-        "long",
-        0.028278292191418808
+        "flying",
+        0.8191978518961034
       ],
       [
-        "systematic",
-        0.0261574953282888
+        "airport",
+        0.818098322424162
       ],
       [
-        "review",
-        0.025064654859352786
+        "evaluation",
+        0.8177571343778833
       ]
     ],
     "20": [
       [
-        "science",
-        0.175207370186355
+        "space",
+        0.8518009621146357
       ],
       [
-        "long",
-        0.09373363985127633
+        "research",
+        0.8337089361139978
       ],
       [
-        "analog",
-        0.06542445545919187
+        "psychological",
+        0.8333318636180623
       ],
       [
-        "aspects",
-        0.04167997266786629
+        "technology",
+        0.826640683041709
       ],
       [
-        "real world",
-        0.033880438111855836
+        "school",
+        0.8265973287280852
       ],
       [
-        "proposed",
-        0.03171152252931151
+        "education",
+        0.8217574856305865
       ],
       [
-        "crew performance",
-        0.03171152252931151
+        "crew",
+        0.8217505807196148
       ],
       [
-        "corporate",
-        0.03171152252931151
+        "study",
+        0.820188749661824
       ],
       [
-        "guidance",
-        0.030836255795367407
+        "students",
+        0.8198009060433761
       ],
       [
-        "psychomotor",
-        0.029358569825666658
+        "simulation",
+        0.818715355071076
       ]
     ],
     "21": [
       [
-        "virtual reality",
-        0.12918242625266466
+        "flying",
+        0.8577623207057917
       ],
       [
-        "pilot study",
-        0.05928770956727331
+        "flight",
+        0.8506203648326768
       ],
       [
-        "coping",
-        0.04867897732537169
+        "anxiety",
+        0.831544311488948
+      ],
+      [
+        "pilot",
+        0.8304772232820086
+      ],
+      [
+        "pilots",
+        0.8245500667536393
+      ],
+      [
+        "aviators",
+        0.8217920269673322
+      ],
+      [
+        "aerospace",
+        0.8127836985904161
+      ],
+      [
+        "theory",
+        0.8088170972657828
+      ],
+      [
+        "psychology",
+        0.8055156283856307
       ],
       [
         "aircrew",
-        0.04232290555721543
-      ],
-      [
-        "aspects",
-        0.041105076493137105
-      ],
-      [
-        "utility",
-        0.03041092812922441
-      ],
-      [
-        "follow",
-        0.029643854783636656
-      ],
-      [
-        "hazardous",
-        0.028326232461135213
-      ],
-      [
-        "psychometric",
-        0.028326232461135213
-      ],
-      [
-        "year",
-        0.028326232461135213
+        0.796372838922621
       ]
     ],
     "22": [
       [
-        "resource management",
-        0.32444833562627373
+        "crew",
+        0.8560800335898071
       ],
       [
-        "issues",
-        0.03125404913554259
+        "crews",
+        0.8500825312612675
       ],
       [
         "cockpit",
-        0.029207469985783722
+        0.8370494749423862
       ],
       [
-        "improving",
-        0.02639117749388414
+        "flight training",
+        0.8364033840934904
       ],
       [
-        "effectiveness",
-        0.024500849220990235
+        "pilots",
+        0.8309598292948314
       ],
       [
-        "method",
-        0.024500849220990235
+        "management",
+        0.8257293699991664
       ],
       [
-        "performance assessment",
-        0.01828527307133688
+        "skills",
+        0.823695508326276
       ],
       [
-        "surgical",
-        0.0177805829787804
+        "training",
+        0.8193391839732369
       ],
       [
-        "dynamics",
-        0.017332092514626272
+        "commercial aviation",
+        0.811813111479613
       ],
       [
-        "distributed",
-        0.017332092514626272
+        "research",
+        0.8118006821093684
       ]
     ],
     "23": [
       [
-        "response",
-        0.11776024878388254
-      ],
-      [
         "psychophysiological",
-        0.11719600910321723
+        0.8446803666949874
       ],
       [
-        "death",
-        0.07434012658510732
+        "psychological",
+        0.8238401406962717
       ],
       [
-        "anxiety",
-        0.07259848725357454
+        "impact",
+        0.8186459045159954
       ],
       [
-        "preparation",
-        0.07228827178258261
+        "physiological",
+        0.8181451794465464
       ],
       [
-        "traits",
-        0.05245486319605255
+        "effect",
+        0.8132086369633307
       ],
       [
-        "differences",
-        0.04885439419266296
+        "skills",
+        0.8121868753917922
       ],
       [
-        "increased",
-        0.03834302102731327
+        "experience",
+        0.811998177303363
       ],
       [
-        "women",
-        0.036144135891291305
+        "behavioral",
+        0.806551397603478
       ],
       [
-        "tactical",
-        0.03441209413992076
+        "effects",
+        0.8058243902284424
+      ],
+      [
+        "visual",
+        0.796926488672942
       ]
     ],
     "24": [
       [
-        "aviation psychology",
-        0.06542800473788808
+        "human performance",
+        0.8192908528546656
       ],
       [
-        "european",
-        0.06010091488760336
+        "psychology",
+        0.818198792627675
       ],
       [
-        "modeling",
-        0.05512516737470753
+        "engineering",
+        0.8116797629152185
       ],
       [
-        "computer",
-        0.05375899932646732
+        "international",
+        0.8089945800026024
+      ],
+      [
+        "human factors",
+        0.8068709877667304
+      ],
+      [
+        "aerospace",
+        0.8051268678787326
+      ],
+      [
+        "technology",
+        0.8019661491531476
+      ],
+      [
+        "flight safety",
+        0.7964896588555783
       ],
       [
         "association",
-        0.05311720251448284
+        0.7964357870473162
       ],
       [
-        "workshop",
-        0.05003046593938201
-      ],
-      [
-        "health safety",
-        0.04597175340777877
-      ],
-      [
-        "artificial",
-        0.04597175340777877
-      ],
-      [
-        "factors",
-        0.03357165038764199
-      ],
-      [
-        "normal",
-        0.025908570320830934
+        "industry",
+        0.7963257382196444
       ]
     ],
     "25": [
       [
-        "exposure",
-        0.08984531004064415
-      ],
-      [
-        "learning",
-        0.06818692158179715
-      ],
-      [
-        "impairment",
-        0.0639070228802542
-      ],
-      [
-        "high",
-        0.05468282834959597
-      ],
-      [
-        "functions",
-        0.05429406320764167
-      ],
-      [
-        "simulated",
-        0.05319581254776118
-      ],
-      [
-        "fighter pilots",
-        0.0338974533719726
-      ],
-      [
-        "man",
-        0.03286049073689526
-      ],
-      [
-        "review literature",
-        0.03286049073689526
+        "memory",
+        0.8449677746940168
       ],
       [
         "cognitive",
-        0.0326740219698809
+        0.843472035151729
+      ],
+      [
+        "cognition",
+        0.8343207895509103
+      ],
+      [
+        "effects",
+        0.8341141741837292
+      ],
+      [
+        "psychophysiological",
+        0.8320912364038917
+      ],
+      [
+        "study",
+        0.8293004402144148
+      ],
+      [
+        "impact",
+        0.8275728699083175
+      ],
+      [
+        "learning",
+        0.8251505133550474
+      ],
+      [
+        "effect",
+        0.8250894258264411
+      ],
+      [
+        "awareness",
+        0.8250642095040516
       ]
     ],
     "26": [
       [
-        "age",
-        0.2679590794793423
-      ],
-      [
-        "expertise",
-        0.06685025263219108
-      ],
-      [
-        "cognitive performance",
-        0.03964455268892172
-      ],
-      [
-        "differences",
-        0.029360768923669362
+        "aviation pilots",
+        0.8648401533376886
       ],
       [
         "airline pilots",
-        0.02830886768794812
+        0.8601171180441629
       ],
       [
-        "vibration",
-        0.023866515517218644
+        "pilot performance",
+        0.8599946707824428
       ],
       [
-        "accidents",
-        0.023477689836769296
+        "pilots",
+        0.858609919527352
       ],
       [
-        "psychophysiological",
-        0.023477689836769296
+        "pilot",
+        0.8545224286566013
       ],
       [
-        "review literature",
-        0.02233865872754456
+        "flight safety",
+        0.8411266865121796
       ],
       [
-        "impairment",
-        0.02172209152087458
+        "flight training",
+        0.840374323006295
+      ],
+      [
+        "general aviation",
+        0.8325203630834139
+      ],
+      [
+        "flight",
+        0.8319229378543147
+      ],
+      [
+        "aircraft",
+        0.8278307030702952
       ]
     ],
     "27": [
       [
         "helicopter",
-        0.38891020437446244
+        0.8483380642790465
       ],
       [
-        "adults",
-        0.18542770065453681
+        "impact",
+        0.8079900361945334
       ],
       [
-        "adjustment",
-        0.1080247543067263
+        "psychological",
+        0.8035523090175587
       ],
       [
-        "self",
-        0.0517443440603728
+        "implications",
+        0.8023779015557218
       ],
       [
-        "reports",
-        0.05028577666211108
+        "students",
+        0.8021998744563064
       ],
       [
-        "behaviors",
-        0.04949597129267573
+        "education",
+        0.8009097609026645
       ],
       [
-        "cross cultural",
-        0.03139495681431019
+        "role",
+        0.7994446221435689
       ],
       [
-        "depression anxiety",
-        0.030434548467728497
+        "effects",
+        0.7976461993211449
       ],
       [
-        "scoping review",
-        0.030434548467728497
+        "attitudes",
+        0.7974704979273272
       ],
       [
-        "mediating role",
-        0.029594527374077445
+        "relationship",
+        0.794208782582961
       ]
     ]
   },
@@ -4740,35 +4740,35 @@
     ]
   ],
   "topic_labels": {
-    "-1": "-1_training_pilots_personality_cognitive",
-    "0": "0_human factors_analysis_errors_aviation safety",
-    "1": "1_head_field_approaches_perceptual",
-    "2": "2_mental workload_psychophysiological_flight simulation_using",
-    "3": "3_stress_chinese_resilience_crew",
-    "4": "4_fatigue_sleep_controllers_air traffic controllers",
-    "5": "5_training_reality_virtual_effectiveness",
-    "6": "6_aviation psychology_program_operational_aeromedical",
-    "7": "7_psychiatric_la_et_selection",
-    "8": "8_flight training_predicting_program_candidates",
-    "9": "9_aviation medicine_psychophysiological_personnel_aspects",
-    "10": "10_disorder_stress_community_mental health",
-    "11": "11_personality traits_cadets_proficiency_leadership",
-    "12": "12_automation_cognitive_cockpit_human machine",
-    "13": "13_air traffic control_conflict_route_detection",
-    "14": "14_mental health_pilot mental_understanding_collegiate aviation",
-    "15": "15_19_impacts_mental health_satisfaction",
-    "16": "16_decision making_situational awareness_model_attention",
-    "17": "17_safety_involvement_self efficacy_hazardous",
-    "18": "18_exposure_environmental_airport_cognitive performance",
-    "19": "19_air travel_influence_climate_transport",
-    "20": "20_science_long_analog_aspects",
-    "21": "21_virtual reality_pilot study_coping_aircrew",
-    "22": "22_resource management_issues_cockpit_improving",
-    "23": "23_response_psychophysiological_death_anxiety",
-    "24": "24_aviation psychology_european_modeling_computer",
-    "25": "25_exposure_learning_impairment_high",
-    "26": "26_age_expertise_cognitive performance_differences",
-    "27": "27_helicopter_adults_adjustment_self"
+    "-1": "-1_air traffic control_traffic control_air traffic_pilot",
+    "0": "0_human factors_flight safety_aircraft_commercial aviation",
+    "1": "1_visual_cockpit_pilot performance_pilot",
+    "2": "2_workload_simulated_task_psychophysiological",
+    "3": "3_stress_psychophysiological_anxiety_airline pilots",
+    "4": "4_air traffic controllers_traffic controllers_air traffic control_airline pilots",
+    "5": "5_simulator_flight training_simulated_pilot",
+    "6": "6_psychology_pilot_aerospace_aeronautical",
+    "7": "7_aircrew_pilot_aviation pilots_pilots",
+    "8": "8_pilot_pilot performance_flight training_experimental",
+    "9": "9_pilots_flight training_pilot_flight safety",
+    "10": "10_depression_anxiety_stress_symptoms",
+    "11": "11_personality_pilot_aviation pilots_aviators",
+    "12": "12_automation_human performance_pilot_automated",
+    "13": "13_air traffic control_traffic control_air traffic controllers_traffic controllers",
+    "14": "14_aviation pilots_pilot_mental health_pilots",
+    "15": "15_airline pilots_flight safety_psychological_mental health",
+    "16": "16_situation awareness_awareness_situational_situation",
+    "17": "17_aviation pilots_pilots_airline pilots_pilot",
+    "18": "18_effects_impact_studies_impacts",
+    "19": "19_airline_quality_flight_research",
+    "20": "20_space_research_psychological_technology",
+    "21": "21_flying_flight_anxiety_pilot",
+    "22": "22_crew_crews_cockpit_flight training",
+    "23": "23_psychophysiological_psychological_impact_physiological",
+    "24": "24_human performance_psychology_engineering_international",
+    "25": "25_memory_cognitive_cognition_effects",
+    "26": "26_aviation pilots_airline pilots_pilot performance_pilots",
+    "27": "27_helicopter_impact_psychological_implications"
   },
   "custom_labels": null,
   "_outliers": 1,
