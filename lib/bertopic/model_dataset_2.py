@@ -1,7 +1,6 @@
 from os import getenv
 from typing import Any
 
-from bertopic import BERTopic
 from bertopic.backend import OpenAIBackend
 from bertopic.representation import MaximalMarginalRelevance
 from bertopic.vectorizers import ClassTfidfTransformer
@@ -10,6 +9,8 @@ from hdbscan import HDBSCAN
 from openai import OpenAI
 from sklearn.feature_extraction.text import CountVectorizer
 from umap import UMAP
+
+from bertopic import BERTopic
 
 # Load env vars
 load_dotenv()
