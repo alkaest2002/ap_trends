@@ -16,7 +16,7 @@ def _():
 @app.cell
 def _(Path, make_excerpt, make_text_to_embed, pd):
     # Init metadata object
-    metadata = {
+    metadata: dict = {
         "size_before_processing": None,
         "size_after_processing": None,
         "lossy_ops": []
@@ -36,6 +36,10 @@ def _(Path, make_excerpt, make_text_to_embed, pd):
 
     # Create publication year
     df["year"] = df.alphadate.str.extract(r"(\d{4})").astype(int)
+
+    # Drop University Wire publication
+    df = df[~df.publication.eq("University Wire")]
+    metadata["lossy_ops"].append(["drop University Wire publication", df.shape[0]])
 
     # Filter columns
     df = df.loc[:, ["year","publication","title","abstract"]]

@@ -10,13 +10,13 @@ def _():
 
     import numpy as np
     import pandas as pd
-    from lib.bertopic.model_dataset_2 import get_bertopic_model
-    return Path, get_bertopic_model, np, pd
+    from lib.bertopic.model_dataset_1 import get_bertopic_model, default_bertopic_settings
+    return Path, default_bertopic_settings, get_bertopic_model, np, pd
 
 
 @app.cell
 def _(Path, pd):
-    DATASET_FOLDER = Path("./datasets/dataset_2/")
+    DATASET_FOLDER = Path("./datasets/dataset_1/")
     df = pd.read_csv(DATASET_FOLDER / "psycarticles_cleaned.csv")
     df.head()
     return DATASET_FOLDER, df
@@ -46,6 +46,12 @@ def _(DATASET_FOLDER, np):
 
 
 @app.cell
+def _(default_bertopic_settings):
+    default_bertopic_settings
+    return
+
+
+@app.cell
 def _(DATASET_FOLDER, docs, embeddings, get_bertopic_model):
     # Get model
     topic_model = get_bertopic_model()
@@ -56,6 +62,14 @@ def _(DATASET_FOLDER, docs, embeddings, get_bertopic_model):
     # Persist model
     topic_model.save(path=DATASET_FOLDER / "bertopic", serialization="safetensors")
     return (topic_model,)
+
+
+@app.cell
+def _(DATASET_FOLDER, df, topic_model):
+    # Add topic clusters
+    df["topic"] = topic_model.topics_
+    df.to_csv(DATASET_FOLDER / "psycarticles_cleaned_with_topic.csv", index=False)
+    return
 
 
 @app.cell

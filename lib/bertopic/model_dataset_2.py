@@ -24,12 +24,12 @@ embedding_model = OpenAIBackend(client=client)
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
         "n_neighbors": 15,
-        "n_components": 30,
+        "n_components": 15,
         "min_dist": 0.0,
         "metric": "cosine"
     },
     "hdbscan": {
-        "min_cluster_size": 3,
+        "min_cluster_size": 4,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
         "prediction_data": True

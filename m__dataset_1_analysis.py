@@ -23,7 +23,7 @@ def _(BERTopic, Path, embedding_model):
 
 @app.cell
 def _(bertopic_model):
-    bertopic_model.get_topic_info()
+    bertopic_model.get_topic_tree()
     return
 
 
