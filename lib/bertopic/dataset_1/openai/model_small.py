@@ -31,15 +31,15 @@ embedding_model = OpenAIBackend(client=client, embedding_model="text-embedding-3
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
-        "n_neighbors": 15,
+        "n_neighbors": 12,
         "n_components": 7,
-        "min_dist": 0.05,
+        "min_dist": 0.0,
         "metric": "cosine",
         "random_state": 42
     },
     "hdbscan": {
-        "min_cluster_size": 25,
-        "min_samples": 8,
+        "min_cluster_size": 8,
+        "min_samples": 5,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
         "prediction_data": True
@@ -62,8 +62,13 @@ default_bertopic_settings: dict[str, Any] = {
 }
 
 
-def get_bertopic_model() -> Any:
+def get_bertopic_model(overrides: dict[str, Any]) -> Any:
     """Create a BERTopic model."""
+    # Apply overrides to default settings via update
+    for key, value in overrides.items():
+        if key in default_bertopic_settings:
+            default_bertopic_settings[key].update(value)
+
     # Step 1 - Embedder
     # Done at module level to avoid multiple instantiations
 
@@ -90,7 +95,6 @@ def get_bertopic_model() -> Any:
     # All steps together
     return BERTopic(
         top_n_words=15,
-        zeroshot_topic_list=zero_shot_topics,
         embedding_model=embedding_model,           # Step 1 - Extract embeddings
         umap_model=umap_model,                     # Step 2 - Reduce dimensionality
         hdbscan_model=hdbscan_model,               # Step 3 - Cluster reduced embeddings
