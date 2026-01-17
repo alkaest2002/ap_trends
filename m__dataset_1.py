@@ -55,6 +55,10 @@ def _(DATASET_FOLDER, detect, make_excerpt, make_text_to_embed, pd):
     df = df.drop_duplicates(subset="title_lowercase")
     metadata["lossy_ops"].append(("drop duplicate titles", df.shape[0]))  # ty:ignore[possibly-missing-attribute]
 
+    # Drop short titles
+    df = df[~df.title.str.split(" ").str.len().lt(8)]
+    metadata["lossy_ops"].append(("drop short titles (less than 8 words)", df.shape[0]))  # ty:ignore[possibly-missing-attribute]
+
     # replace [No abstract available] with None
     df.abstract = df.abstract.replace("[No abstract available]", None)
 
@@ -67,10 +71,12 @@ def _(DATASET_FOLDER, detect, make_excerpt, make_text_to_embed, pd):
     # Select columns
     df = df.loc[:, ["year","title","doc"]]
 
-    # 
+    # Remove non english texts
     df = df[df.title.apply(detect).eq("en")]
     metadata["lossy_ops"].append(("drop non english texts", df.shape[0]))  # ty:ignore[possibly-missing-attribute]
 
+    # Order by year in descending order
+    df = df.sort_values(by="year", ascending=False)
 
     # Update metadata
     metadata["size_after_processing"] = df.shape[0]
