@@ -8,6 +8,7 @@ dependencies = [
     "bertopic>=0.17.4",
     "langdetect>=1.0.9",
     "marimo>=0.19.2",
+    "matplotlib>=3.10.8",
     "numpy>=2.2.6",
     "openai>=2.15.0",
     "orjson>=3.11.5",
