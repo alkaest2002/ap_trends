@@ -1,10 +1,18 @@
 {
-  "size_before_processing": 4033,
-  "size_after_processing": 3340,
+  "size_before_processing": 3997,
+  "size_after_processing": 2720,
   "lossy_ops": [
     [
       "drop duplicate titles",
-      3340
+      3313
+    ],
+    [
+      "drop short titles (less than 8 words)",
+      2784
+    ],
+    [
+      "drop non english texts",
+      2720
     ]
   ]
 }
