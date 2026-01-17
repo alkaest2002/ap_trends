@@ -87,7 +87,7 @@ def _(t):
 
 @app.cell
 def _(t):
-    t.loc[t.Topic.eq(54), "Representative_Docs"].squeeze()
+    t.loc[t.Topic.eq(8), "Representative_Docs"].squeeze()
     return
 
 
