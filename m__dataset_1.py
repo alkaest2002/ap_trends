@@ -7,14 +7,21 @@ app = marimo.App(width="full")
 @app.cell
 def _():
     from pathlib import Path
-    import pandas as pd
     import orjson
+    import pandas as pd
     from lib.utils import make_excerpt, make_text_to_embed
-    return Path, make_excerpt, make_text_to_embed, orjson, pd
+    from langdetect import detect
+    return Path, detect, make_excerpt, make_text_to_embed, orjson, pd
 
 
 @app.cell
-def _(Path, make_excerpt, make_text_to_embed, pd):
+def _(Path):
+    DATASET_FOLDER = Path("./datasets/dataset_1/")
+    return (DATASET_FOLDER,)
+
+
+@app.cell
+def _(DATASET_FOLDER, detect, make_excerpt, make_text_to_embed, pd):
     # Init metadata object
     metadata = {
         "size_before_processing": None,
@@ -22,68 +29,63 @@ def _(Path, make_excerpt, make_text_to_embed, pd):
         "lossy_ops": []
     }
 
-    # Dataset folder
-    DATASET_FOLDER = Path("./datasets/dataset_1/")
+    # Load datasets
+    s1 = pd.read_csv(DATASET_FOLDER / "scopus_1.csv")
+    s2 = pd.read_csv(DATASET_FOLDER / "scopus_2.csv")
+    p1 = pd.read_csv(DATASET_FOLDER / "psycarticles.csv")
 
-    # Load dataset
-    df = pd.read_csv(DATASET_FOLDER / "psycarticles.csv")
+    # Standardize columns
+    s1 = s1.loc[:, ["Year", "Source title","Title", "Abstract"]]
+    s2 = s2.loc[:, ["Year", "Source title","Title", "Abstract"]]
+    s1.columns = "year","publication","title","abstract"
+    s2.columns = "year","publication","title","abstract"
 
-    # Add info to metadada
+    p1 = p1.loc[:, ["AlphaDate","Publication","Title","Abstract"]]
+    p1.columns = ["year","publication","title","abstract"]
+    p1["year"] = p1.year.str.extract(r"(\d{4})").astype(int)
+
+    # Combine datasets
+    df = pd.concat([s1,s2,p1])
     metadata["size_before_processing"] = df.shape[0]
 
-    # Lowercase column names
-    df.columns = df.columns.str.lower().str.replace(" ", "_").str.strip()
+    # add lowercased title
+    df["title_lowercase"] = df.title.str.lower().str.extract(r"^([^\.]+)\.?$")
 
-    # Lowercase journal names
-    df.publication = df.publication.str.lower()
+    # Drop duplicate titles
+    df = df.drop_duplicates(subset="title_lowercase")
+    metadata["lossy_ops"].append(("drop duplicate titles", df.shape[0]))  # ty:ignore[possibly-missing-attribute]
 
-    # Drop articles without either abstract or journal name
-    df = df.dropna(subset=["abstract", "publication"], how="any")
-    metadata["lossy_ops"].append(["drop empty abstract or empty publication info", df.shape[0]])
+    # replace [No abstract available] with None
+    df.abstract = df.abstract.replace("[No abstract available]", None)
 
-    # Clean abstract
-    df.abstract = df.abstract.str.replace("abstract|Abstract", "", regex=True)
-
-    # Create publication year
-    df["year"] = df.alphadate.str.extract(r"(\d{4})").astype(int)
-
-    # Limit year of publication
-    df = df[df.year.ge(1900)]
-    metadata["lossy_ops"].append(["publication date greater than 1900", df.shape[0]])
-
-    # Limit journals to most prolific ones (number of publications ge 50) or to those which have aviation in the title
-    # Note: decided to drop sustainability journal after inspection of titles
-    all_journals = df.publication.value_counts()
-    list_most_prolific = all_journals[all_journals.ge(20)].index.drop("sustainability").to_list()
-    list_aviation = all_journals[all_journals.index.str.contains("aviation")].index.to_list()
-    df = df[df.publication.isin([*list_most_prolific, *list_aviation])]
-    metadata["lossy_ops"].append(["limit to most prolific journals or sector journals", df.shape[0]])
-
-    # Filter columns
-    df = df.loc[:, ["year", "publication", "title","abstract"]].reset_index(drop=True)
-
-    # Compute excerpt
+    # Create excerpt
     df["excerpt"] = make_excerpt(df)
 
-    # Create text to embed (title + excerpt + publication)
-    df["doc"] = make_text_to_embed(df=df)
+    # Create text to embed
+    df["doc"] = make_text_to_embed(df, ["title"])
 
-    # Compute final dataset size
+    # Select columns
+    df = df.loc[:, ["year","title","doc"]]
+
+    # 
+    df = df[df.title.apply(detect).eq("en")]
+    metadata["lossy_ops"].append(("drop non english texts", df.shape[0]))  # ty:ignore[possibly-missing-attribute]
+
+
+    # Update metadata
     metadata["size_after_processing"] = df.shape[0]
-
-    df.info()
-    return DATASET_FOLDER, df, metadata
-
-
-@app.cell
-def _(df):
-    df.sample(15, random_state=42)
-    return
+    return df, metadata
 
 
 @app.cell
 def _(metadata):
     metadata
+    return
+
+
+@app.cell
+def _(df):
+    df.sample(5)
     return
 
 

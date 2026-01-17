@@ -1,0 +1,3 @@
+SRCTITLE ( aviation psychology ) OR SRCTITLE ( aerospace psychology ) OR SRCTITLE ( Aviation Psychology AND Applied Human Factors )
+
+( TITLE-ABS-KEY ( aviation ) AND TITLE-ABS-KEY ( psychology OR "cognitive psychology" OR "behavioral psychology" OR "occupational psychology" OR "personality psychology" OR personality OR "social psychology" OR "applied psychology" OR "experimental psychology" OR "developmental psychology" OR "clinical psychology" OR "neuropsychology" OR "psychophysiology" OR "organizational psychology" OR "industrial psychology" OR "environmental psychology" OR "stress psychology" OR "mental-health" ) )

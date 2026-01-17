@@ -1,18 +1,10 @@
 {
-  "size_before_processing": 11391,
-  "size_after_processing": 3687,
+  "size_before_processing": 4033,
+  "size_after_processing": 3340,
   "lossy_ops": [
     [
-      "drop empty abstract or empty publication info",
-      9727
-    ],
-    [
-      "publication date greater than 1900",
-      9722
-    ],
-    [
-      "limit to most prolific journals or sector journals",
-      3687
+      "drop duplicate titles",
+      3340
     ]
   ]
 }

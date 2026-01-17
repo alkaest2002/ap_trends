@@ -9,7 +9,7 @@ def _():
     from pathlib import Path
     from bertopic import BERTopic
 
-    from lib.bertopic.model_dataset_1 import embedding_model
+    from lib.bertopic.dataset_1.openai.model_small import embedding_model
     return BERTopic, Path, embedding_model
 
 

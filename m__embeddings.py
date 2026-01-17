@@ -16,7 +16,7 @@ def _():
 
 @app.cell
 def _(Path):
-    DATASET_FOLDER = Path("./datasets/dataset_3/")
+    DATASET_FOLDER = Path("./datasets/dataset_1/")
     EMBEDDINGS_FOLDER = DATASET_FOLDER / "openai_small" / "embeddings"
     return DATASET_FOLDER, EMBEDDINGS_FOLDER
 

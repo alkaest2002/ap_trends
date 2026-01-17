@@ -10,13 +10,13 @@ def _():
 
     import numpy as np
     import pandas as pd
-    from lib.bertopic.dataset_3.openai.model_small import get_bertopic_model, default_bertopic_settings
+    from lib.bertopic.dataset_1.openai.model_small import get_bertopic_model, default_bertopic_settings
     return Path, default_bertopic_settings, get_bertopic_model, np, pd
 
 
 @app.cell
 def _(Path):
-    DATASET_FOLDER = Path("./datasets/dataset_3/")
+    DATASET_FOLDER = Path("./datasets/dataset_1/")
     MODEL_FOLDER = DATASET_FOLDER / "openai_small"
     EMBEDDING_FOLDER = MODEL_FOLDER / "embeddings"
     return DATASET_FOLDER, EMBEDDING_FOLDER, MODEL_FOLDER
@@ -93,7 +93,13 @@ def _(t):
 
 @app.cell
 def _(t):
-    t.loc[2, "Representative_Docs"]
+    t.loc[t.Topic.eq(11), "Representative_Docs"].squeeze()
+    return
+
+
+@app.cell
+def _(df):
+    df[df.topic.eq(11)].sample(10)
     return
 
 
