@@ -9,7 +9,7 @@ def _():
     from pathlib import Path
     import orjson
     import pandas as pd
-    from lib.utils import make_excerpt, make_text_to_embed
+    from lib.utils_pandas import make_excerpt, make_text_to_embed
     from langdetect import detect
     return Path, detect, make_excerpt, make_text_to_embed, orjson, pd
 
@@ -66,7 +66,7 @@ def _(DATASET_FOLDER, detect, make_excerpt, make_text_to_embed, pd):
     df["excerpt"] = make_excerpt(df)
 
     # Create text to embed
-    df["doc"] = make_text_to_embed(df, ["title"])
+    df["doc"] = make_text_to_embed(df, ["title", "excerpt"])
 
     # Select columns
     df = df.loc[:, ["year","title","doc"]]

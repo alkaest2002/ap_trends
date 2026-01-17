@@ -10,7 +10,7 @@ from hdbscan import HDBSCAN
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, CountVectorizer
 from umap import UMAP
 
-from lib.utils import get_psychology_sections_list
+from lib.utils_base import get_psychology_sections_list
 from openai import OpenAI
 
 zero_shot_topics = get_psychology_sections_list()
@@ -38,8 +38,8 @@ default_bertopic_settings: dict[str, Any] = {
         "random_state": 42
     },
     "hdbscan": {
-        "min_cluster_size": 8,
-        "min_samples": 5,
+        "min_cluster_size": 5,
+        "min_samples": 10,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
         "prediction_data": True
@@ -62,12 +62,13 @@ default_bertopic_settings: dict[str, Any] = {
 }
 
 
-def get_bertopic_model(overrides: dict[str, Any]) -> Any:
+def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
     """Create a BERTopic model."""
     # Apply overrides to default settings via update
-    for key, value in overrides.items():
-        if key in default_bertopic_settings:
-            default_bertopic_settings[key].update(value)
+    if overrides:
+        for key, value in overrides.items():
+            if key in default_bertopic_settings:
+                default_bertopic_settings[key].update(value)
 
     # Step 1 - Embedder
     # Done at module level to avoid multiple instantiations

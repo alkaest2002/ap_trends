@@ -11,7 +11,7 @@ def _():
     import numpy as np
     import pandas as pd
     from lib.bertopic.dataset_1.openai.model_small import get_bertopic_model, default_bertopic_settings
-    return Path, default_bertopic_settings, get_bertopic_model, np, pd
+    return Path, get_bertopic_model, np, pd
 
 
 @app.cell
@@ -25,7 +25,7 @@ def _(Path):
 @app.cell
 def _(DATASET_FOLDER, pd):
     df = pd.read_csv(DATASET_FOLDER / "dataset.csv")
-    df.head()
+    df.sample(5)
     return (df,)
 
 
@@ -50,12 +50,6 @@ def _(EMBEDDING_FOLDER, np):
     embeddings = np.load((EMBEDDING_FOLDER / "embeddings.npy"))
     embeddings.shape
     return (embeddings,)
-
-
-@app.cell
-def _(default_bertopic_settings):
-    default_bertopic_settings
-    return
 
 
 @app.cell
@@ -87,19 +81,25 @@ def _(topic_model):
 
 @app.cell
 def _(t):
-    t.iloc[1:,:]
+    t.iloc[:,:]
     return
 
 
 @app.cell
 def _(t):
-    t.loc[t.Topic.eq(11), "Representative_Docs"].squeeze()
+    t.loc[t.Topic.eq(54), "Representative_Docs"].squeeze()
     return
 
 
 @app.cell
-def _(df):
-    df[df.topic.eq(11)].sample(10)
+def _(topic_model):
+    len(topic_model.topics_)
+    return
+
+
+@app.cell
+def _(t):
+    t.loc[:, ["Count"]].sum().rdiv(633)
     return
 
 

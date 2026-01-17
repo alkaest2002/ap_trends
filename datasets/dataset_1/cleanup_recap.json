@@ -1,6 +1,6 @@
 {
   "size_before_processing": 3997,
-  "size_after_processing": 2720,
+  "size_after_processing": 2716,
   "lossy_ops": [
     [
       "drop duplicate titles",
@@ -12,7 +12,7 @@
     ],
     [
       "drop non english texts",
-      2720
+      2716
     ]
   ]
 }
