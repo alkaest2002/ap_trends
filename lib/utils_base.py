@@ -1,4 +1,10 @@
 
+import contextlib
+
+import pycountry
+import spacy
+
+
 def get_psychology_sections_list() -> list[str]:
     """Get a list of psychology-related sections.
 
@@ -146,3 +152,49 @@ def get_psychology_sections_list() -> list[str]:
         "forensic psychology & legal issues crime prevention",
         "forensic psychology & legal issues police & legal personnel"
     ]
+
+
+def extract_countries(text: str, nlp_model: spacy.language.Language) -> list[str]:
+    """Extract country names from text using spaCy NER and pycountry validation.
+
+    Args:
+        text: Input text to extract countries from
+        nlp_model: Pre-loaded spaCy mode
+
+    Returns:
+        List of unique country names found in the text
+
+    """
+    # Validate input
+    if not isinstance(text, str):
+        return []
+
+    # Process text with spaCy
+    doc = nlp_model(text)
+
+    countries = set()
+
+    # Extract entities labeled as GPE (geopolitical entity) or LOC (location)
+    for ent in doc.ents:
+        # Check if entity is a GPE or LOC
+        if ent.label_ in {"GPE", "LOC"}:
+            # Try to match with pycountry
+            country = None
+
+            # Try exact name match
+            with contextlib.suppress(KeyError, LookupError):
+                country = pycountry.countries.get(name=ent.text)
+
+            # Try fuzzy search if exact match fails
+            if not country:
+                try:
+                    results = pycountry.countries.search_fuzzy(ent.text)
+                    if results:
+                        country = results[0]
+                except (KeyError, LookupError):
+                    pass
+
+            if country:
+                countries.add(country.name)
+
+    return list(countries)
