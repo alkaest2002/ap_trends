@@ -13,9 +13,11 @@ def _():
 @app.cell
 def _(pd):
     df1 = pd.read_csv("./acme/datasets/scopus/scopus_1.csv")
-    df2 = pd.read_csv("./acme/datasets/scopus/scopus_1.csv")
-    df3 = pd.read_csv("./acme/datasets/scopus/scopus_1.csv")
-    df = pd.concat([df1,df2,df2])
+    df2 = pd.read_csv("./acme/datasets/scopus/scopus_2.csv")
+    df3 = pd.read_csv("./acme/datasets/scopus/scopus_3.csv")
+    df4 = pd.read_csv("./acme/datasets/scopus/scopus_4.csv")
+    df5 = pd.read_csv("./acme/datasets/scopus/scopus_5.csv")
+    df = pd.concat([df1,df2,df3,df4,df5])
 
     df.shape
     return (df,)
@@ -32,12 +34,13 @@ def _(df):
 def _(df):
     df["title_lowercase"] = df.title.str.lower()
     df_cleaned = df.drop_duplicates(subset="title_lowercase")
-    df_cleaned.shape, df_cleaned.title_lowercase
+    df_cleaned.shape
     return
 
 
 @app.cell
-def _():
+def _(df):
+    df.sample(5)
     return
 
 
