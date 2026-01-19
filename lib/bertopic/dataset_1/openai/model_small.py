@@ -39,7 +39,7 @@ default_bertopic_settings: dict[str, Any] = {
     },
     "hdbscan": {
         "min_cluster_size": 5,
-        "min_samples": 10,
+        "min_samples": 5,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
         "prediction_data": True
@@ -48,7 +48,7 @@ default_bertopic_settings: dict[str, Any] = {
         "stop_words": list(stop_words),
         "ngram_range":  (1, 3),
         "min_df": .25,
-        "max_df": .5
+        "max_df": .75,
     },
     "ctfidf": {
         "bm25_weighting": True,
@@ -95,6 +95,7 @@ def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
 
     # All steps together
     return BERTopic(
+        calculate_probabilities=True,
         top_n_words=15,
         embedding_model=embedding_model,           # Step 1 - Extract embeddings
         umap_model=umap_model,                     # Step 2 - Reduce dimensionality
