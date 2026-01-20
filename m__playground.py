@@ -6,47 +6,69 @@ app = marimo.App(width="full")
 
 @app.cell
 def _():
+    import numpy as np
     import pandas as pd
-    return (pd,)
+    import ast
+    return np, pd
 
 
 @app.cell
-def _(pd):
-    df1 = pd.read_csv("./acme/datasets/scopus/scopus_1.csv")
-    df2 = pd.read_csv("./acme/datasets/scopus/scopus_2.csv")
-    df3 = pd.read_csv("./acme/datasets/scopus/scopus_3.csv")
-    df4 = pd.read_csv("./acme/datasets/scopus/scopus_4.csv")
-    df5 = pd.read_csv("./acme/datasets/scopus/scopus_5.csv")
-    df = pd.concat([df1,df2,df3,df4,df5])
+def _(np, pd):
+    df = pd.read_csv("./datasets/dataset_2/dataset.csv")
 
-    df.shape
-    return (df,)
+    df.country = df.country.fillna("Unkown")
+
+    data = (
+        pd.concat(
+            [
+                df.country.str.split(" - ", expand=True),
+                df.year,
+            ], axis=1)
+            .melt(id_vars="year")
+            .dropna(subset="value")
+            .drop(columns="variable")
+            .rename(columns={"value": "country"})
+    )
+
+    data = data.replace("Unkown", np.nan)
+    data = data[data.year.gt(1919)]
+    data = data[data.year.lt(2026)]
+    data
+    return data, df
 
 
 @app.cell
-def _(df):
-    df.columns = df.columns.str.lower().str.replace(" ", "_")
-    df.columns
+def _(data, pd):
+    last_decade = data[data.year.between(2020, 2025, inclusive="right")].groupby("country").size()
+    previous_decade = data[data.year.between(2015, 2020, inclusive="both")].groupby("country").size()
+
+    most_profilic_last_decade = last_decade.nlargest(10)
+    most_profilic_previous_decade = previous_decade.reindex(most_profilic_last_decade.index)
+
+    final = pd.concat([
+        most_profilic_last_decade, 
+        most_profilic_previous_decade], axis=1, keys=["2021-2025","2016-2020"]
+    )
+
+    final["pct_change"] = (
+        final.loc[:, "2021-2025"]
+            .div(final.loc[:, "2016-2020"])
+            .mul(100)
+            .round(1)
+    )
+    final.sort_values(by="2021-2025", ascending=False)
+    return
+
+
+@app.cell
+def _(data):
+    data.country.isna().sum() / data.shape[0]
     return
 
 
 @app.cell
 def _(df):
-    df["title_lowercase"] = df.title.str.lower()
-    df_cleaned = df.drop_duplicates(subset="title_lowercase")
-    df_cleaned.shape
-    return
-
-
-@app.cell
-def _(df):
-    df.sample(5)
-    return
-
-
-@app.cell
-def _(df):
-    df.to_csv("./acme/datasets/scopus/scopus.csv", index=False)
+    df[df.country.eq("Unkown")].affiliations
     return
 
 

@@ -10,10 +10,22 @@ def _():
     import orjson
     import pycountry
     import spacy
+    import numpy as np
     import pandas as pd
+    from lib.utils_base import extract_countries
     from lib.utils_pandas import make_excerpt, make_text_to_embed
     from langdetect import detect
-    return Path, pd
+
+    nlp = spacy.load("en_core_web_lg")
+    return (
+        Path,
+        extract_countries,
+        make_excerpt,
+        make_text_to_embed,
+        nlp,
+        orjson,
+        pd,
+    )
 
 
 @app.cell
@@ -23,7 +35,14 @@ def _(Path):
 
 
 @app.cell
-def _(DATASET_FOLDER, pd):
+def _(
+    DATASET_FOLDER,
+    extract_countries,
+    make_excerpt,
+    make_text_to_embed,
+    nlp,
+    pd,
+):
     # Init metadata object
     metadata = {
         "size_before_processing": None,
@@ -36,6 +55,42 @@ def _(DATASET_FOLDER, pd):
     # Lowercase columns
     df.columns = df.columns.str.lower().str.replace(" ", "_")
 
+    df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)
+
+    # add lowercased title
+    df["title_lowercase"] = df.title.str.lower().str.extract(r"^([^\.]+)\.?$")
+
+    # Make doc
+    df["excerpt"] = make_excerpt(df, "abstract")
+
+    # Make doc
+    df["doc"] = make_text_to_embed(df, ["title","excerpt"])
+
+    # Filter columns
+    df = df.loc[:, ["year","country","affiliations","title","doc"]]
+
+    metadata["size_after_processing"] = df.shape[0]
+    return df, metadata
+
+
+@app.cell
+def _(metadata):
+    metadata
+    return
+
+
+@app.cell
+def _(DATASET_FOLDER, Path, df, metadata, orjson):
+    # Persist
+    df.to_csv(DATASET_FOLDER / "dataset.csv", index=False)
+    with Path(DATASET_FOLDER / "cleanup_recap.json").open("wb") as f:
+        f.write(orjson.dumps(metadata, option=orjson.OPT_INDENT_2))
+    return
+
+
+@app.cell
+def _(df):
+    df.country.isna().sum()
     return
 
 
