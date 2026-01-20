@@ -1,5 +1,6 @@
 
 import contextlib
+import re
 
 import pycountry
 import spacy
@@ -154,53 +155,94 @@ def get_psychology_sections_list() -> list[str]:
     ]
 
 
-def extract_countries(text: str, nlp_model: spacy.language.Language) -> list[str]:
+def extract_countries(text: str, nlp_model: spacy.language.Language) -> str | None:
     """Extract country names from text using spaCy NER and pycountry validation.
 
     Args:
         text: Input text to extract countries from
-        nlp_model: Pre-loaded spaCy mode
+        nlp_model: Pre-loaded spaCy model
 
     Returns:
-        List of unique country names found in the text
+        Comma-separated string of unique country names found in the text, or None if no countries are found
 
     """
-    # Validate input
     if not isinstance(text, str):
-        return []
+        return None
 
-    # Process text with spaCy
-    doc = nlp_model(text)
+    # Preprocess text to remove state abbreviations (e.g., ", CA")
+    cleaned = re.sub(r",\s+[A-Z]{2}\b", "", text)
 
+    doc = nlp_model(cleaned)
     countries = set()
 
-    # Extract entities labeled as GPE (geopolitical entity) or LOC (location)
-    for ent in doc.ents:
+    # Common name mappings for problematic countries
+    country_mappings = {
+        "turkey": "Turkey",
+        "south korea": "Korea, Republic of",
+        "north korea": "Korea, Democratic People's Republic of",
+        "usa": "United States",
+        "united states": "United States",
+        "uk": "United Kingdom",
+        "britain": "United Kingdom",
+        "great britain": "United Kingdom",
+        "russia": "Russian Federation",
+        "iran": "Iran, Islamic Republic of",
+        "syria": "Syrian Arab Republic",
+        "venezuela": "Venezuela, Bolivarian Republic of",
+        "bolivia": "Bolivia, Plurinational State of",
+        "vatican": "Holy See (Vatican City State)",
+        "congo": "Congo",
+        "czech republic": "Czechia",
+    }
 
-        # Check if entity is a GPE or LOC
-        if ent.label_ in {"GPE", "LOC"}:
+    def find_country_(entity_text: str) -> str | None:
+        """Try multiple methods to find a country match."""
+        entity_lower = entity_text.lower().strip()
 
-            # Initialize country variable
-            country = None
+        # 1. Check mappings first
+        if entity_lower in country_mappings:
+            return country_mappings[entity_lower]
 
-            # Suppress exceptions for exact match attempts
-            with contextlib.suppress(KeyError, LookupError):
-                # Attempt to get country by exact name
-                country = pycountry.countries.get(name=ent.text)
-
-            # If exact match fails
-            if not country:
-                try:
-                    # Attempt fuzzy search for country name
-                    if results := pycountry.countries.search_fuzzy(ent.text):
-                        country = results[0]
-                # Handle exceptions for fuzzy search
-                except (KeyError, LookupError):
-                    pass
-
-            # If a valid country is found
+        # 2. Try exact name match
+        with contextlib.suppress(KeyError, LookupError):
+            country = pycountry.countries.get(name=entity_text)
             if country:
-                # Add country name to the set
-                countries.add(country.name)
+                return country.name
 
-    return list(countries)
+        # 3. Try alternative names (common_name, official_name)
+        for country in pycountry.countries:
+            # Check common name
+            if hasattr(country, "common_name") and country.common_name.lower() == entity_lower:
+                return country.name
+            # Check if entity is part of official name
+            if entity_lower in country.name.lower():
+                return country.name
+
+        return None
+
+    # Extract entities labeled as GPE or LOC
+    for ent in doc.ents:
+        if ent.label_ in {"GPE", "LOC", "NORP"}:  # Added NORP for nationalities
+            country_name = find_country_(ent.text)
+            if country_name:
+                countries.add(country_name)
+
+    # Additional check for multi-word countries that might be split
+    # Look for common patterns like "South Korea", "North Korea", etc.
+    text_lower = text.lower()
+    multi_word_countries = {
+        "south korea": "Korea, Republic of",
+        "north korea": "Korea, Democratic People's Republic of",
+        "united states": "United States",
+        "united kingdom": "United Kingdom",
+        "great britain": "United Kingdom",
+        "new zealand": "New Zealand",
+        "saudi arabia": "Saudi Arabia",
+        "south africa": "South Africa",
+    }
+
+    for pattern, official_name in multi_word_countries.items():
+        if pattern in text_lower:
+            countries.add(official_name)
+
+    return " - ".join(sorted(countries)) if countries else None
