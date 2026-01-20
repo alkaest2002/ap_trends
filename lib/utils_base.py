@@ -176,25 +176,31 @@ def extract_countries(text: str, nlp_model: spacy.language.Language) -> list[str
 
     # Extract entities labeled as GPE (geopolitical entity) or LOC (location)
     for ent in doc.ents:
+
         # Check if entity is a GPE or LOC
         if ent.label_ in {"GPE", "LOC"}:
-            # Try to match with pycountry
+
+            # Initialize country variable
             country = None
 
-            # Try exact name match
+            # Suppress exceptions for exact match attempts
             with contextlib.suppress(KeyError, LookupError):
+                # Attempt to get country by exact name
                 country = pycountry.countries.get(name=ent.text)
 
-            # Try fuzzy search if exact match fails
+            # If exact match fails
             if not country:
                 try:
-                    results = pycountry.countries.search_fuzzy(ent.text)
-                    if results:
+                    # Attempt fuzzy search for country name
+                    if results := pycountry.countries.search_fuzzy(ent.text):
                         country = results[0]
+                # Handle exceptions for fuzzy search
                 except (KeyError, LookupError):
                     pass
 
+            # If a valid country is found
             if country:
+                # Add country name to the set
                 countries.add(country.name)
 
     return list(countries)
