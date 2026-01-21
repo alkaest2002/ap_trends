@@ -52,6 +52,8 @@ def _(
 
     df = pd.read_csv(DATASET_FOLDER / "scopus.csv")
 
+    metadata["size_before_processing"] = df.shape[0]
+
     # Lowercase columns
     df.columns = df.columns.str.lower().str.replace(" ", "_")
 
@@ -60,7 +62,11 @@ def _(
     # add lowercased title
     df["title_lowercase"] = df.title.str.lower().str.extract(r"^([^\.]+)\.?$")
 
-    # Make doc
+    # drop duplicated titles
+    df = df.drop_duplicates(subset="title_lowercase")
+    metadata["lossy_ops"].append(("Drop duplicate title", df.shape[0]))
+
+    # Make excerpt
     df["excerpt"] = make_excerpt(df, "abstract")
 
     # Make doc
@@ -85,12 +91,6 @@ def _(DATASET_FOLDER, Path, df, metadata, orjson):
     df.to_csv(DATASET_FOLDER / "dataset.csv", index=False)
     with Path(DATASET_FOLDER / "cleanup_recap.json").open("wb") as f:
         f.write(orjson.dumps(metadata, option=orjson.OPT_INDENT_2))
-    return
-
-
-@app.cell
-def _(df):
-    df.country.isna().sum()
     return
 
 

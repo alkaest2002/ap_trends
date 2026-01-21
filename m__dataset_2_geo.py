@@ -8,14 +8,44 @@ app = marimo.App(width="full")
 def _():
     import numpy as np
     import pandas as pd
-    import ast
-    return np, pd
+    from pathlib import Path
+    from lib.utils_base import configure_matplotlib_environment
+
+    plt = configure_matplotlib_environment()
+    return Path, np, pd, plt
 
 
 @app.cell
-def _(np, pd):
+def _(pd):
     df = pd.read_csv("./datasets/dataset_2/dataset.csv")
+    df = df[df.year.gt(1919)]
+    df = df[df.year.lt(2026)]
+    df.head()
+    return (df,)
 
+
+@app.cell
+def _(Path, df, plt):
+    COLOR = "#3A4F43"
+    fig, ax = plt.subplots(nrows=1, ncols=1)
+    ax.tick_params(color=COLOR, labelcolor=COLOR)
+    ax.spines[:].set_color(COLOR)
+    ax.xaxis.label.set_color(COLOR)
+    ax.yaxis.label.set_color(COLOR)
+
+    counts = df.year.value_counts(sort=False)
+    counts.plot(ax=ax, c="orange", label="conteggio")
+    counts.sort_index(ascending=True).rolling(10).mean().plot(ax=ax, color="blue", label="media mobile a 10 anni")
+    ax.set_xlabel("anni")
+    ax.set_ylabel("Nr pubblicazioni")
+    ax.legend(frameon=False)
+    fig.savefig(Path("./imgs/dataset_2_img_1.svg"), format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
+    plt.show()
+    return
+
+
+@app.cell
+def _(df, np, pd):
     df.country = df.country.fillna("Unkown")
 
     data = (
@@ -31,10 +61,7 @@ def _(np, pd):
     )
 
     data = data.replace("Unkown", np.nan)
-    data = data[data.year.gt(1919)]
-    data = data[data.year.lt(2026)]
-    data
-    return data, df
+    return (data,)
 
 
 @app.cell
@@ -46,8 +73,8 @@ def _(data, pd):
     most_profilic_previous_decade = previous_decade.reindex(most_profilic_last_decade.index)
 
     final = pd.concat([
-        most_profilic_last_decade, 
-        most_profilic_previous_decade], axis=1, keys=["2021-2025","2016-2020"]
+        most_profilic_previous_decade,
+        most_profilic_last_decade], axis=1, keys=["2016-2020", "2021-2025"]
     )
 
     final["pct_change"] = (
@@ -56,24 +83,32 @@ def _(data, pd):
             .mul(100)
             .round(1)
     )
+
     final.sort_values(by="2021-2025", ascending=False)
     return
 
 
 @app.cell
-def _(data):
-    data.country.isna().sum() / data.shape[0]
+def _():
     return
 
 
 @app.cell
 def _(df):
-    df[df.country.eq("Unkown")].affiliations
+    "Number of articles withouth country information", round(df.country.eq("Unkown").sum() / df.shape[0] * 100, 1)
+    return
+
+
+@app.cell
+def _(df):
+    df[df.country.eq("Italy")]
     return
 
 
 @app.cell
 def _():
+
+
     return
 
 
