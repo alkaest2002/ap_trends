@@ -10,7 +10,7 @@ def _():
 
     import numpy as np
     import pandas as pd
-    from lib.bertopic.dataset_1.openai.model_small import get_bertopic_model, default_bertopic_settings
+    from lib.bertopic.dataset_2.openai.model_small import get_bertopic_model, default_bertopic_settings
     return Path, get_bertopic_model, np, pd
 
 
@@ -86,20 +86,14 @@ def _(t):
 
 
 @app.cell
-def _(t):
-    t.loc[t.Topic.eq(2), "Representative_Docs"].squeeze()
+def _(df):
+    df.loc[df.topic.eq(3)]
     return
 
 
 @app.cell
-def _(topic_model):
-    len(topic_model.topics_)
-    return
-
-
-@app.cell
-def _(t):
-    t.loc[:, ["Count"]].sum().rdiv(633)
+def _(df, t):
+    t.loc[:, ["Count"]].sum().rdiv(df.topic.eq(-1).sum())
     return
 
 

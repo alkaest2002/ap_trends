@@ -3,7 +3,7 @@ from typing import Any
 
 from bertopic import BERTopic
 from bertopic.backend import OpenAIBackend
-from bertopic.representation import KeyBERTInspired, MaximalMarginalRelevance
+from bertopic.representation import MaximalMarginalRelevance
 from bertopic.vectorizers import ClassTfidfTransformer
 from dotenv import load_dotenv
 from hdbscan import HDBSCAN
@@ -22,16 +22,15 @@ stop_words = ENGLISH_STOP_WORDS.union({
 # Load env vars
 load_dotenv()
 
+
 # Initiate openai client
 client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
 
-# Initiate embedding model
-embedding_model = OpenAIBackend(client=client, embedding_model="text-embedding-3-small")
 
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
-        "n_neighbors": 12,
+        "n_neighbors": 5,
         "n_components": 7,
         "min_dist": 0.0,
         "metric": "cosine",
@@ -47,8 +46,7 @@ default_bertopic_settings: dict[str, Any] = {
     "vectorizer": {
         "stop_words": list(stop_words),
         "ngram_range":  (1, 3),
-        "min_df": .25,
-        "max_df": .75,
+        "max_df": .35,
     },
     "ctfidf": {
         "bm25_weighting": True,
@@ -56,7 +54,7 @@ default_bertopic_settings: dict[str, Any] = {
     },
     "representation": {
         "maximal_marginal_relevance": {
-            "diversity": 0.7
+            "diversity": 0.1
         },
     }
 }
@@ -71,7 +69,7 @@ def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
                 default_bertopic_settings[key].update(value)
 
     # Step 1 - Embedder
-    # Done at module level to avoid multiple instantiations
+    embedding_model = OpenAIBackend(client=client, embedding_model="text-embedding-3-small")
 
     # Step 2 - Reduce dimensionality
     umap_model = UMAP(**default_bertopic_settings["umap"])
@@ -80,7 +78,7 @@ def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
     hdbscan_model = HDBSCAN(**default_bertopic_settings["hdbscan"])
 
     # Step 4 - Tokenize topics
-    vectorizer_model = CountVectorizer(**default_bertopic_settings["vectorizer"], )
+    vectorizer_model = CountVectorizer(**default_bertopic_settings["vectorizer"])
 
     # Step 5 - Create topic representation
     ctfidf_model = ClassTfidfTransformer(**default_bertopic_settings["ctfidf"])
@@ -90,7 +88,6 @@ def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
         MaximalMarginalRelevance(
             **default_bertopic_settings["representation"]["maximal_marginal_relevance"]
         ),
-        KeyBERTInspired()
     ]
 
     # All steps together
