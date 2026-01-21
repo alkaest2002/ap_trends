@@ -9,6 +9,7 @@ dependencies = [
     "langdetect>=1.0.9",
     "marimo>=0.19.2",
     "matplotlib>=3.10.8",
+    "nltk>=3.9.2",
     "numpy>=2.2.6",
     "openai>=2.15.0",
     "orjson>=3.11.5",
