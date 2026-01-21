@@ -1,5 +1,10 @@
 {
-  "size_before_processing": null,
-  "size_after_processing": 3824,
-  "lossy_ops": []
+  "size_before_processing": 3824,
+  "size_after_processing": 2379,
+  "lossy_ops": [
+    [
+      "Drop duplicate title",
+      2379
+    ]
+  ]
 }
