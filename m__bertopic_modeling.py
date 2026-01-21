@@ -16,7 +16,7 @@ def _():
 
 @app.cell
 def _(Path):
-    DATASET_FOLDER = Path("./datasets/dataset_1/")
+    DATASET_FOLDER = Path("./datasets/dataset_2/")
     MODEL_FOLDER = DATASET_FOLDER / "openai_small"
     EMBEDDING_FOLDER = MODEL_FOLDER / "embeddings"
     return DATASET_FOLDER, EMBEDDING_FOLDER, MODEL_FOLDER
@@ -87,7 +87,7 @@ def _(t):
 
 @app.cell
 def _(t):
-    t.loc[t.Topic.eq(-1), "Representative_Docs"].squeeze()
+    t.loc[t.Topic.eq(2), "Representative_Docs"].squeeze()
     return
 
 

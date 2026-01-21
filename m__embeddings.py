@@ -10,13 +10,13 @@ def _():
 
     import pandas as pd
     import numpy as np
-    from lib.utils_embeddings import get_batch_embeddings
+    from lib.embeddings import get_batch_embeddings
     return Path, get_batch_embeddings, np, pd
 
 
 @app.cell
 def _(Path):
-    DATASET_FOLDER = Path("./datasets/dataset_1/")
+    DATASET_FOLDER = Path("./datasets/dataset_2/")
     EMBEDDINGS_FOLDER = DATASET_FOLDER / "openai_small" / "embeddings"
     return DATASET_FOLDER, EMBEDDINGS_FOLDER
 
