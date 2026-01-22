@@ -10,7 +10,7 @@ def _():
 
     import pandas as pd
     import numpy as np
-    from lib.embeddings import get_batch_embeddings
+    from lib.utils_embeddings import get_batch_embeddings
     return Path, get_batch_embeddings, np, pd
 
 

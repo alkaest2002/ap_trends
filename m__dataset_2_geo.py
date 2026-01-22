@@ -6,50 +6,77 @@ app = marimo.App(width="full")
 
 @app.cell
 def _():
+    # Imports
     import numpy as np
     import pandas as pd
     from pathlib import Path
     from lib.utils_base import configure_matplotlib_environment
 
+    # Get configured plt env
     plt = configure_matplotlib_environment()
     return Path, np, pd, plt
 
 
 @app.cell
-def _(pd):
-    df = pd.read_csv("./datasets/dataset_2/dataset.csv")
-    df = df[df.year.gt(1919)]
-    df = df[df.year.lt(2026)]
-    df.head()
+def _(Path):
+    # Define PATHS
+    DATASET_FOLDER = Path("./datasets/dataset_2/")
+    IMGS_FOLDER = DATASET_FOLDER / "imgs"
+
+    # Define other constants
+    BASE_COLOR = "#3A4F43"
+    COLOR_1 = "orange"
+    COLOR_2 = "#00A2FF"
+    return BASE_COLOR, COLOR_1, COLOR_2, DATASET_FOLDER, IMGS_FOLDER
+
+
+@app.cell
+def _(DATASET_FOLDER, pd):
+    # Load dataset
+    df = pd.read_csv(DATASET_FOLDER / "dataset.csv")
+
+    # Restrict period to 1900-2025
+    df = df[df.year.between(1920, 2025)]
+    df.shape
     return (df,)
 
 
 @app.cell
-def _(Path, df, plt):
-    BASE_COLOR = "#3A4F43"
-    COLOR_1 = "orange"
-    COLOR_2 = "#00A2FF"
+def _(BASE_COLOR, COLOR_1, COLOR_2, IMGS_FOLDER, df, plt):
+    # Init figure
     fig, ax = plt.subplots(nrows=1, ncols=1)
+
+    # Colorize features
     ax.tick_params(color=BASE_COLOR, labelcolor=BASE_COLOR)
     ax.spines[:].set_color(BASE_COLOR)
     ax.xaxis.label.set_color(BASE_COLOR)
     ax.yaxis.label.set_color(BASE_COLOR)
-    BASE_COLOR
+
+    # Plot data
     counts = df.year.value_counts(sort=False)
     counts.plot(ax=ax, c=COLOR_1, label="conteggio")
     counts.sort_index(ascending=True).rolling(10).mean().plot(ax=ax, color=COLOR_2, label="media mobile a 10 anni")
+
+    # Customize plot
     ax.set_xlabel("anni")
+    xticks = range(1925, 2026, 10)
+    xlabels = [f'{x}' for x in xticks]
+    ax.set_xticks(xticks, labels=xlabels)
     ax.set_ylabel("Nr pubblicazioni")
     ax.legend(frameon=False)
-    fig.savefig(Path("./imgs/dataset_2_img_1.svg"), format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
+
+    # Save plot as svg
+    fig.savefig(IMGS_FOLDER / "img_1.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
     plt.show()
     return
 
 
 @app.cell
 def _(df, np, pd):
+    # Fill articles with no country with Unknown
     df.country = df.country.fillna("Unkown")
 
+    # Separate multi-country articles
     data = (
         pd.concat(
             [
@@ -62,23 +89,30 @@ def _(df, np, pd):
             .rename(columns={"value": "country"})
     )
 
+    #
     data = data.replace("Unkown", np.nan)
     return (data,)
 
 
 @app.cell
 def _(data, pd):
-    last_decade = data[data.year.between(2020, 2025, inclusive="right")].groupby("country").size()
-    previous_decade = data[data.year.between(2015, 2020, inclusive="both")].groupby("country").size()
+    # Compute stats for last 10 years (5+5)
+    y_2021_2025 = data[data.year.between(2021, 2025, inclusive="both")].groupby("country").size()
+    y_2016_2020 = data[data.year.between(2016, 2020, inclusive="both")].groupby("country").size()
 
-    most_profilic_last_decade = last_decade.nlargest(10)
-    most_profilic_previous_decade = previous_decade.reindex(most_profilic_last_decade.index)
+    # Compute most profilic countries
+    most_profilic_2021_2025 = y_2021_2025.nlargest(10)
+    most_profilic_2016_2020 = y_2016_2020.reindex(most_profilic_2021_2025.index)
 
+    # Combine results
     final = pd.concat([
-        most_profilic_previous_decade,
-        most_profilic_last_decade], axis=1, keys=["2016-2020", "2021-2025"]
+            most_profilic_2016_2020,
+            most_profilic_2021_2025
+        ], 
+        axis=1, keys=["2016-2020", "2021-2025"]
     )
 
+    # Compute % of change
     final["pct_change"] = (
         final.loc[:, "2021-2025"]
             .div(final.loc[:, "2016-2020"])
@@ -86,24 +120,14 @@ def _(data, pd):
             .round(1)
     )
 
+    # Sort data
     final.sort_values(by="2021-2025", ascending=False)
-    return
-
-
-@app.cell
-def _():
     return
 
 
 @app.cell
 def _(df):
     "Number of articles withouth country information", round(df.country.eq("Unkown").sum() / df.shape[0] * 100, 1)
-    return
-
-
-@app.cell
-def _(df):
-    df[df.country.eq("Italy")]
     return
 
 

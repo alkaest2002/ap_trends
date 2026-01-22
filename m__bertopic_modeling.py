@@ -6,6 +6,7 @@ app = marimo.App(width="full")
 
 @app.cell
 def _():
+    # Imports
     from pathlib import Path
 
     import numpy as np
@@ -16,116 +17,88 @@ def _():
 
 @app.cell
 def _(Path):
+    # Define paths
     DATASET_FOLDER = Path("./datasets/dataset_2/")
     MODEL_FOLDER = DATASET_FOLDER / "openai_small"
-    EMBEDDING_FOLDER = MODEL_FOLDER / "embeddings"
-    return DATASET_FOLDER, EMBEDDING_FOLDER, MODEL_FOLDER
+    EMBEDDINGS_FOLDER = MODEL_FOLDER / "embeddings"
+    BERTOPIC_FOLDER = MODEL_FOLDER / "bertopic"
+
+    return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDINGS_FOLDER
 
 
 @app.cell
 def _(DATASET_FOLDER, pd):
+    # Load dataset
     df = pd.read_csv(DATASET_FOLDER / "dataset.csv")
     df.sample(5)
     return (df,)
 
 
 @app.cell
-def _(df):
-    docs = df.doc.to_list()
-    docs[0]
-    return (docs,)
-
-
-@app.cell
-def _(EMBEDDING_FOLDER):
-    embedding_model_name = ""
-    with (EMBEDDING_FOLDER / "embedding_model_name.txt").open("r") as f:
+def _(EMBEDDINGS_FOLDER):
+    # Get embedding_model_name
+    with (EMBEDDINGS_FOLDER / "embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
     embedding_model_name
     return
 
 
 @app.cell
-def _(EMBEDDING_FOLDER, np):
-    embeddings = np.load((EMBEDDING_FOLDER / "embeddings.npy"))
+def _(EMBEDDINGS_FOLDER, np):
+    # Load embeddings
+    embeddings = np.load(EMBEDDINGS_FOLDER / "embeddings.npy")
     embeddings.shape
     return (embeddings,)
 
 
 @app.cell
-def _(MODEL_FOLDER, docs, embeddings, get_bertopic_model):
-    # Get model
+def _(df):
+    # Get Docs
+    docs = df.doc.to_list()
+    return
+
+
+@app.cell
+def _(df, embeddings, get_bertopic_model):
+    # Get BERTopic model
     topic_model = get_bertopic_model()
 
-    # Run model
-    topics, probs = topic_model.fit_transform(docs, embeddings=embeddings)
-
-    # Persist model
-    topic_model.save(path=MODEL_FOLDER / "bertopic", serialization="safetensors")
+    # Fit BERTopic model
+    topics, probs = topic_model.fit_transform(df.doc.to_list(), embeddings=embeddings)
     return probs, topic_model, topics
 
 
 @app.cell
-def _(DATASET_FOLDER, df, docs, probs, topic_model, topics):
-    reduce_outliers = True
-    if reduce_outliers:
-        new_topics_ = topic_model.reduce_outliers(docs, topics, probabilities=probs, strategy="probabilities", threshold=0.01)
-        topic_model.update_topics(docs, topics=new_topics_)
-    else:
-        topic_model.update_topics(docs, topics=topics)
-   
+def _(BERTOPIC_FOLDER, DATASET_FOLDER, df, np, probs, topic_model, topics):
+    # Persist BERTopic model
+    topic_model.save(path=BERTOPIC_FOLDER, serialization="safetensors")
 
+    # Persist probabilities
+    np.save(BERTOPIC_FOLDER / "probs.npy", probs)
 
-    # Add topic clusters
-    df["topic"] = topic_model.topics_
+    # Add topics to dataset
+    df["topic"] = topics
+
+    # Persist dataset with topics
     df.to_csv(DATASET_FOLDER / "dataset_topic.csv", index=False)
 
-    # See topics info
-    t = topic_model.get_topic_info()
-    return (t,)
+    # Persist topics info
+    topic_info = topic_model.get_topic_info()
+    topic_info.to_csv(BERTOPIC_FOLDER / "topic_info.csv", index=False)
+    return (topic_info,)
 
 
 @app.cell
-def _(t):
-    t.sort_values(by="Topic")
+def _(topic_info):
+    # Show topics 
+    topic_info.sort_values(by="Topic")
     return
 
 
 @app.cell
-def _(df, t):
-    # Compute the number of uncategorized articles
-    t.loc[:, ["Count"]].sum().rdiv(df.topic.eq(-1).sum())
-    return
-
-
-@app.cell
-def _(df, np, pd):
-    def get_topics_in_period(period: tuple[int, int], max_topics: int=5):
-    
-        # Define period mask
-        period_mask: pd.Series[np.bool_] = df.year.between(*period)
-
-        # Filter df by period
-        df_period = df[period_mask]
-
-        # Find n largest topics
-        topics_in_period: list[int] = (
-            df_period
-                .groupby("topic")
-                .size()
-                .nlargest(max_topics)
-                .index
-                .to_list()
-        )
-    
-        # Return articole with topic
-        return df_period.loc[df_period.topic.isin(topics_in_period), :].sort_values(by="topic")
-    return (get_topics_in_period,)
-
-
-@app.cell
-def _(get_topics_in_period):
-    get_topics_in_period((2022,2025), 5)
+def _(df, topic_info):
+    # Compute number of uncategorized articles
+    topic_info.loc[:, ["Count"]].sum().rdiv(df.topic.eq(-1).sum()).squeeze()
     return
 
 

@@ -30,6 +30,7 @@ def _():
 
 @app.cell
 def _(Path):
+    # Define paths
     DATASET_FOLDER = Path("./datasets/dataset_2/")
     return (DATASET_FOLDER,)
 
@@ -50,15 +51,12 @@ def _(
         "lossy_ops": []
     }
 
+    # Load original dataset
     df = pd.read_csv(DATASET_FOLDER / "scopus.csv")
-
     metadata["size_before_processing"] = df.shape[0]
 
-    # Lowercase columns
+    # Lowercase all columns
     df.columns = df.columns.str.lower().str.replace(" ", "_")
-
-    if not "country" in df.columns:
-        df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)
 
     # add lowercased title
     df["title_lowercase"] = df.title.str.lower().str.extract(r"^([^\.]+)\.?$")
@@ -67,6 +65,9 @@ def _(
     df = df.drop_duplicates(subset="title_lowercase")
     metadata["lossy_ops"].append(("Drop duplicate title", df.shape[0]))
 
+    # Compute country
+    df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)
+
     # Make excerpt
     df["excerpt"] = make_excerpt(df, "abstract")
 
@@ -74,15 +75,13 @@ def _(
     df["doc"] = make_text_to_embed(df, ["title","excerpt"])
 
     # Filter columns
-    df = df.loc[:, ["year","country","affiliations","title","doc"]]
-
     metadata["size_after_processing"] = df.shape[0]
     return df, metadata
 
 
 @app.cell
 def _(df):
-    df.doc.str.contains("Abstract").sum()
+    df[df.doc.str.contains("abstract")]
     return
 
 
@@ -95,7 +94,8 @@ def _(metadata):
 @app.cell
 def _(DATASET_FOLDER, Path, df, metadata, orjson):
     # Persist
-    df.to_csv(DATASET_FOLDER / "dataset.csv", index=False)
+    df.loc[:, ["year","country","affiliations","title","doc"]]\
+        .to_csv(DATASET_FOLDER / "dataset.csv", index=False)
     with Path(DATASET_FOLDER / "cleanup_recap.json").open("wb") as f:
         f.write(orjson.dumps(metadata, option=orjson.OPT_INDENT_2))
     return
