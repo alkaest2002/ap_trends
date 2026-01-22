@@ -62,38 +62,70 @@ def _(MODEL_FOLDER, docs, embeddings, get_bertopic_model):
 
     # Persist model
     topic_model.save(path=MODEL_FOLDER / "bertopic", serialization="safetensors")
-    return (topic_model,)
+    return probs, topic_model, topics
 
 
 @app.cell
-def _(DATASET_FOLDER, df, topic_model):
+def _(DATASET_FOLDER, df, docs, probs, topic_model, topics):
+    reduce_outliers = True
+    if reduce_outliers:
+        new_topics_ = topic_model.reduce_outliers(docs, topics, probabilities=probs, strategy="probabilities", threshold=0.01)
+        topic_model.update_topics(docs, topics=new_topics_)
+    else:
+        topic_model.update_topics(docs, topics=topics)
+   
+
+
     # Add topic clusters
     df["topic"] = topic_model.topics_
     df.to_csv(DATASET_FOLDER / "dataset_topic.csv", index=False)
-    return
 
-
-@app.cell
-def _(topic_model):
+    # See topics info
     t = topic_model.get_topic_info()
     return (t,)
 
 
 @app.cell
 def _(t):
-    t.iloc[:,:]
-    return
-
-
-@app.cell
-def _(df):
-    df.loc[df.topic.eq(3)]
+    t.sort_values(by="Topic")
     return
 
 
 @app.cell
 def _(df, t):
+    # Compute the number of uncategorized articles
     t.loc[:, ["Count"]].sum().rdiv(df.topic.eq(-1).sum())
+    return
+
+
+@app.cell
+def _(df, np, pd):
+    def get_topics_in_period(period: tuple[int, int], max_topics: int=5):
+    
+        # Define period mask
+        period_mask: pd.Series[np.bool_] = df.year.between(*period)
+
+        # Filter df by period
+        df_period = df[period_mask]
+
+        # Find n largest topics
+        topics_in_period: list[int] = (
+            df_period
+                .groupby("topic")
+                .size()
+                .nlargest(max_topics)
+                .index
+                .to_list()
+        )
+    
+        # Return articole with topic
+        return df_period.loc[df_period.topic.isin(topics_in_period), :].sort_values(by="topic")
+    return (get_topics_in_period,)
+
+
+@app.cell
+def _(get_topics_in_period):
+    get_topics_in_period((2022,2025), 5)
     return
 
 

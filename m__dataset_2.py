@@ -57,7 +57,8 @@ def _(
     # Lowercase columns
     df.columns = df.columns.str.lower().str.replace(" ", "_")
 
-    df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)
+    if not "country" in df.columns:
+        df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)
 
     # add lowercased title
     df["title_lowercase"] = df.title.str.lower().str.extract(r"^([^\.]+)\.?$")
@@ -77,6 +78,12 @@ def _(
 
     metadata["size_after_processing"] = df.shape[0]
     return df, metadata
+
+
+@app.cell
+def _(df):
+    df.doc.str.contains("Abstract").sum()
+    return
 
 
 @app.cell

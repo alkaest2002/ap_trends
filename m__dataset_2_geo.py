@@ -26,16 +26,18 @@ def _(pd):
 
 @app.cell
 def _(Path, df, plt):
-    COLOR = "#3A4F43"
+    BASE_COLOR = "#3A4F43"
+    COLOR_1 = "orange"
+    COLOR_2 = "#00A2FF"
     fig, ax = plt.subplots(nrows=1, ncols=1)
-    ax.tick_params(color=COLOR, labelcolor=COLOR)
-    ax.spines[:].set_color(COLOR)
-    ax.xaxis.label.set_color(COLOR)
-    ax.yaxis.label.set_color(COLOR)
-
+    ax.tick_params(color=BASE_COLOR, labelcolor=BASE_COLOR)
+    ax.spines[:].set_color(BASE_COLOR)
+    ax.xaxis.label.set_color(BASE_COLOR)
+    ax.yaxis.label.set_color(BASE_COLOR)
+    BASE_COLOR
     counts = df.year.value_counts(sort=False)
-    counts.plot(ax=ax, c="orange", label="conteggio")
-    counts.sort_index(ascending=True).rolling(10).mean().plot(ax=ax, color="blue", label="media mobile a 10 anni")
+    counts.plot(ax=ax, c=COLOR_1, label="conteggio")
+    counts.sort_index(ascending=True).rolling(10).mean().plot(ax=ax, color=COLOR_2, label="media mobile a 10 anni")
     ax.set_xlabel("anni")
     ax.set_ylabel("Nr pubblicazioni")
     ax.legend(frameon=False)
