@@ -1,5 +1,6 @@
 from typing import TYPE_CHECKING
 
+import numpy as np
 import pandas as pd
 
 if TYPE_CHECKING:
@@ -26,7 +27,11 @@ def check_columns_(df: pd.DataFrame, columns: list[str]) -> None:
         raise ValueError(error_msg)
 
 
-def make_excerpt(df: pd.DataFrame, column: str = "abstract", num_paragraphs: int = 3) -> pd.Series:
+def make_excerpt(
+        df: pd.DataFrame,
+        column: str = "abstract",
+        num_paragraphs: int = 3,
+    ) -> pd.Series:
     """Create excerpt from column by cleaning up common abbreviations and limiting to first few paragraphs.
 
     Args:
@@ -74,7 +79,7 @@ def make_excerpt(df: pd.DataFrame, column: str = "abstract", num_paragraphs: int
     }
 
     # Fill NaN values with empty strings
-    excerpt: pd.Series = df[column].fillna("")
+    excerpt: pd.Series = df[column].replace("[No abstract available]", np.nan).fillna("")
 
     # Apply abbreviation replacements
     for pattern, replacement in abbrev_dict.items():
