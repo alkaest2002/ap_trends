@@ -128,3 +128,49 @@ def make_text_to_embed(df: pd.DataFrame, columns: list[str] | None = None) -> pd
         text_to_embed[col] = text_to_embed[col].str.replace(rf"<{col}>\.?</{col}>", "", regex=True)
 
     return text_to_embed.agg(" ".join, axis=1).str.strip()
+
+
+def get_topics_in_period(
+        df: pd.DataFrame,
+        topics_info: pd.DataFrame,
+        period: tuple[int, int],
+        max_topics: int = 5
+    ) -> pd.DataFrame:
+    """Get the most prevalent topics in a specified time period.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the topic assignments.
+        topics_info (pd.DataFrame): DataFrame containing the topic information.
+        period (tuple[int, int]): Tuple specifying the start and end year of the period.
+        max_topics (int): Maximum number of topics to return (default is 5).
+
+    Returns:
+        pd.DataFrame: DataFrame containing the topics in the specified period.
+
+    """
+    # Define period mask
+    period_mask: pd.Series[np.bool_] = df.year.between(*period)
+
+    # Filter df by period
+    df_period = df[period_mask]
+
+    # Find n largest topics
+    topics_in_period: list[int] = (
+        df_period
+            .groupby("topic")
+            .size()
+            # Get the most prevalent topics
+            # Increase by one, in case -1 topic is present
+            .nlargest(max_topics + 1)
+            .index
+            .to_list()
+    )
+
+    # Get topic info for topics in period
+    # Exclude -1 Topic (uncategorized)
+    return (
+        topics_info
+            .loc[topics_info.Topic.isin([t for t in topics_in_period if t != -1]), :]
+            .sort_values(by="Topic")
+            .iloc[:max_topics, :]
+    )
