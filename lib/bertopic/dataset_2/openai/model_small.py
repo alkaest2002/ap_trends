@@ -31,17 +31,16 @@ client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
         "n_neighbors": 5,
-        "n_components": 15,
+        "n_components": 20,
         "min_dist": 0.0,
         "metric": "cosine",
         "random_state": 42
     },
     "hdbscan": {
         "min_cluster_size": 5,
-        "min_samples": 5,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
-        "prediction_data": True
+        "prediction_data": True,
     },
     "vectorizer": {
         "stop_words": list(stop_words),
