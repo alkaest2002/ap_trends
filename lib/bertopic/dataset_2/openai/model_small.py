@@ -37,7 +37,8 @@ default_bertopic_settings: dict[str, Any] = {
         "random_state": 42
     },
     "hdbscan": {
-        "min_cluster_size": 5,
+        "min_cluster_size": 10,
+        "min_samples": 5,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
         "prediction_data": True,
