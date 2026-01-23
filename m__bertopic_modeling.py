@@ -103,6 +103,12 @@ def _(df, topic_info):
 
 
 @app.cell
+def _(topic_info):
+    topic_info[topic_info.Topic.eq(41)]
+    return
+
+
+@app.cell
 def _():
     return
 

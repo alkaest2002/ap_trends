@@ -33,7 +33,7 @@ def _(Path):
     BERTOPIC_FOLDER = MODEL_FOLDER / "bertopic"
 
     # Define other constants
-    REDUCE_UNCATEGORIZED = True
+    REDUCE_UNCATEGORIZED = False
     return (
         BERTOPIC_FOLDER,
         DATASET_FOLDER,
@@ -49,13 +49,6 @@ def _(DATASET_FOLDER, pd):
     docs = df.doc.to_list()
     df.sample(5)
     return df, docs
-
-
-@app.cell
-def _(BERTOPIC_FOLDER, pd):
-    topics_info_df = pd.read_csv(BERTOPIC_FOLDER / "topic_info.csv")
-    topics_info_df.head()
-    return
 
 
 @app.cell
@@ -78,6 +71,7 @@ def _(
     docs,
     embedding_model,
     np,
+    pd,
 ):
     # Load BERTopic related files
     topic_model = BERTopic.load(BERTOPIC_FOLDER, embedding_model=embedding_model)
@@ -86,15 +80,11 @@ def _(
     topics = topic_model.topics_
 
     if REDUCE_UNCATEGORIZED:
-        # Reduce uncategorize
         new_topics = topic_model.reduce_outliers(docs, topics, probabilities=probs, strategy="probabilities", threshold=0.01)
-        # Update model
         topic_model.update_topics(docs, topics=new_topics)
+        topics_info = topic_model.get_topic_info()
     else:
-        # Restore original topics
-        topic_model.update_topics(docs, topics=topics)
-
-    topics_info = topic_model.get_topic_info()
+        topics_info = pd.read_csv(BERTOPIC_FOLDER / "topic_info.csv")
     return (topics_info,)
 
 
@@ -140,7 +130,7 @@ def _(np, pd):
 
 @app.cell
 def _(df, get_topics_in_period, topics_info):
-    get_topics_in_period(df, topics_info,(1925,1950), 10)
+    get_topics_in_period(df, topics_info,(2016,2025), 10)
     return
 
 
