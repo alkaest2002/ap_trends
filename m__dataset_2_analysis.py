@@ -131,7 +131,7 @@ def _(np, pd):
                 .index
                 .to_list()
         )
-   
+
         final = topics_info.loc[topics_info.Topic.isin(topics_in_period), :].sort_values(by="Topic")
 
         return final[final.Topic.ne(-1)].iloc[:max_topics, :]

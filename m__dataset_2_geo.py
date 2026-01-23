@@ -55,11 +55,18 @@ def _(BASE_COLOR, COLOR_1, COLOR_2, IMGS_FOLDER, df, plt):
     # Plot data
     counts = df.year.value_counts(sort=False)
     counts.plot(ax=ax, c=COLOR_1, label="conteggio")
-    counts.sort_index(ascending=True).rolling(10).mean().plot(ax=ax, color=COLOR_2, label="media mobile a 10 anni")
+
+    (
+        counts
+            .reindex(range(counts.index.min(),counts.index.max()+1), fill_value=0)
+            .sort_index(ascending=True)
+            .rolling(10).mean()
+            .plot(ax=ax, color=COLOR_2, label="media mobile a 10 anni")
+    )
 
     # Customize plot
     ax.set_xlabel("anni")
-    xticks = range(1925, 2026, 10)
+    xticks = range(1920, 2026, 10)
     xlabels = [f'{x}' for x in xticks]
     ax.set_xticks(xticks, labels=xlabels)
     ax.set_ylabel("Nr pubblicazioni")
