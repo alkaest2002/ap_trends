@@ -152,7 +152,7 @@ def get_topics_in_period(
     period_mask: pd.Series[np.bool_] = df.year.between(*period)
 
     # Filter df by period
-    df_period = df[period_mask]
+    df_period: pd.DataFrame = df[period_mask]
 
     # Find n largest topics
     topics_in_period: list[int] = (
@@ -160,8 +160,9 @@ def get_topics_in_period(
             .groupby("topic")
             .size()
             # Get the most prevalent topics
-            # Increase by one, in case -1 topic is present
+            # Increase by one, in case -1 topic (uncategorized) is present
             .nlargest(max_topics + 1)
+            .drop(-1, errors="ignore")
             .index
             .to_list()
     )
@@ -170,7 +171,6 @@ def get_topics_in_period(
     # Exclude -1 Topic (uncategorized)
     return (
         topics_info
-            .loc[topics_info.Topic.isin([t for t in topics_in_period if t != -1]), :]
-            .sort_values(by="Topic")
+            .loc[topics_info.Topic.isin(topics_in_period), :]
             .iloc[:max_topics, :]
     )
