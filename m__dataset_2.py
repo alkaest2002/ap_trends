@@ -17,33 +17,20 @@ def _():
     from langdetect import detect
 
     nlp = spacy.load("en_core_web_lg")
-    return (
-        Path,
-        extract_countries,
-        make_excerpt,
-        make_text_to_embed,
-        nlp,
-        orjson,
-        pd,
-    )
+    return Path, extract_countries, make_text_to_embed, nlp, orjson, pd
 
 
 @app.cell
 def _(Path):
     # Define paths
     DATASET_FOLDER = Path("./datasets/dataset_2/")
-    return (DATASET_FOLDER,)
+    OUTPUT_FOLDER = DATASET_FOLDER / "openai_small" / "titles_with_abstracts"
+    OUTPUT_FOLDER.exists()
+    return DATASET_FOLDER, OUTPUT_FOLDER
 
 
 @app.cell
-def _(
-    DATASET_FOLDER,
-    extract_countries,
-    make_excerpt,
-    make_text_to_embed,
-    nlp,
-    pd,
-):
+def _(DATASET_FOLDER, extract_countries, make_text_to_embed, nlp, pd):
     # Init metadata object
     metadata = {
         "size_before_processing": None,
@@ -68,21 +55,12 @@ def _(
     # Compute country
     df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)
 
-    # Make excerpt
-    df["excerpt"] = make_excerpt(df, "abstract")
-
     # Make doc
-    df["doc"] = make_text_to_embed(df, ["title","excerpt"])
+    df["doc"] = make_text_to_embed(df, ["title", "abstract"])
 
     # Filter columns
     metadata["size_after_processing"] = df.shape[0]
     return df, metadata
-
-
-@app.cell
-def _(df):
-    df[df.doc.str.contains("abstract")]
-    return
 
 
 @app.cell
@@ -92,10 +70,10 @@ def _(metadata):
 
 
 @app.cell
-def _(DATASET_FOLDER, Path, df, metadata, orjson):
+def _(DATASET_FOLDER, OUTPUT_FOLDER, Path, df, metadata, orjson):
     # Persist
-    df.loc[:, ["year","country","affiliations","title","doc"]]\
-        .to_csv(DATASET_FOLDER / "dataset.csv", index=False)
+    df.loc[:, ["year","country","title","doc"]]\
+        .to_csv(OUTPUT_FOLDER / "dataset.csv", index=False)
     with Path(DATASET_FOLDER / "cleanup_recap.json").open("wb") as f:
         f.write(orjson.dumps(metadata, option=orjson.OPT_INDENT_2))
     return

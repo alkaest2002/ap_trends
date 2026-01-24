@@ -15,13 +15,22 @@ def _():
     from bertopic.backend import OpenAIBackend
     from dotenv import load_dotenv
     from openai import OpenAI
-    from sklearn.feature_extraction.text import CountVectorizer
-
     import numpy as np
     import pandas as pd
+    from sklearn.feature_extraction.text import CountVectorizer
+    from lib.utils_pandas import get_topics_in_period
 
     load_dotenv();
-    return BERTopic, OpenAI, OpenAIBackend, Path, getenv, np, pd
+    return (
+        BERTopic,
+        OpenAI,
+        OpenAIBackend,
+        Path,
+        get_topics_in_period,
+        getenv,
+        np,
+        pd,
+    )
 
 
 @app.cell
@@ -85,12 +94,14 @@ def _(
         topics_info = topic_model.get_topic_info()
     else:
         topics_info = pd.read_csv(BERTOPIC_FOLDER / "topic_info.csv")
-    return (topics_info,)
+    return topic_model, topics_info
 
 
 @app.cell
-def _(topics_info):
-    # Show topics 
+def _(topic_model, topics_info):
+    # Show topics
+    topic_labels = topic_model.generate_topic_labels(nr_words=4,topic_prefix=False, separator=",")
+    topics_info.insert(4,"Representation_2", topic_labels)
     topics_info.sort_values(by="Topic")
     return
 
@@ -103,34 +114,14 @@ def _(topics_info):
 
 
 @app.cell
-def _(np, pd):
-    def get_topics_in_period(df: pd.DataFrame, topics_info: pd.DataFrame, period: tuple[int, int], max_topics: int=5):
-
-        # Define period mask
-        period_mask: pd.Series[np.bool_] = df.year.between(*period)
-
-        # Filter df by period
-        df_period = df[period_mask]
-
-        # Find n largest topics
-        topics_in_period: list[int] = (
-            df_period
-                .groupby("topic")
-                .size()
-                .nlargest(max_topics +1)
-                .index
-                .to_list()
-        )
-
-        final = topics_info.loc[topics_info.Topic.isin(topics_in_period), :].sort_values(by="Topic")
-
-        return final[final.Topic.ne(-1)].iloc[:max_topics, :]
-    return (get_topics_in_period,)
+def _(df, get_topics_in_period, topics_info):
+    get_topics_in_period(df, topics_info,(1920,1950), 8)
+    return
 
 
 @app.cell
-def _(df, get_topics_in_period, topics_info):
-    get_topics_in_period(df, topics_info,(2016,2025), 10)
+def _(topics_info):
+    topics_info.Representation.str.contains("suicide").sum()
     return
 
 

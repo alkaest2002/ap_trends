@@ -18,11 +18,9 @@ def _():
 @app.cell
 def _(Path):
     # Define paths
-    DATASET_FOLDER = Path("./datasets/dataset_2/")
-    MODEL_FOLDER = DATASET_FOLDER / "openai_small"
-    EMBEDDINGS_FOLDER = MODEL_FOLDER / "embeddings"
-    BERTOPIC_FOLDER = MODEL_FOLDER / "bertopic"
-
+    DATASET_FOLDER = Path("./datasets/dataset_2/openai_small/titles_with_abstracts/")
+    EMBEDDINGS_FOLDER = DATASET_FOLDER / "embeddings"
+    BERTOPIC_FOLDER = DATASET_FOLDER / "bertopic"
     return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDINGS_FOLDER
 
 
@@ -103,8 +101,14 @@ def _(df, topic_info):
 
 
 @app.cell
-def _(topic_info):
-    topic_info[topic_info.Topic.eq(41)]
+def _(df):
+    df[df.doc.str.contains("suic")]
+    return
+
+
+@app.cell
+def _(df):
+    df[df.topic.eq(160)]
     return
 
 
