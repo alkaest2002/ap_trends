@@ -18,7 +18,7 @@ def _():
 @app.cell
 def _(Path):
     # Define paths
-    DATASET_FOLDER = Path("./datasets/dataset_2/openai_small/titles_with_abstracts/")
+    DATASET_FOLDER = Path("./datasets/dataset_2/openai_small/titles_with_excerpts_2/")
     EMBEDDINGS_FOLDER = DATASET_FOLDER / "embeddings"
     BERTOPIC_FOLDER = DATASET_FOLDER / "bertopic"
     return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDINGS_FOLDER
@@ -108,7 +108,7 @@ def _(df):
 
 @app.cell
 def _(df):
-    df[df.topic.eq(160)]
+    df[df.topic.eq(65)]
     return
 
 

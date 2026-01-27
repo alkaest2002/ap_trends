@@ -17,20 +17,35 @@ def _():
     from langdetect import detect
 
     nlp = spacy.load("en_core_web_lg")
-    return Path, extract_countries, make_text_to_embed, nlp, orjson, pd
+    return (
+        Path,
+        extract_countries,
+        make_excerpt,
+        make_text_to_embed,
+        nlp,
+        orjson,
+        pd,
+    )
 
 
 @app.cell
 def _(Path):
     # Define paths
     DATASET_FOLDER = Path("./datasets/dataset_2/")
-    OUTPUT_FOLDER = DATASET_FOLDER / "openai_small" / "titles_with_abstracts"
+    OUTPUT_FOLDER = DATASET_FOLDER / "openai_small" / "titles_with_excerpts_2"
     OUTPUT_FOLDER.exists()
     return DATASET_FOLDER, OUTPUT_FOLDER
 
 
 @app.cell
-def _(DATASET_FOLDER, extract_countries, make_text_to_embed, nlp, pd):
+def _(
+    DATASET_FOLDER,
+    extract_countries,
+    make_excerpt,
+    make_text_to_embed,
+    nlp,
+    pd,
+):
     # Init metadata object
     metadata = {
         "size_before_processing": None,
@@ -55,8 +70,11 @@ def _(DATASET_FOLDER, extract_countries, make_text_to_embed, nlp, pd):
     # Compute country
     df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)
 
+    # Make excerpt
+    df["excerpt"] = make_excerpt(df, column="abstract", num_paragraphs=2)
+
     # Make doc
-    df["doc"] = make_text_to_embed(df, ["title", "abstract"])
+    df["doc"] = make_text_to_embed(df, ["title", "excerpt"])
 
     # Filter columns
     metadata["size_after_processing"] = df.shape[0]
