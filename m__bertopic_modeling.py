@@ -10,7 +10,7 @@ def _():
     from pathlib import Path
     import numpy as np
     import pandas as pd
-    from lib.bertopic.dataset_2.openai.model_small import get_bertopic_model, default_bertopic_settings
+    from lib.bertopic.sentence_transformers.model_1 import get_bertopic_model
     return Path, get_bertopic_model, np, pd
 
 

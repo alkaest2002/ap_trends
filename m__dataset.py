@@ -31,8 +31,8 @@ def _():
 @app.cell
 def _(Path):
     # Define paths
-    DATASET_FOLDER = Path("./datasets/dataset_2/")
-    OUTPUT_FOLDER = DATASET_FOLDER / "openai_small" / "titles_with_excerpts_2"
+    DATASET_FOLDER = Path("./datasets")
+    OUTPUT_FOLDER = DATASET_FOLDER / "titles_with_excerpts_2"
     OUTPUT_FOLDER.exists()
     return DATASET_FOLDER, OUTPUT_FOLDER
 
