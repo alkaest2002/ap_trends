@@ -265,4 +265,11 @@ def configure_matplotlib_environment() -> Any:
             "font.family": "sans-serif",
         }
     )
-    return plt
+
+    colors: dict[str, str] = {
+        "base": "#3A4F43",
+        "color_1": "orange",
+        "color_2": "#00A2FF",
+    }
+
+    return plt, colors

@@ -26,18 +26,22 @@ load_dotenv()
 # Initiate openai client
 client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
 
+# Possbile settings:
+# UMAP, n_neighbors 5, n_components 5
+# HDBSCAN, min_cluster_size 4
+# vectorizer, ngram_range (1,3), max_df 0.5
 
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
         "n_neighbors": 5,
-        "n_components": 30,
+        "n_components": 8,
         "min_dist": 0.0,
         "metric": "cosine",
         "random_state": 42
     },
     "hdbscan": {
-        "min_cluster_size": 3,
+        "min_cluster_size": 4,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
         "prediction_data": True,
@@ -45,7 +49,7 @@ default_bertopic_settings: dict[str, Any] = {
     "vectorizer": {
         "stop_words": list(stop_words),
         "ngram_range":  (1, 3),
-        "max_df": .35,
+        "max_df": .5,
     },
     "ctfidf": {
         "bm25_weighting": True,

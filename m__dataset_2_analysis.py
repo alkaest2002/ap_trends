@@ -10,36 +10,42 @@ def _():
     import itertools
     from os import getenv
     from pathlib import Path
-
     from bertopic import BERTopic
     from bertopic.backend import OpenAIBackend
     from dotenv import load_dotenv
+    from kneed import KneeLocator
     from openai import OpenAI
     import numpy as np
     import pandas as pd
     from sklearn.feature_extraction.text import CountVectorizer
     from lib.utils_pandas import get_topics_in_period
+    from lib.utils_base import configure_matplotlib_environment
 
     load_dotenv();
+
+    # Get configured plt env
+    plt, colors = configure_matplotlib_environment()
     return (
         BERTopic,
+        KneeLocator,
         OpenAI,
         OpenAIBackend,
         Path,
-        get_topics_in_period,
+        colors,
         getenv,
         np,
         pd,
+        plt,
     )
 
 
 @app.cell
 def _(Path):
     # Define paths
-    DATASET_FOLDER = Path("./datasets/dataset_2/")
-    MODEL_FOLDER = DATASET_FOLDER / "openai_small"
-    EMBEDDING_FOLDER = MODEL_FOLDER / "embeddings"
-    BERTOPIC_FOLDER = MODEL_FOLDER / "bertopic"
+    DATASET_FOLDER = Path("./datasets/dataset_2/openai_small/titles_with_excerpts_2/")
+    EMBEDDING_FOLDER = DATASET_FOLDER / "embeddings"
+    BERTOPIC_FOLDER = DATASET_FOLDER / "bertopic"
+    IMGS_FOLDER = DATASET_FOLDER / "imgs"
 
     # Define other constants
     REDUCE_UNCATEGORIZED = False
@@ -47,6 +53,7 @@ def _(Path):
         BERTOPIC_FOLDER,
         DATASET_FOLDER,
         EMBEDDING_FOLDER,
+        IMGS_FOLDER,
         REDUCE_UNCATEGORIZED,
     )
 
@@ -107,21 +114,96 @@ def _(topic_model, topics_info):
 
 
 @app.cell
-def _(topics_info):
-    # Compute number of uncategorized articles
-    topics_info.loc[topics_info.Topic.eq(-1), "Count"].div(topics_info.Count.sum()).squeeze()
+def _(df):
+    df[df.doc.str.contains("sui")].topic.value_counts()
     return
 
 
 @app.cell
-def _(df, get_topics_in_period, topics_info):
-    get_topics_in_period(df, topics_info,(1920,1950), 8)
+def _(df):
+    df[df.topic.eq(49)]
     return
 
 
 @app.cell
-def _(topics_info):
-    topics_info.Representation.str.contains("suicide").sum()
+def _(IMGS_FOLDER, colors, plt, topics_info):
+    def plot2():
+        fig, ax = plt.subplots(nrows=1, ncols=1)
+
+        # Colorize features
+        ax.tick_params(color=colors["base"], labelcolor=colors["base"])
+        ax.spines[:].set_color(colors["base"])
+        ax.xaxis.label.set_color(colors["base"])
+        ax.yaxis.label.set_color(colors["base"])
+
+        topics_info.Count[1:].plot(kind="hist", color=colors["base"], label="Frequenza")
+        ax.set_ylabel("Frequenza")
+        ax.set_xlabel("Cluster")
+        fig.savefig(IMGS_FOLDER / "img_2.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
+        plt.show()
+
+    plot2()
+    return
+
+
+@app.cell
+def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
+    def plot3():
+        y = topics_info.Count[1:]
+        x = range(1, len(y)+1)
+        kneedle = KneeLocator(x, y, S=2, curve="convex", direction="decreasing")
+        elbow = round(kneedle.elbow, 1)
+
+        fig, ax = plt.subplots(nrows=1, ncols=1)
+
+        # Colorize features
+        ax.tick_params(color=colors["base"], labelcolor=colors["base"])
+        ax.spines[:].set_color(colors["base"])
+        ax.xaxis.label.set_color(colors["base"])
+        ax.yaxis.label.set_color(colors["base"])
+
+        ax.axvline(elbow, linestyle="--", label="gomito")
+        ax.plot(x,y, label="dim cluster", color="orange")
+        ax.annotate(
+            text=f"cluster {elbow}, dim {y[elbow]}", 
+            color=colors["base"],
+            xy=(elbow +1 , y[elbow]), 
+            xytext=(elbow+5*5, y[elbow] + 5),
+            arrowprops=dict(facecolor=colors["base"], edgecolor=colors["base"], arrowstyle='->,head_width=.15')
+        )
+        ax.legend(frameon=False)
+        ax.set_ylabel("Frequenza")
+        ax.set_xlabel("Cluster")
+        fig.savefig(IMGS_FOLDER / "img_3.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
+        plt.show()
+        return elbow
+
+    elbow = plot3()
+    return (elbow,)
+
+
+@app.cell
+def _(elbow, topics_info):
+    topics_info.nlargest(elbow +1, "Count").loc[:, ["Topic", "Count", "Representation"]]
+    return
+
+
+@app.cell
+def _(IMGS_FOLDER, colors, plt):
+    def plot4():
+        fig, ax = plt.subplots(nrows=1, ncols=1)
+
+        # Colorize features
+        ax.tick_params(color=colors["base"], labelcolor=colors["base"])
+        ax.spines[:].set_color(colors["base"])
+        ax.xaxis.label.set_color(colors["base"])
+        ax.yaxis.label.set_color(colors["base"])
+
+
+        fig.savefig(IMGS_FOLDER / "img_4.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
+        plt.show()
+
+    plot4()
     return
 
 

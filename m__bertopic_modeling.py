@@ -8,7 +8,6 @@ app = marimo.App(width="full")
 def _():
     # Imports
     from pathlib import Path
-
     import numpy as np
     import pandas as pd
     from lib.bertopic.dataset_2.openai.model_small import get_bertopic_model, default_bertopic_settings
@@ -108,7 +107,7 @@ def _(df):
 
 @app.cell
 def _(df):
-    df[df.topic.eq(65)]
+    df[df.topic.eq(0)]
     return
 
 

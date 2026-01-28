@@ -13,20 +13,20 @@ def _():
     from lib.utils_base import configure_matplotlib_environment
 
     # Get configured plt env
-    plt = configure_matplotlib_environment()
-    return Path, np, pd, plt
+    plt, colors = configure_matplotlib_environment()
+    return Path, np, pd, plt, colors
 
 
 @app.cell
-def _(Path):
+def _(Path, colors):
     # Define PATHS
     DATASET_FOLDER = Path("./datasets/dataset_2/")
     IMGS_FOLDER = DATASET_FOLDER / "imgs"
 
     # Define other constants
-    BASE_COLOR = "#3A4F43"
-    COLOR_1 = "orange"
-    COLOR_2 = "#00A2FF"
+    BASE_COLOR = colors["base"]
+    COLOR_1 = colors["color_1"]
+    COLOR_2 = colors["color_2"]
     return BASE_COLOR, COLOR_1, COLOR_2, DATASET_FOLDER, IMGS_FOLDER
 
 
