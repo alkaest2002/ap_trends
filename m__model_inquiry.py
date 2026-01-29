@@ -7,6 +7,7 @@ app = marimo.App(width="full")
 @app.cell
 def _():
     # Imports
+    import marimo as mo
     from pathlib import Path
     from bertopic import BERTopic
     from dotenv import load_dotenv
@@ -19,7 +20,7 @@ def _():
 
     # Get configured plt env
     plt, colors = configure_matplotlib_environment()
-    return BERTopic, KneeLocator, Path, colors, np, pd, plt
+    return BERTopic, KneeLocator, Path, colors, mo, np, pd, plt
 
 
 @app.cell
@@ -69,13 +70,13 @@ def _(BERTOPIC_FOLDER, BERTopic, docs, embedding_model_name, np, pd):
 
 @app.cell
 def _(df):
-    df[df.doc.str.contains("sui")].topic.value_counts()
+    df[df.doc.str.contains("suic")].topic.value_counts()
     return
 
 
 @app.cell
 def _(df):
-    df[df.topic.eq(49)]
+    df[df.topic.eq(9)]
     return
 
 
@@ -90,7 +91,7 @@ def _(IMGS_FOLDER, colors, plt, topics_info):
         ax.xaxis.label.set_color(colors["base"])
         ax.yaxis.label.set_color(colors["base"])
 
-        topics_info.Count[1:].plot(kind="hist", color=colors["base"], label="Frequenza")
+        topics_info.Count[1:].plot(kind="hist", color="#6982A9", label="Frequenza")
         ax.set_ylabel("Frequenza")
         ax.set_xlabel("Cluster")
         fig.savefig(IMGS_FOLDER / "img_2.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
@@ -105,7 +106,7 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
     def plot3():
         y = topics_info.Count[1:]
         x = range(1, len(y)+1)
-        kneedle = KneeLocator(x, y, S=1, curve="convex", direction="decreasing")
+        kneedle = KneeLocator(x, y, S=2, curve="convex", direction="decreasing")
         elbow = round(kneedle.elbow, 1)
 
         fig, ax = plt.subplots(nrows=1, ncols=1)
@@ -121,7 +122,7 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
         ax.annotate(
             text=f"cluster {elbow}, dim {y[elbow]}", 
             color=colors["base"],
-            xy=(elbow +1 , y[elbow]), 
+            xy=(elbow +1 , y[elbow]+1), 
             xytext=(elbow+5*5, y[elbow] + 5),
             arrowprops=dict(facecolor=colors["base"], edgecolor=colors["base"], arrowstyle='->,head_width=.15')
         )
@@ -137,27 +138,51 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
 
 
 @app.cell
-def _(elbow, topics_info):
-    topics_info.nlargest(elbow +1, "Count").loc[:, ["Topic", "Count", "Representation"]]
+def _(topics_info):
+    topics_info
     return
 
 
 @app.cell
-def _(IMGS_FOLDER, colors, plt):
-    def plot4():
-        fig, ax = plt.subplots(nrows=1, ncols=1)
+def _(elbow, mo, topics_info):
+    cloud = (topics_info
+        .nlargest(elbow +1, "Count")
+        .iloc[1:, :]
+        .loc[:, ["Topic","Representation"]]
+        .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
+        .to_list()
+    )
 
-        # Colorize features
-        ax.tick_params(color=colors["base"], labelcolor=colors["base"])
-        ax.spines[:].set_color(colors["base"])
-        ax.xaxis.label.set_color(colors["base"])
-        ax.yaxis.label.set_color(colors["base"])
+    mo.md("\n\n".join(cloud))
+    return
 
 
-        fig.savefig(IMGS_FOLDER / "img_4.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
-        plt.show()
+@app.cell
+def _(df, pd):
+    countries = ["EU", "United States", "China", "United Kingdom", "Australia"]
+    c1 = df.year.between(2025, 2025)
+    c2 = df.topic.ne(-1)
+    filtered_data = df.loc[c1 & c2, ["year","country","topic"]]
+    pivot_data = (
+        pd.concat([
+            filtered_data,
+            filtered_data.country.str.split(" - ", expand=True).dropna(how="all")
+        ], axis=1)
+            .melt(id_vars=["year","country","topic"], value_name="country_")
+            .drop(columns=["country"])
+            .dropna(subset=["country_"])
+    )
+    pivot_table = (
+        pd.pivot_table(pivot_data, index="country_",columns="year", values="topic", aggfunc=set, fill_value="-")
+    )
 
-    plot4()
+    (
+       pivot_table.loc[pivot_table.index.isin(countries)]
+            .reindex(countries)
+            .squeeze()
+            .apply(lambda x: sorted(list(x)))
+        
+    )
     return
 
 

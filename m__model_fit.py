@@ -97,6 +97,12 @@ def _(topic_info):
 
 
 @app.cell
+def _(topic_info):
+    topic_info.shape[0]-1
+    return
+
+
+@app.cell
 def _(df, topic_info):
     # Compute number of uncategorized articles
     topic_info.loc[:, ["Count"]].sum().rdiv(df.topic.eq(-1).sum()).squeeze()
