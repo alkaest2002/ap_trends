@@ -10,10 +10,7 @@ from hdbscan import HDBSCAN
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, CountVectorizer
 from umap import UMAP
 
-from lib.utils_base import get_psychology_sections_list
 from openai import OpenAI
-
-zero_shot_topics = get_psychology_sections_list()
 
 stop_words = ENGLISH_STOP_WORDS.union({
     "<title>", "</title>", "title", "<excerpt>", "</excerpt>", "excerpt",
@@ -22,14 +19,6 @@ stop_words = ENGLISH_STOP_WORDS.union({
 # Load env vars
 load_dotenv()
 
-
-# Initiate openai client
-client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
-
-# Possbile settings:
-# UMAP, n_neighbors 5, n_components 5
-# HDBSCAN, min_cluster_size 4
-# vectorizer, ngram_range (1,3), max_df 0.5
 
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
@@ -63,6 +52,14 @@ default_bertopic_settings: dict[str, Any] = {
 }
 
 
+def get_openai_backend_model() -> OpenAIBackend:
+    """Create an OpenAIBackend embedding model."""
+    # Initiate openai client
+    client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
+
+    return OpenAIBackend(client=client, embedding_model="text-embedding-3-small")
+
+
 def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
     """Create a BERTopic model."""
     # Apply overrides to default settings via update
@@ -72,7 +69,7 @@ def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
                 default_bertopic_settings[key].update(value)
 
     # Step 1 - Embedder
-    embedding_model = OpenAIBackend(client=client, embedding_model="text-embedding-3-small")
+    embedding_model = get_openai_backend_model()
 
     # Step 2 - Reduce dimensionality
     umap_model = UMAP(**default_bertopic_settings["umap"])

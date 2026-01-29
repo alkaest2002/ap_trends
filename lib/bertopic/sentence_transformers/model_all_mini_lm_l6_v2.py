@@ -41,7 +41,7 @@ default_bertopic_settings: dict[str, Any] = {
         "KeyBERTInspired": {
         },
         "maximal_marginal_relevance": {
-            "diversity": 0.3
+            "diversity": 0.5
         },
     }
 }
@@ -83,7 +83,7 @@ def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
     # All steps together
     return BERTopic(
         calculate_probabilities=True,
-        top_n_words=15,
+        top_n_words=5,
         embedding_model=embedding_model,           # Step 1 - Extract embeddings
         umap_model=umap_model,                     # Step 2 - Reduce dimensionality
         hdbscan_model=hdbscan_model,               # Step 3 - Cluster reduced embeddings
