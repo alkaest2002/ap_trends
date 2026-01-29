@@ -13,8 +13,40 @@ load_dotenv()
 client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
 
 
+def validate_docs_(docs: list[str]):
+    """Validate that the docs list is not empty.
+
+    Args:
+        docs (list[str]): List of documents to validate.
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: If the 'docs' list is empty.
+
+    """
+    # Raise error if docs is empty
+    if not docs:
+        error_msg: str = "The 'docs' list is empty. Please provide at least one text."
+        raise ValueError(error_msg)
+
+
+def normalize_model_name(model_name: str) -> str:
+    """Normalize the embedding model name for consistent file naming.
+
+    Args:
+        model_name (str): Original model name.
+
+    Returns:
+        str: Normalized model name.
+
+    """
+    return model_name.replace("/", "__").replace("-", "_")
+
+
 def get_openai_embeddings(
-    texts: list[str],
+    docs: list[str],
     embedding_model_name: str = "text-embedding-3-large",
     batch_size: int = 100,
     delay_between_batches: float = 1.0
@@ -22,7 +54,7 @@ def get_openai_embeddings(
     """Get embeddings for a given text or list of texts using OpenAI API with batch processing.
 
     Args:
-        texts (list[str]): List of texts to get embeddings for.
+        docs (list[str]): List of documents to get embeddings for.
         embedding_model_name (str, optional): Embedding model to use. Defaults to "text-embedding-3-large".
         batch_size (int, optional): Number of texts to process in each batch. Defaults to 100.
         delay_between_batches (float, optional): Delay in seconds between batches. Defaults to 1.0.
@@ -37,12 +69,10 @@ def get_openai_embeddings(
 
     """
     # Raise error if texts is empty
-    if not texts:
-        error_msg: str = "The 'texts' list is empty. Please provide at least one text."
-        raise ValueError(error_msg)
+    validate_docs_(docs)
 
     # Remove newlines from texts to improve consistency
-    cleaned_texts: list[str] = [text.replace("\n", " ") for text in texts]
+    cleaned_texts: list[str] = [text.replace("\n", " ") for text in docs]
 
     # Initialize list to hold all embeddings
     all_embeddings: list[list[float]] = []
@@ -74,20 +104,25 @@ def get_openai_embeddings(
     return embedding_model_name, all_embeddings
 
 
-def get_all_minilm_l6_v2_embeddings(
-    texts: list[str],
+def get_sentence_transformer(
+    docs: list[str],
+    transformer_name: str = "all-MiniLM-L6-v2",
 ) -> NDArray:
     """Get MiniLM L6 v2 embeddings for a list of texts using SentenceTransformer.
 
     Args:
-        texts (list[str]): List of texts to get embeddings for.
+        docs (list[str]): List of documents to get embeddings for.
+        transformer_name (str): Name of the SentenceTransformer model.
 
     Returns:
         NDArray: Array of embedding vectors.
 
     """
+    # Raise error if texts is empty
+    validate_docs_(docs)
+
     # Load the MiniLM L6 v2 model
-    sentence_model = SentenceTransformer("all-MiniLM-L6-v2")
+    sentence_model = SentenceTransformer(transformer_name)
 
     # Compute embeddings
-    return sentence_model.encode(texts, show_progress_bar=False)
+    return sentence_model.encode(docs, show_progress_bar=False)
