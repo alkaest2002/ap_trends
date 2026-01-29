@@ -42,7 +42,7 @@ def normalize_model_name(model_name: str) -> str:
         str: Normalized model name.
 
     """
-    return model_name.replace("/", "__").replace("-", "_")
+    return model_name.replace(".", "_").replace("/", "__").replace("-", "_")
 
 
 def get_openai_embeddings(
