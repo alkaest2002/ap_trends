@@ -3,7 +3,7 @@
   "size_after_processing": 2379,
   "lossy_ops": [
     [
-      "Drop duplicate title",
+      "Drop duplicate titles",
       2379
     ]
   ]

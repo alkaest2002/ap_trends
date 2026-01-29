@@ -41,7 +41,7 @@ default_bertopic_settings: dict[str, Any] = {
         "KeyBERTInspired": {
         },
         "maximal_marginal_relevance": {
-            "diversity": 0.1
+            "diversity": 0.3
         },
     }
 }

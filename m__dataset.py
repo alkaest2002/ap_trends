@@ -31,7 +31,7 @@ def _():
 @app.cell
 def _(Path):
     # Define paths
-    DATASET_FOLDER = Path("./datasets")
+    DATASET_FOLDER = Path("./dataset")
     OUTPUT_FOLDER = DATASET_FOLDER / "titles_with_excerpts_2"
     OUTPUT_FOLDER.exists()
     return DATASET_FOLDER, OUTPUT_FOLDER
@@ -65,7 +65,7 @@ def _(
 
     # drop duplicated titles
     df = df.drop_duplicates(subset="title_lowercase")
-    metadata["lossy_ops"].append(("Drop duplicate title", df.shape[0]))
+    metadata["lossy_ops"].append(("Drop duplicate titles", df.shape[0]))
 
     # Compute country
     df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)

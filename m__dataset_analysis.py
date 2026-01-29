@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.19.2"
+__generated_with = "0.19.6"
 app = marimo.App(width="full")
 
 
@@ -42,20 +42,15 @@ def _():
 @app.cell
 def _(Path):
     # Define paths
-    DATASET_FOLDER = Path("./datasets/dataset_2/openai_small/titles_with_excerpts_2/")
-    EMBEDDING_FOLDER = DATASET_FOLDER / "embeddings"
-    BERTOPIC_FOLDER = DATASET_FOLDER / "bertopic"
-    IMGS_FOLDER = DATASET_FOLDER / "imgs"
+    DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
+    OUT_FOLDER = Path("./out") / "sentence_transformers" / "all_mini_lm_l6_v2"
+    EMBEDDING_FOLDER =  OUT_FOLDER / "embeddings"
+    BERTOPIC_FOLDER = OUT_FOLDER / "bertopic"
+    IMGS_FOLDER = OUT_FOLDER / "imgs"
 
     # Define other constants
-    REDUCE_UNCATEGORIZED = False
-    return (
-        BERTOPIC_FOLDER,
-        DATASET_FOLDER,
-        EMBEDDING_FOLDER,
-        IMGS_FOLDER,
-        REDUCE_UNCATEGORIZED,
-    )
+    IMGS_FOLDER.exists()
+    return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDING_FOLDER, IMGS_FOLDER
 
 
 @app.cell
@@ -80,37 +75,15 @@ def _(EMBEDDING_FOLDER, OpenAI, OpenAIBackend, getenv):
 
 
 @app.cell
-def _(
-    BERTOPIC_FOLDER,
-    BERTopic,
-    REDUCE_UNCATEGORIZED,
-    docs,
-    embedding_model,
-    np,
-    pd,
-):
+def _(BERTOPIC_FOLDER, BERTopic, docs, embedding_model, np, pd):
     # Load BERTopic related files
     topic_model = BERTopic.load(BERTOPIC_FOLDER, embedding_model=embedding_model)
     probs = np.load(file=BERTOPIC_FOLDER / "probs.npy")
     topic_model.update_topics(docs)
     topics = topic_model.topics_
-
-    if REDUCE_UNCATEGORIZED:
-        new_topics = topic_model.reduce_outliers(docs, topics, probabilities=probs, strategy="probabilities", threshold=0.01)
-        topic_model.update_topics(docs, topics=new_topics)
-        topics_info = topic_model.get_topic_info()
-    else:
-        topics_info = pd.read_csv(BERTOPIC_FOLDER / "topic_info.csv")
-    return topic_model, topics_info
-
-
-@app.cell
-def _(topic_model, topics_info):
-    # Show topics
-    topic_labels = topic_model.generate_topic_labels(nr_words=4,topic_prefix=False, separator=",")
-    topics_info.insert(4,"Representation_2", topic_labels)
+    topics_info = pd.read_csv(BERTOPIC_FOLDER / "topic_info.csv")
     topics_info.sort_values(by="Topic")
-    return
+    return (topics_info,)
 
 
 @app.cell
@@ -151,7 +124,7 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
     def plot3():
         y = topics_info.Count[1:]
         x = range(1, len(y)+1)
-        kneedle = KneeLocator(x, y, S=2, curve="convex", direction="decreasing")
+        kneedle = KneeLocator(x, y, S=1, curve="convex", direction="decreasing")
         elbow = round(kneedle.elbow, 1)
 
         fig, ax = plt.subplots(nrows=1, ncols=1)

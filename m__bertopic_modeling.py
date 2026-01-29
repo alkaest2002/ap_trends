@@ -10,16 +10,18 @@ def _():
     from pathlib import Path
     import numpy as np
     import pandas as pd
-    from lib.bertopic.sentence_transformers.model_1 import get_bertopic_model
+    from lib.bertopic.sentence_transformers.model_all_mini_lm_l6_v2 import get_bertopic_model
     return Path, get_bertopic_model, np, pd
 
 
 @app.cell
 def _(Path):
     # Define paths
-    DATASET_FOLDER = Path("./datasets/dataset_2/openai_small/titles_with_excerpts_2/")
-    EMBEDDINGS_FOLDER = DATASET_FOLDER / "embeddings"
-    BERTOPIC_FOLDER = DATASET_FOLDER / "bertopic"
+    DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
+    OUTPATH = Path("out") / "sentence_transformers" / "all_mini_lm_l6_v2"
+    EMBEDDINGS_FOLDER = OUTPATH / "embeddings"
+    BERTOPIC_FOLDER = OUTPATH / "bertopic"
+    BERTOPIC_FOLDER.exists()
     return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDINGS_FOLDER
 
 
@@ -107,7 +109,7 @@ def _(df):
 
 @app.cell
 def _(df):
-    df[df.topic.eq(0)]
+    df[df.topic.eq(112)]
     return
 
 

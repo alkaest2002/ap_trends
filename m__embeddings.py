@@ -10,25 +10,24 @@ def _():
 
     import pandas as pd
     import numpy as np
-    from lib.utils_embeddings import get_batch_embeddings
-    return Path, get_batch_embeddings, np, pd
+    from lib.utils_embeddings import get_all_minilm_l6_v2_embeddings
+    return Path, get_all_minilm_l6_v2_embeddings, np, pd
 
 
 @app.cell
 def _(Path):
-    DATASET_FOLDER = Path("./datasets/dataset_2/openai_small/titles_with_excerpts_2/")
-    EMBEDDINGS_FOLDER = DATASET_FOLDER / "embeddings"
+    DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
+    EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
+    EMBEDDINGS_FOLDER = Path("out") / "sentence_transformers" / "embeddings"
     EMBEDDINGS_FOLDER.exists()
-    return DATASET_FOLDER, EMBEDDINGS_FOLDER
+    return DATASET_FOLDER, EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME
 
 
 @app.cell
 def _(DATASET_FOLDER, pd):
-    EMBEDDINGS_MODEL_NAME = "text-embedding-3-small"
-
     df = pd.read_csv(DATASET_FOLDER / "dataset.csv")
     df.shape
-    return EMBEDDINGS_MODEL_NAME, df
+    return (df,)
 
 
 @app.cell
@@ -38,9 +37,9 @@ def _(df):
 
 
 @app.cell
-def _(EMBEDDINGS_MODEL_NAME, df, get_batch_embeddings):
+def _(df, get_all_minilm_l6_v2_embeddings):
     texts_to_embed = df.doc.to_list()
-    _, embeddings = get_batch_embeddings(texts_to_embed, embedding_model_name=EMBEDDINGS_MODEL_NAME)
+    embeddings = get_all_minilm_l6_v2_embeddings(texts_to_embed)
     return (embeddings,)
 
 

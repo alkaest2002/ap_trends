@@ -2,7 +2,9 @@ import time
 from os import getenv
 
 from dotenv import load_dotenv
+from numpy.typing import NDArray
 from openai import OpenAI
+from sentence_transformers import SentenceTransformer
 
 # Load env vars
 load_dotenv()
@@ -11,7 +13,7 @@ load_dotenv()
 client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
 
 
-def get_batch_embeddings(
+def get_openai_embeddings(
     texts: list[str],
     embedding_model_name: str = "text-embedding-3-large",
     batch_size: int = 100,
@@ -70,3 +72,22 @@ def get_batch_embeddings(
             raise
 
     return embedding_model_name, all_embeddings
+
+
+def get_all_minilm_l6_v2_embeddings(
+    texts: list[str],
+) -> NDArray:
+    """Get MiniLM L6 v2 embeddings for a list of texts using SentenceTransformer.
+
+    Args:
+        texts (list[str]): List of texts to get embeddings for.
+
+    Returns:
+        NDArray: Array of embedding vectors.
+
+    """
+    # Load the MiniLM L6 v2 model
+    sentence_model = SentenceTransformer("all-MiniLM-L6-v2")
+
+    # Compute embeddings
+    return sentence_model.encode(texts, show_progress_bar=False)
