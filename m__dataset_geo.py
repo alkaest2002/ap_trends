@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.19.2"
+__generated_with = "0.19.6"
 app = marimo.App(width="full")
 
 
@@ -14,20 +14,22 @@ def _():
 
     # Get configured plt env
     plt, colors = configure_matplotlib_environment()
-    return Path, np, pd, plt, colors
-
-
-@app.cell
-def _(Path, colors):
-    # Define PATHS
-    DATASET_FOLDER = Path("./datasets/dataset_2/")
-    IMGS_FOLDER = DATASET_FOLDER / "imgs"
 
     # Define other constants
     BASE_COLOR = colors["base"]
     COLOR_1 = colors["color_1"]
     COLOR_2 = colors["color_2"]
-    return BASE_COLOR, COLOR_1, COLOR_2, DATASET_FOLDER, IMGS_FOLDER
+    return BASE_COLOR, COLOR_1, COLOR_2, Path, np, pd, plt
+
+
+@app.cell
+def _(Path):
+    # Define PATHS
+    DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
+    IMGS_FOLDER = Path("out/_base") / "imgs"
+
+    IMGS_FOLDER.exists()
+    return DATASET_FOLDER, IMGS_FOLDER
 
 
 @app.cell

@@ -8,35 +8,19 @@ app = marimo.App(width="full")
 def _():
     # Imports
     import itertools
-    from os import getenv
     from pathlib import Path
     from bertopic import BERTopic
-    from bertopic.backend import OpenAIBackend
     from dotenv import load_dotenv
     from kneed import KneeLocator
-    from openai import OpenAI
     import numpy as np
     import pandas as pd
     from sklearn.feature_extraction.text import CountVectorizer
     from lib.utils_pandas import get_topics_in_period
     from lib.utils_base import configure_matplotlib_environment
 
-    load_dotenv();
-
     # Get configured plt env
     plt, colors = configure_matplotlib_environment()
-    return (
-        BERTopic,
-        KneeLocator,
-        OpenAI,
-        OpenAIBackend,
-        Path,
-        colors,
-        getenv,
-        np,
-        pd,
-        plt,
-    )
+    return BERTopic, KneeLocator, Path, colors, np, pd, plt
 
 
 @app.cell
@@ -63,15 +47,11 @@ def _(DATASET_FOLDER, pd):
 
 
 @app.cell
-def _(EMBEDDING_FOLDER, OpenAI, OpenAIBackend, getenv):
+def _(EMBEDDING_FOLDER):
     # Get embedding_model_name
     with (EMBEDDING_FOLDER / "embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
-
-    # Init embedding model
-    client = OpenAI(api_key=getenv("OPENAI_APIKEY"))
-    embedding_model = OpenAIBackend(client=client, embedding_model="text-embedding-3-small")
-    return (embedding_model,)
+    return
 
 
 @app.cell

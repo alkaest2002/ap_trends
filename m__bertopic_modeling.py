@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.19.2"
+__generated_with = "0.19.6"
 app = marimo.App(width="full")
 
 
@@ -54,16 +54,16 @@ def _(EMBEDDINGS_FOLDER, np):
 def _(df):
     # Get Docs
     docs = df.doc.to_list()
-    return
+    return (docs,)
 
 
 @app.cell
-def _(df, embeddings, get_bertopic_model):
+def _(docs, embeddings, get_bertopic_model):
     # Get BERTopic model
     topic_model = get_bertopic_model()
 
     # Fit BERTopic model
-    topics, probs = topic_model.fit_transform(df.doc.to_list(), embeddings=embeddings)
+    topics, probs = topic_model.fit_transform(docs, embeddings=embeddings)
     return probs, topic_model, topics
 
 
@@ -109,7 +109,7 @@ def _(df):
 
 @app.cell
 def _(df):
-    df[df.topic.eq(112)]
+    df[df.topic.eq(47)]
     return
 
 
