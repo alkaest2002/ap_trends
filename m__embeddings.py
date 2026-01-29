@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.19.2"
+__generated_with = "0.19.6"
 app = marimo.App(width="full")
 
 
@@ -10,15 +10,15 @@ def _():
 
     import pandas as pd
     import numpy as np
-    from lib.utils_embeddings import get_all_minilm_l6_v2_embeddings
-    return Path, get_all_minilm_l6_v2_embeddings, np, pd
+    from lib.utils_embeddings import get_sentence_transformer
+    return Path, get_sentence_transformer, np, pd
 
 
 @app.cell
 def _(Path):
     DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
     EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
-    EMBEDDINGS_FOLDER = Path("out") / "sentence_transformers" / "embeddings"
+    EMBEDDINGS_FOLDER = Path("out") / "sentence_transformers" / EMBEDDINGS_MODEL_NAME.replace("-", "_") /  "embeddings"
     EMBEDDINGS_FOLDER.exists()
     return DATASET_FOLDER, EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME
 
@@ -37,9 +37,9 @@ def _(df):
 
 
 @app.cell
-def _(df, get_all_minilm_l6_v2_embeddings):
+def _(EMBEDDINGS_MODEL_NAME, df, get_sentence_transformer):
     texts_to_embed = df.doc.to_list()
-    embeddings = get_all_minilm_l6_v2_embeddings(texts_to_embed)
+    embeddings = get_sentence_transformer(texts_to_embed, EMBEDDINGS_MODEL_NAME)
     return (embeddings,)
 
 

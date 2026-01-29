@@ -110,7 +110,7 @@ def _(data, pd):
     y_2016_2020 = data[data.year.between(2016, 2020, inclusive="both")].groupby("country").size()
 
     # Compute most profilic countries
-    most_profilic_2021_2025 = y_2021_2025.nlargest(10)
+    most_profilic_2021_2025 = y_2021_2025.nlargest(5)
     most_profilic_2016_2020 = y_2016_2020.reindex(most_profilic_2021_2025.index)
 
     # Combine results
