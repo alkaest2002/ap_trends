@@ -7,7 +7,7 @@
       ],
       [
         "airline pilots",
-        0.4940979480743408
+        0.4940979778766632
       ],
       [
         "psychological resilience",
@@ -39,7 +39,7 @@
       ],
       [
         "anxiety",
-        0.39216381311416626
+        0.3921636939048767
       ]
     ],
     "0": [
@@ -69,7 +69,7 @@
       ],
       [
         "manned space missions",
-        0.5386948585510254
+        0.5386949777603149
       ],
       [
         "spaceflight",
@@ -107,11 +107,11 @@
       ],
       [
         "human automation interaction",
-        0.639420211315155
+        0.6394199132919312
       ],
       [
         "automation interaction",
-        0.6096068024635315
+        0.6096068620681763
       ],
       [
         "automation",
@@ -119,17 +119,17 @@
       ],
       [
         "aviation automation",
-        0.5736428499221802
+        0.5736427903175354
       ],
       [
         "interaction cockpit",
-        0.5698605179786682
+        0.5698604583740234
       ]
     ],
     "2": [
       [
         "computer aviation training",
-        0.6931917071342468
+        0.693191647529602
       ],
       [
         "aviation training",
@@ -145,15 +145,15 @@
       ],
       [
         "flight training",
-        0.6215691566467285
+        0.6215692758560181
       ],
       [
         "training combat skills",
-        0.6187482476234436
+        0.6187483072280884
       ],
       [
         "training effectiveness",
-        0.5913671255111694
+        0.5913671851158142
       ],
       [
         "training research",
@@ -165,7 +165,7 @@
       ],
       [
         "initio flight training",
-        0.5585707426071167
+        0.5585708618164062
       ]
     ],
     "3": [
@@ -175,11 +175,11 @@
       ],
       [
         "air traffic controllers",
-        0.6341265439987183
+        0.6341266632080078
       ],
       [
         "air traffic control",
-        0.6121031641960144
+        0.6121030449867249
       ],
       [
         "air traffic controller",
@@ -187,7 +187,7 @@
       ],
       [
         "conflict detection air",
-        0.5915414690971375
+        0.5915414094924927
       ],
       [
         "airspace cognitive",
@@ -195,11 +195,11 @@
       ],
       [
         "complexity air traffic",
-        0.5677720904350281
+        0.5677722096443176
       ],
       [
         "air traffic complexity",
-        0.5219687223434448
+        0.5219686627388
       ],
       [
         "conflict resolution",
@@ -221,11 +221,11 @@
       ],
       [
         "pilot candidate selection",
-        0.7333242893218994
+        0.733324408531189
       ],
       [
         "pilot selection test",
-        0.7288771867752075
+        0.7288773059844971
       ],
       [
         "pilot training performance",
@@ -241,7 +241,7 @@
       ],
       [
         "pilot training success",
-        0.6683869957923889
+        0.6683869361877441
       ],
       [
         "aviation selection",
@@ -283,7 +283,7 @@
       ],
       [
         "personality types",
-        0.5500761866569519
+        0.5500760674476624
       ],
       [
         "myers briggs",
@@ -291,13 +291,13 @@
       ],
       [
         "personality",
-        0.5222061276435852
+        0.5222057700157166
       ]
     ],
     "6": [
       [
         "flight displays",
-        0.6759747862815857
+        0.6759748458862305
       ],
       [
         "cockpit displays",
@@ -305,7 +305,7 @@
       ],
       [
         "flight path displays",
-        0.5954766273498535
+        0.5954766869544983
       ],
       [
         "map displays",
@@ -321,7 +321,7 @@
       ],
       [
         "navigation display",
-        0.5068334937095642
+        0.5068334341049194
       ],
       [
         "head displays",
@@ -339,7 +339,7 @@
     "7": [
       [
         "pilot gaze patterns",
-        0.6886698007583618
+        0.688669741153717
       ],
       [
         "pilots attention distributions",
@@ -363,11 +363,11 @@
       ],
       [
         "eye tracking measurements",
-        0.6423516869544983
+        0.642351508140564
       ],
       [
         "eye scanning behavior",
-        0.6342878341674805
+        0.6342877149581909
       ],
       [
         "gaze patterns control",
@@ -381,7 +381,7 @@
     "8": [
       [
         "circadian adaptation airline",
-        0.7623578310012817
+        0.7623578906059265
       ],
       [
         "circadian rhythms flight",
@@ -389,7 +389,7 @@
       ],
       [
         "circadian adaptation",
-        0.6673494577407837
+        0.6673495769500732
       ],
       [
         "changes circadian",
@@ -401,15 +401,15 @@
       ],
       [
         "human circadian",
-        0.636271595954895
+        0.6362716555595398
       ],
       [
         "circadian sleep",
-        0.6198121905326843
+        0.6198124289512634
       ],
       [
         "circadian rhythms",
-        0.6136552691459656
+        0.6136553883552551
       ],
       [
         "changes circadian rhythms",
@@ -423,11 +423,11 @@
     "9": [
       [
         "pilot spatial orientation",
-        0.7208225727081299
+        0.7208224534988403
       ],
       [
         "associated spatial disorientation",
-        0.6632365584373474
+        0.6632364988327026
       ],
       [
         "spatial disorientation",
@@ -435,7 +435,7 @@
       ],
       [
         "spatial disorientation incidence",
-        0.6200393438339233
+        0.6200392842292786
       ],
       [
         "spatial disorientation cognitive",
@@ -451,7 +451,7 @@
       ],
       [
         "directional disorientation",
-        0.593853771686554
+        0.5938535928726196
       ],
       [
         "pilots behavior",
@@ -459,13 +459,13 @@
       ],
       [
         "aviation associated spatial",
-        0.5918226838111877
+        0.591822624206543
       ]
     ],
     "10": [
       [
         "aviation psychiatry",
-        0.7701707482337952
+        0.7701706886291504
       ],
       [
         "aerospace psychiatry",
@@ -473,11 +473,11 @@
       ],
       [
         "psychiatric education aerospace",
-        0.7008053660392761
+        0.7008054256439209
       ],
       [
         "aerospace clinical psychology",
-        0.698295533657074
+        0.6982955932617188
       ],
       [
         "aerospace clinical",
@@ -485,7 +485,7 @@
       ],
       [
         "aviation medicine",
-        0.5931737422943115
+        0.5931738615036011
       ],
       [
         "military aerospace medicine",
@@ -493,11 +493,11 @@
       ],
       [
         "military student pilots",
-        0.5875755548477173
+        0.5875754952430725
       ],
       [
         "aerospace medicine",
-        0.5527539849281311
+        0.5527539253234863
       ],
       [
         "aspects aviation medicine",
@@ -511,15 +511,15 @@
       ],
       [
         "situation awareness training",
-        0.7336504459381104
+        0.7336505651473999
       ],
       [
         "situation awareness",
-        0.715259313583374
+        0.7152594327926636
       ],
       [
         "situational awareness simulated",
-        0.7102211713790894
+        0.7102212309837341
       ],
       [
         "situational awareness",
@@ -531,15 +531,15 @@
       ],
       [
         "situational awareness sa",
-        0.6681361794471741
+        0.6681363582611084
       ],
       [
         "team situation awareness",
-        0.6611700654029846
+        0.6611701250076294
       ],
       [
         "situation awareness sa",
-        0.6570793390274048
+        0.6570794582366943
       ],
       [
         "awareness task performance",
@@ -549,7 +549,7 @@
     "12": [
       [
         "pilots safety behavior",
-        0.7487939596176147
+        0.74879390001297
       ],
       [
         "pilot risk perception",
@@ -557,11 +557,11 @@
       ],
       [
         "pilots risk taking",
-        0.7320379614830017
+        0.732038140296936
       ],
       [
         "pilots risk",
-        0.7187016606330872
+        0.7187017202377319
       ],
       [
         "pilot risk",
@@ -569,7 +569,7 @@
       ],
       [
         "flight experience safety",
-        0.6839916706085205
+        0.6839916110038757
       ],
       [
         "risky flight behavior",
@@ -591,7 +591,7 @@
     "13": [
       [
         "aviation psychology army",
-        0.7723234295845032
+        0.7723233103752136
       ],
       [
         "psychology army air",
@@ -599,7 +599,7 @@
       ],
       [
         "aviation psychology program",
-        0.7216433882713318
+        0.7216434478759766
       ],
       [
         "aaf aviation psychology",
@@ -607,15 +607,15 @@
       ],
       [
         "aviation psychology",
-        0.6858341097831726
+        0.6858339905738831
       ],
       [
         "psychology program army",
-        0.6333438158035278
+        0.6333437561988831
       ],
       [
         "aeromedical psychology training",
-        0.5987833738327026
+        0.5987831950187683
       ],
       [
         "psychology army",
@@ -627,7 +627,7 @@
       ],
       [
         "aeromedical psychology",
-        0.546873927116394
+        0.5468740463256836
       ]
     ],
     "14": [
@@ -649,11 +649,11 @@
       ],
       [
         "work related stress",
-        0.5843386650085449
+        0.5843385457992554
       ],
       [
         "psychosocial stress",
-        0.5818837881088257
+        0.5818842649459839
       ],
       [
         "stress assessment",
@@ -665,7 +665,7 @@
       ],
       [
         "subjective stress assessment",
-        0.5624739527702332
+        0.5624740719795227
       ],
       [
         "related stress",
@@ -675,7 +675,7 @@
     "15": [
       [
         "pilots air traffic",
-        0.5690255761146545
+        0.5690256953239441
       ],
       [
         "voice communication",
@@ -691,15 +691,15 @@
       ],
       [
         "speech based controls",
-        0.46782007813453674
+        0.4678199589252472
       ],
       [
         "language fluency",
-        0.46494629979133606
+        0.4649463891983032
       ],
       [
         "speech based",
-        0.4538837969303131
+        0.4538838267326355
       ],
       [
         "communication variations aircrew",
@@ -711,13 +711,13 @@
       ],
       [
         "intelligibility multitalker speech",
-        0.42250728607177734
+        0.42250722646713257
       ]
     ],
     "16": [
       [
         "space medicine nasa",
-        0.7349641919136047
+        0.7349640727043152
       ],
       [
         "space medicine",
@@ -733,11 +733,11 @@
       ],
       [
         "missions assessing biomedical",
-        0.5967379212379456
+        0.5967381000518799
       ],
       [
         "risks space flight",
-        0.5750130414962769
+        0.5750129818916321
       ],
       [
         "astronauts",
@@ -745,11 +745,11 @@
       ],
       [
         "society aerospace medicine",
-        0.5447928309440613
+        0.544792890548706
       ],
       [
         "international space station",
-        0.5201191902160645
+        0.5201192498207092
       ],
       [
         "space flight effects",
@@ -763,7 +763,7 @@
       ],
       [
         "vigilance task",
-        0.668685257434845
+        0.6686850786209106
       ],
       [
         "mindlessness vigilance performance",
@@ -775,7 +775,7 @@
       ],
       [
         "sustained attention",
-        0.565910279750824
+        0.5659102201461792
       ],
       [
         "mindlessness vigilance",
@@ -813,7 +813,7 @@
       ],
       [
         "deliberate practice pilot",
-        0.6273980736732483
+        0.6273981332778931
       ],
       [
         "pilot judgment",
@@ -821,11 +821,11 @@
       ],
       [
         "decision making aircraft",
-        0.6066226959228516
+        0.6066228151321411
       ],
       [
         "flight time cognitive",
-        0.5944384932518005
+        0.5944385528564453
       ],
       [
         "practice pilot",
@@ -833,7 +833,7 @@
       ],
       [
         "aeronautical decision making",
-        0.5748032331466675
+        0.5748032927513123
       ],
       [
         "aeronautical decision",
@@ -851,7 +851,7 @@
       ],
       [
         "factors aviation accidents",
-        0.7355917692184448
+        0.7355915307998657
       ],
       [
         "nasa aviation safety",
@@ -867,19 +867,19 @@
       ],
       [
         "aviation accidents",
-        0.68611741065979
+        0.6861172318458557
       ],
       [
         "aviation human factors",
-        0.6588197946548462
+        0.658819854259491
       ],
       [
         "general aviation accidents",
-        0.6407285332679749
+        0.6407284140586853
       ],
       [
         "factors aviation",
-        0.6251420378684998
+        0.625141978263855
       ]
     ],
     "20": [
@@ -913,11 +913,11 @@
       ],
       [
         "fear flying syndrome",
-        0.741818368434906
+        0.7418184876441956
       ],
       [
         "excessive anxiety flying",
-        0.7366476058959961
+        0.7366477251052856
       ],
       [
         "passenger fear flying",
@@ -927,27 +927,27 @@
     "21": [
       [
         "aviation psychology",
-        0.7652259469032288
+        0.7652257084846497
       ],
       [
         "psychology aviation",
-        0.7635771632194519
+        0.7635770440101624
       ],
       [
         "psychology aviation disasters",
-        0.7559674382209778
+        0.755967378616333
       ],
       [
         "symposium aviation psychology",
-        0.7366020083427429
+        0.7366021871566772
       ],
       [
         "journal aviation psychology",
-        0.7266483306884766
+        0.7266483902931213
       ],
       [
         "aviation psychologists",
-        0.7052484750747681
+        0.7052484154701233
       ],
       [
         "psychology aviation clinical",
@@ -963,7 +963,7 @@
       ],
       [
         "psychological nature",
-        0.5529606938362122
+        0.5529605746269226
       ]
     ],
     "22": [
@@ -989,7 +989,7 @@
       ],
       [
         "fatigue perceptions",
-        0.6833244562149048
+        0.6833245158195496
       ],
       [
         "travel fatigue",
@@ -997,11 +997,11 @@
       ],
       [
         "fatigue related",
-        0.6454399228096008
+        0.6454398036003113
       ],
       [
         "risk factors fatigue",
-        0.6369753479957581
+        0.6369752883911133
       ],
       [
         "fatigue sleep",
@@ -1015,7 +1015,7 @@
       ],
       [
         "workload assessment",
-        0.7589102387428284
+        0.7589101791381836
       ],
       [
         "workload assessment technique",
@@ -1031,11 +1031,11 @@
       ],
       [
         "pilots methods workload",
-        0.6841831803321838
+        0.6841830015182495
       ],
       [
         "pilot workload",
-        0.6794371008872986
+        0.6794368624687195
       ],
       [
         "mental workload",
@@ -1047,21 +1047,21 @@
       ],
       [
         "nasa task load",
-        0.6547975540161133
+        0.654797375202179
       ]
     ],
     "24": [
       [
         "stress air traffic",
-        0.6709039807319641
+        0.6709038615226746
       ],
       [
         "traffic stress air",
-        0.6642452478408813
+        0.6642451882362366
       ],
       [
         "traffic control stress",
-        0.6624594926834106
+        0.6624595522880554
       ],
       [
         "traffic stress",
@@ -1069,7 +1069,7 @@
       ],
       [
         "air traffic control",
-        0.5675964951515198
+        0.567596435546875
       ],
       [
         "workload psychophysiological stress",
@@ -1077,11 +1077,11 @@
       ],
       [
         "air traffic controllers",
-        0.5561972260475159
+        0.5561971664428711
       ],
       [
         "conditions air traffic",
-        0.5344288945198059
+        0.5344289541244507
       ],
       [
         "control stress",
@@ -1095,7 +1095,7 @@
     "25": [
       [
         "visual approach landing",
-        0.7727252244949341
+        0.7727251648902893
       ],
       [
         "visual landing",
@@ -1111,7 +1111,7 @@
       ],
       [
         "flight simulator visual",
-        0.6635361313819885
+        0.6635359525680542
       ],
       [
         "landings flight simulator",
@@ -1119,7 +1119,7 @@
       ],
       [
         "taught landings flight",
-        0.5955831408500671
+        0.5955832004547119
       ],
       [
         "landing display",
@@ -1127,7 +1127,7 @@
       ],
       [
         "landing approaches",
-        0.5813758969306946
+        0.581375777721405
       ],
       [
         "simulated landing approaches",
@@ -1145,11 +1145,11 @@
       ],
       [
         "motion sickness determined",
-        0.7899119853973389
+        0.7899118661880493
       ],
       [
         "motion sickness significant",
-        0.7810211181640625
+        0.781020998954773
       ],
       [
         "motion sickness effects",
@@ -1157,11 +1157,11 @@
       ],
       [
         "motion sickness airsickness",
-        0.7615206837654114
+        0.7615209221839905
       ],
       [
         "motion sickness eliciting",
-        0.7456216216087341
+        0.7456215620040894
       ],
       [
         "motion sickness selected",
@@ -1169,7 +1169,7 @@
       ],
       [
         "motion sickness stimulus",
-        0.7414611577987671
+        0.7414612174034119
       ],
       [
         "motion sickness",
@@ -1195,7 +1195,7 @@
       ],
       [
         "aviation mishaps",
-        0.6376495361328125
+        0.6376495957374573
       ],
       [
         "aircraft accidents",
@@ -1203,7 +1203,7 @@
       ],
       [
         "means human errors",
-        0.6035110354423523
+        0.6035110950469971
       ],
       [
         "study cosmonauts errors",
@@ -1215,13 +1215,13 @@
       ],
       [
         "accident generation",
-        0.5520495176315308
+        0.5520493984222412
       ]
     ],
     "28": [
       [
         "pilots heart rate",
-        0.7613179087638855
+        0.761318027973175
       ],
       [
         "pilots heart rates",
@@ -1229,11 +1229,11 @@
       ],
       [
         "mental workload flight",
-        0.6669536232948303
+        0.6669537425041199
       ],
       [
         "pilot mental workload",
-        0.6577129364013672
+        0.657712996006012
       ],
       [
         "pilots heart",
@@ -1245,11 +1245,11 @@
       ],
       [
         "heart rate variability",
-        0.5605719089508057
+        0.5605720281600952
       ],
       [
         "analysis heart rate",
-        0.5400553345680237
+        0.5400553941726685
       ],
       [
         "mental workload",
@@ -1263,11 +1263,11 @@
     "29": [
       [
         "service climate psychological",
-        0.5935686826705933
+        0.593568742275238
       ],
       [
         "psychological capital work",
-        0.5875025391578674
+        0.5875027775764465
       ],
       [
         "psychological capital organizational",
@@ -1287,15 +1287,15 @@
       ],
       [
         "psychological contract",
-        0.5093506574630737
+        0.5093505382537842
       ],
       [
         "psychological capital",
-        0.506883442401886
+        0.5068835020065308
       ],
       [
         "organisational commitment",
-        0.5024063587188721
+        0.5024062991142273
       ],
       [
         "psychological contracts",
@@ -1305,7 +1305,7 @@
     "30": [
       [
         "pilot attitudes alcohol",
-        0.7928097248077393
+        0.792809784412384
       ],
       [
         "alcohol levels pilot",
@@ -1313,11 +1313,11 @@
       ],
       [
         "pilots history alcohol",
-        0.715927243232727
+        0.7159273624420166
       ],
       [
         "alcohol dependence",
-        0.6338571310043335
+        0.6338574290275574
       ],
       [
         "effects alcohol",
@@ -1329,11 +1329,11 @@
       ],
       [
         "alcohol consumption",
-        0.6226317286491394
+        0.6226315498352051
       ],
       [
         "abuse alcohol consumption",
-        0.5891157984733582
+        0.5891159176826477
       ],
       [
         "alcohol use",
@@ -1363,7 +1363,7 @@
       ],
       [
         "patients respirators",
-        0.5903276801109314
+        0.5903277397155762
       ],
       [
         "measures aircrew prevalence",
@@ -1371,7 +1371,7 @@
       ],
       [
         "normal aircrew",
-        0.5015570521354675
+        0.5015571713447571
       ],
       [
         "patients responses illness",
@@ -1379,7 +1379,7 @@
       ],
       [
         "respirators",
-        0.49451932311058044
+        0.4945194721221924
       ],
       [
         "aircrewmembers",
@@ -1393,7 +1393,7 @@
       ],
       [
         "studies crew resource",
-        0.6493637561798096
+        0.6493639945983887
       ],
       [
         "crew resource",
@@ -1405,33 +1405,33 @@
       ],
       [
         "method evaluating crew",
-        0.6040734052658081
+        0.6040732264518738
       ],
       [
         "resource management training",
-        0.5986575484275818
+        0.5986576080322266
       ],
       [
         "pilot resource management",
-        0.595895528793335
+        0.5958957672119141
       ],
       [
         "management crm training",
-        0.5883610844612122
+        0.5883609056472778
       ],
       [
         "training commercial aviation",
-        0.586366593837738
+        0.5863667726516724
       ],
       [
         "training effectiveness",
-        0.564844012260437
+        0.5648440718650818
       ]
     ],
     "33": [
       [
         "psychiatric evaluation astronaut",
-        0.7879746556282043
+        0.7879748940467834
       ],
       [
         "personality characteristics astronauts",
@@ -1439,7 +1439,7 @@
       ],
       [
         "astronaut selection introduction",
-        0.7133968472480774
+        0.7133969068527222
       ],
       [
         "astronaut selection",
@@ -1447,7 +1447,7 @@
       ],
       [
         "astronaut applicants",
-        0.7023718953132629
+        0.7023719549179077
       ],
       [
         "astronaut effectiveness",
@@ -1459,7 +1459,7 @@
       ],
       [
         "astronaut candidates",
-        0.628379225730896
+        0.6283794045448303
       ],
       [
         "astronaut candidate",
@@ -1473,7 +1473,7 @@
     "34": [
       [
         "women flight attendants",
-        0.6937452554702759
+        0.6937453150749207
       ],
       [
         "female flight attendants",
@@ -1485,11 +1485,11 @@
       ],
       [
         "flight attendants using",
-        0.6567132472991943
+        0.6567134261131287
       ],
       [
         "flight attendants",
-        0.618581235408783
+        0.6185811758041382
       ],
       [
         "health female flight",
@@ -1497,7 +1497,7 @@
       ],
       [
         "flight attendants aims",
-        0.5881606340408325
+        0.5881607532501221
       ],
       [
         "women flight",
@@ -1515,7 +1515,7 @@
     "35": [
       [
         "mental workloads",
-        0.7251440286636353
+        0.7251442670822144
       ],
       [
         "cognitive workload",
@@ -1535,11 +1535,11 @@
       ],
       [
         "mental workload reduces",
-        0.678433358669281
+        0.6784334778785706
       ],
       [
         "mental workload stress",
-        0.675743579864502
+        0.6757434010505676
       ],
       [
         "situations cognitive workload",
@@ -1551,7 +1551,7 @@
       ],
       [
         "mental workloads high",
-        0.6703885793685913
+        0.6703884601593018
       ]
     ],
     "36": [
@@ -1599,7 +1599,7 @@
     "37": [
       [
         "flight psychiatric emergencies",
-        0.7866085171699524
+        0.7866086959838867
       ],
       [
         "flight psychiatric",
@@ -1607,11 +1607,11 @@
       ],
       [
         "near accidents psychiatric",
-        0.6893447041511536
+        0.6893448829650879
       ],
       [
         "mental disorders accidents",
-        0.6843777894973755
+        0.684377908706665
       ],
       [
         "aircraft accident survivors",
@@ -1627,7 +1627,7 @@
       ],
       [
         "paranoid schizophrenic passenger",
-        0.6077332496643066
+        0.6077331900596619
       ],
       [
         "aircraft accident",
@@ -1641,15 +1641,15 @@
     "38": [
       [
         "differences skill acquisition",
-        0.7123544812202454
+        0.7123544216156006
       ],
       [
         "skill acquisition",
-        0.6952738761901855
+        0.6952741146087646
       ],
       [
         "individual differences skill",
-        0.6912969350814819
+        0.6912968158721924
       ],
       [
         "abilities skill acquisition",
@@ -1661,7 +1661,7 @@
       ],
       [
         "differences skill",
-        0.601104736328125
+        0.6011047959327698
       ],
       [
         "numerous training principles",
@@ -1673,7 +1673,7 @@
       ],
       [
         "training principles shown",
-        0.5201231837272644
+        0.5201229453086853
       ],
       [
         "abilities skill",
@@ -1691,7 +1691,7 @@
       ],
       [
         "particularly aging pilot",
-        0.6178832054138184
+        0.6178832650184631
       ],
       [
         "pilot age",
@@ -1699,7 +1699,7 @@
       ],
       [
         "aging physician",
-        0.5488313436508179
+        0.5488314032554626
       ],
       [
         "old age profession",
@@ -1707,7 +1707,7 @@
       ],
       [
         "older adults america",
-        0.5469619631767273
+        0.5469620823860168
       ],
       [
         "older adults",
@@ -1725,15 +1725,15 @@
     "40": [
       [
         "aviation gender attitude",
-        0.7876139283180237
+        0.7876139879226685
       ],
       [
         "gender related pilot",
-        0.7476322650909424
+        0.7476321458816528
       ],
       [
         "aviation gender",
-        0.7372332215309143
+        0.7372331619262695
       ],
       [
         "pilots stereotype",
@@ -1745,11 +1745,11 @@
       ],
       [
         "female airline pilots",
-        0.6750021576881409
+        0.6750019788742065
       ],
       [
         "pilots stereotype based",
-        0.6722542643547058
+        0.6722543835639954
       ],
       [
         "female pilots",
@@ -1757,7 +1757,7 @@
       ],
       [
         "pilots male nurses",
-        0.6257607340812683
+        0.6257606148719788
       ],
       [
         "male flight attendants",
@@ -1779,7 +1779,7 @@
       ],
       [
         "nurses possessing flight",
-        0.7082450985908508
+        0.7082452774047852
       ],
       [
         "nursing flight",
@@ -1787,7 +1787,7 @@
       ],
       [
         "nurses aeromedical evacuation",
-        0.682346522808075
+        0.6823464632034302
       ],
       [
         "nurses responsibilities aerospace",
@@ -1799,7 +1799,7 @@
       ],
       [
         "perceptions nurses air",
-        0.6644949913024902
+        0.6644948124885559
       ],
       [
         "flight nurse",
@@ -1821,15 +1821,15 @@
       ],
       [
         "pain stress fighter",
-        0.46734386682510376
+        0.46734389662742615
       ],
       [
         "hormonal responses",
-        0.46696406602859497
+        0.4669642150402069
       ],
       [
         "biochemical psychological",
-        0.46191343665122986
+        0.461913138628006
       ],
       [
         "processing stress",
@@ -1867,7 +1867,7 @@
       ],
       [
         "driver behavior",
-        0.5143893361091614
+        0.5143892765045166
       ],
       [
         "displays traffic",
@@ -1875,15 +1875,15 @@
       ],
       [
         "displays traffic information",
-        0.48215433955192566
+        0.48215436935424805
       ],
       [
         "cockpit information displays",
-        0.46703583002090454
+        0.4670358896255493
       ],
       [
         "coplanar cockpit displays",
-        0.4447120130062103
+        0.4447118937969208
       ],
       [
         "collision detection avoidance",
@@ -1897,11 +1897,11 @@
       ],
       [
         "altitude cognitive",
-        0.7787535786628723
+        0.7787533402442932
       ],
       [
         "terrestrial altitude cognitive",
-        0.6873626112937927
+        0.687362551689148
       ],
       [
         "altitude exposure mountaineering",
@@ -1909,7 +1909,7 @@
       ],
       [
         "acute mountain sickness",
-        0.6306430101394653
+        0.6306430697441101
       ],
       [
         "high altitude mountaineering",
@@ -1921,21 +1921,21 @@
       ],
       [
         "mountain sickness ams",
-        0.5964030623435974
+        0.5964028835296631
       ],
       [
         "altitude mountaineering",
-        0.5928729176521301
+        0.5928730368614197
       ],
       [
         "high altitude exposure",
-        0.5889138579368591
+        0.5889139175415039
       ]
     ],
     "45": [
       [
         "special issue editorial",
-        0.4738142490386963
+        0.47381433844566345
       ],
       [
         "issue editorial",
@@ -1951,11 +1951,11 @@
       ],
       [
         "routine mission",
-        0.37700194120407104
+        0.37700197100639343
       ],
       [
         "zealand new life",
-        0.37696215510368347
+        0.3769620954990387
       ],
       [
         "flight special",
@@ -1967,11 +1967,11 @@
       ],
       [
         "staying sane space",
-        0.35735419392585754
+        0.3573542833328247
       ],
       [
         "far routine mission",
-        0.35731637477874756
+        0.3573162853717804
       ]
     ],
     "46": [
@@ -1985,7 +1985,7 @@
       ],
       [
         "aviation maintenance",
-        0.6310287117958069
+        0.6310286521911621
       ],
       [
         "maintenance technicians differed",
@@ -1993,7 +1993,7 @@
       ],
       [
         "aircraft maintenance",
-        0.5965960621833801
+        0.5965961813926697
       ],
       [
         "maintenance technician perceptions",
@@ -2005,7 +2005,7 @@
       ],
       [
         "maintenance technicians",
-        0.5741243958473206
+        0.5741245746612549
       ],
       [
         "malfunctions aircraft maintenance",
@@ -2013,7 +2013,7 @@
       ],
       [
         "trust aviation maintenance",
-        0.5695376396179199
+        0.5695375800132751
       ]
     ],
     "47": [
@@ -2027,11 +2027,11 @@
       ],
       [
         "pilots exposed psychosocial",
-        0.6810638308525085
+        0.6810635924339294
       ],
       [
         "pilot mental health",
-        0.6705299019813538
+        0.6705297827720642
       ],
       [
         "mental health airline",
@@ -2039,7 +2039,7 @@
       ],
       [
         "pilot mental",
-        0.5922637581825256
+        0.5922638177871704
       ],
       [
         "mental disease pilot",
@@ -2051,21 +2051,21 @@
       ],
       [
         "mental health suicidal",
-        0.5640538334846497
+        0.5640539526939392
       ],
       [
         "suicidality",
-        0.5633634924888611
+        0.5633634328842163
       ]
     ],
     "48": [
       [
         "failure cockpit",
-        0.677683413028717
+        0.6776835918426514
       ],
       [
         "human failure cockpit",
-        0.6718807220458984
+        0.6718806028366089
       ],
       [
         "aircraft accidents",
@@ -2097,13 +2097,13 @@
       ],
       [
         "experiences cockpit",
-        0.5675902962684631
+        0.5675902366638184
       ]
     ],
     "49": [
       [
         "perceptions importance teamwork",
-        0.657454252243042
+        0.6574545502662659
       ],
       [
         "performance enhancing team",
@@ -2111,7 +2111,7 @@
       ],
       [
         "teamwork",
-        0.5720717906951904
+        0.5720719695091248
       ],
       [
         "team task",
@@ -2123,7 +2123,7 @@
       ],
       [
         "group decision making",
-        0.5479028224945068
+        0.5479029417037964
       ],
       [
         "team performance",
@@ -2131,7 +2131,7 @@
       ],
       [
         "team training",
-        0.5389343500137329
+        0.5389344692230225
       ],
       [
         "team relatedness",
@@ -2149,11 +2149,11 @@
       ],
       [
         "performance sleep deprivation",
-        0.6383789777755737
+        0.6383788585662842
       ],
       [
         "effects sleep deprivation",
-        0.6319288015365601
+        0.6319288611412048
       ],
       [
         "performance sleep deprived",
@@ -2161,7 +2161,7 @@
       ],
       [
         "effect caffeine sleep",
-        0.6036713123321533
+        0.6036714315414429
       ],
       [
         "performance sleep",
@@ -2169,7 +2169,7 @@
       ],
       [
         "sleep deprivation",
-        0.5841513276100159
+        0.5841514468193054
       ],
       [
         "objective performance sleep",
@@ -2177,7 +2177,7 @@
       ],
       [
         "extended wakefulness",
-        0.5653742551803589
+        0.5653741359710693
       ],
       [
         "hr sleep deprivation",
@@ -2195,11 +2195,11 @@
       ],
       [
         "mental rotations direction",
-        0.6649692058563232
+        0.664969265460968
       ],
       [
         "perception body angular",
-        0.6263291239738464
+        0.6263290643692017
       ],
       [
         "perception rotation oculogyral",
@@ -2211,7 +2211,7 @@
       ],
       [
         "illusions pitch induced",
-        0.5399547815322876
+        0.5399547219276428
       ],
       [
         "oculogyral illusion effects",
@@ -2219,11 +2219,11 @@
       ],
       [
         "illusion effects",
-        0.49781933426856995
+        0.4978194832801819
       ],
       [
         "times prolonged angular",
-        0.49517175555229187
+        0.49517178535461426
       ]
     ],
     "52": [
@@ -2271,7 +2271,7 @@
     "53": [
       [
         "long flights cognitive",
-        0.6776992678642273
+        0.6776992082595825
       ],
       [
         "older pilots",
@@ -2283,7 +2283,7 @@
       ],
       [
         "cognitive performance",
-        0.5980857014656067
+        0.5980857610702515
       ],
       [
         "older pilots nonpilots",
@@ -2291,7 +2291,7 @@
       ],
       [
         "memory expertise cognitive",
-        0.5551635026931763
+        0.5551633834838867
       ],
       [
         "pilot communication",
@@ -2321,7 +2321,7 @@
       ],
       [
         "air traffic control",
-        0.5868546366691589
+        0.5868545770645142
       ],
       [
         "traffic control training",
@@ -2341,7 +2341,7 @@
       ],
       [
         "prior air traffic",
-        0.4903978109359741
+        0.4903976321220398
       ],
       [
         "faa",
@@ -2349,7 +2349,7 @@
       ],
       [
         "ray competency",
-        0.4704017639160156
+        0.470401793718338
       ]
     ],
     "55": [
@@ -2363,7 +2363,7 @@
       ],
       [
         "audio cue visual",
-        0.5542230010032654
+        0.5542229413986206
       ],
       [
         "nonspatial audio cue",
@@ -2387,11 +2387,11 @@
       ],
       [
         "nonspatial audio",
-        0.4488556981086731
+        0.44885575771331787
       ],
       [
         "dimensional audio",
-        0.44208115339279175
+        0.44208112359046936
       ]
     ],
     "56": [
@@ -2401,7 +2401,7 @@
       ],
       [
         "aviation psychology",
-        0.750203549861908
+        0.7502034902572632
       ],
       [
         "naval flight training",
@@ -2413,7 +2413,7 @@
       ],
       [
         "naval aviation",
-        0.6646915674209595
+        0.6646915078163147
       ],
       [
         "pilots subsequent training",
@@ -2439,23 +2439,23 @@
     "57": [
       [
         "pilots ejection injuries",
-        0.7097961902618408
+        0.7097962498664856
       ],
       [
         "pilots ejection",
-        0.6341177225112915
+        0.634117603302002
       ],
       [
         "naval pilots ejection",
-        0.6078553199768066
+        0.6078554391860962
       ],
       [
         "armed forces pain",
-        0.6025825142860413
+        0.602582573890686
       ],
       [
         "officers survived ejection",
-        0.5901504158973694
+        0.5901506543159485
       ],
       [
         "longitudinal study ejection",
@@ -2485,7 +2485,7 @@
       ],
       [
         "pilots catecholamine",
-        0.7594819068908691
+        0.7594818472862244
       ],
       [
         "catecholamine excretion determined",
@@ -2517,7 +2517,7 @@
       ],
       [
         "levels adrenaline noradrenaline",
-        0.5671015977859497
+        0.5671014785766602
       ]
     ],
     "59": [
@@ -2527,15 +2527,15 @@
       ],
       [
         "gz induced loss",
-        0.5100036263465881
+        0.5100036859512329
       ],
       [
         "high gravity training",
-        0.5048600435256958
+        0.5048601031303406
       ],
       [
         "gz study evaluated",
-        0.4988754391670227
+        0.4988754987716675
       ],
       [
         "gz induced",
@@ -2555,7 +2555,7 @@
       ],
       [
         "gz exposure effect",
-        0.4541735351085663
+        0.45417338609695435
       ],
       [
         "loss consciousness loc",
@@ -2573,7 +2573,7 @@
       ],
       [
         "traumatic stress",
-        0.5959990620613098
+        0.5959989428520203
       ],
       [
         "traumatic stress disorder",
@@ -2581,7 +2581,7 @@
       ],
       [
         "psychological reactions",
-        0.547939658164978
+        0.5479394793510437
       ],
       [
         "post traumatic",
@@ -2607,11 +2607,11 @@
     "61": [
       [
         "pilots taught weather",
-        0.6793251633644104
+        0.6793253421783447
       ],
       [
         "pilot weather reports",
-        0.6669502854347229
+        0.6669502258300781
       ],
       [
         "pilots make weather",
@@ -2623,7 +2623,7 @@
       ],
       [
         "aviation weather",
-        0.6173112988471985
+        0.6173112392425537
       ],
       [
         "aviation weather products",
@@ -2643,7 +2643,7 @@
       ],
       [
         "pilots perceived gps",
-        0.5817144513130188
+        0.5817142724990845
       ]
     ],
     "62": [
@@ -2657,15 +2657,15 @@
       ],
       [
         "kindness meditation flight",
-        0.6861956715583801
+        0.686195433139801
       ],
       [
         "mindfulness psychological",
-        0.6857433915138245
+        0.6857436299324036
       ],
       [
         "mindfulness training",
-        0.6769714951515198
+        0.6769713163375854
       ],
       [
         "mindfulness psychological adaptation",
@@ -2673,15 +2673,15 @@
       ],
       [
         "attendants spirituality mindfulness",
-        0.6554805040359497
+        0.6554804444313049
       ],
       [
         "trait mindfulness psychological",
-        0.6482073664665222
+        0.6482074856758118
       ],
       [
         "mindfulness subjective wellbeing",
-        0.6480043530464172
+        0.648004412651062
       ],
       [
         "mindfulness",
@@ -2699,11 +2699,11 @@
       ],
       [
         "nicotine intake flight",
-        0.6879782676696777
+        0.6879786252975464
       ],
       [
         "smoke flight attendants",
-        0.6810120344161987
+        0.6810119152069092
       ],
       [
         "pilots smoke",
@@ -2723,7 +2723,7 @@
       ],
       [
         "mood smokers operating",
-        0.6175941228866577
+        0.6175940632820129
       ],
       [
         "pilots acute effects",
@@ -2733,7 +2733,7 @@
     "64": [
       [
         "grounding pilots medical",
-        0.6854642033576965
+        0.6854642629623413
       ],
       [
         "pilots medical",
@@ -2741,7 +2741,7 @@
       ],
       [
         "flight surgeon support",
-        0.5927215814590454
+        0.592721700668335
       ],
       [
         "presents aviation medical",
@@ -2757,7 +2757,7 @@
       ],
       [
         "highlight medically unfit",
-        0.5619866847991943
+        0.5619867444038391
       ],
       [
         "faa medical",
@@ -2769,13 +2769,13 @@
       ],
       [
         "possible surgeons",
-        0.5103199481964111
+        0.5103198885917664
       ]
     ],
     "65": [
       [
         "general aviation accidents",
-        0.769413948059082
+        0.7694140672683716
       ],
       [
         "incidents critical flight",
@@ -2783,7 +2783,7 @@
       ],
       [
         "evaluation aircraft accidents",
-        0.6953830122947693
+        0.6953827738761902
       ],
       [
         "major air disasters",
@@ -2807,21 +2807,21 @@
       ],
       [
         "accident investigation",
-        0.5770015716552734
+        0.577001690864563
       ],
       [
         "improving aircraft safety",
-        0.5698978900909424
+        0.5698977112770081
       ]
     ],
     "66": [
       [
         "traffic management atm",
-        0.7043735980987549
+        0.7043737173080444
       ],
       [
         "traffic management",
-        0.6709191203117371
+        0.6709189414978027
       ],
       [
         "air traffic management",
@@ -2833,11 +2833,11 @@
       ],
       [
         "api traffic management",
-        0.5157057642936707
+        0.5157058238983154
       ],
       [
         "reduction road traffic",
-        0.49176689982414246
+        0.49176692962646484
       ],
       [
         "reinforcement learning framework",
@@ -2845,11 +2845,11 @@
       ],
       [
         "autonomous combined transport",
-        0.42113038897514343
+        0.42113032937049866
       ],
       [
         "autonomous combined",
-        0.4084179401397705
+        0.4084177315235138
       ],
       [
         "api traffic",
@@ -2879,11 +2879,11 @@
       ],
       [
         "information flight",
-        0.577785849571228
+        0.5777859687805176
       ],
       [
         "flight taxonomy",
-        0.5583594441413879
+        0.5583593845367432
       ],
       [
         "review aviation safety",
@@ -2895,7 +2895,7 @@
       ],
       [
         "review aviation",
-        0.5099250674247742
+        0.5099251866340637
       ]
     ],
     "68": [
@@ -2917,7 +2917,7 @@
       ],
       [
         "prospective memory",
-        0.6013498902320862
+        0.601349949836731
       ],
       [
         "perceived memory requirements",
@@ -2937,7 +2937,7 @@
       ],
       [
         "air traffic control",
-        0.5191459059715271
+        0.5191459655761719
       ]
     ],
     "69": [
@@ -2947,11 +2947,11 @@
       ],
       [
         "performance elevated temperatures",
-        0.5820073485374451
+        0.5820074081420898
       ],
       [
         "cold exposure",
-        0.5704417824745178
+        0.5704418420791626
       ],
       [
         "body temperature",
@@ -2971,7 +2971,7 @@
       ],
       [
         "previously examined thermal",
-        0.4987589716911316
+        0.49875888228416443
       ],
       [
         "cooling",
@@ -2997,15 +2997,15 @@
       ],
       [
         "military aviation arma",
-        0.642794132232666
+        0.6427941918373108
       ],
       [
         "exam adapting aviation",
-        0.6380554437637329
+        0.6380555033683777
       ],
       [
         "adaptability screening",
-        0.6364874839782715
+        0.6364875435829163
       ],
       [
         "rating military aviation",
@@ -3017,7 +3017,7 @@
       ],
       [
         "rating military aeronautics",
-        0.6038546562194824
+        0.6038544774055481
       ],
       [
         "flight surgeons adaptability",
@@ -3027,7 +3027,7 @@
     "71": [
       [
         "pilot performance assessment",
-        0.7974480986595154
+        0.7974479794502258
       ],
       [
         "pilot proficiency objective",
@@ -3039,7 +3039,7 @@
       ],
       [
         "pilot instructor rater",
-        0.7050585150718689
+        0.7050584554672241
       ],
       [
         "pilot performance relies",
@@ -3051,11 +3051,11 @@
       ],
       [
         "pilot performance variable",
-        0.6715404391288757
+        0.6715402007102966
       ],
       [
         "performance flight examiners",
-        0.6672345399856567
+        0.6672346591949463
       ],
       [
         "pilot performance decade",
@@ -3069,11 +3069,11 @@
     "72": [
       [
         "flight training",
-        0.7938235998153687
+        0.7938235402107239
       ],
       [
         "success flight training",
-        0.7562442421913147
+        0.7562441825866699
       ],
       [
         "predicition flight training",
@@ -3101,7 +3101,7 @@
       ],
       [
         "problem flight skill",
-        0.6606825590133667
+        0.6606824994087219
       ],
       [
         "instructor predicition flight",
@@ -3111,7 +3111,7 @@
     "73": [
       [
         "personality questionnaire air",
-        0.6763261556625366
+        0.6763262748718262
       ],
       [
         "personnel personality profile",
@@ -3119,7 +3119,7 @@
       ],
       [
         "personality inventory",
-        0.584575355052948
+        0.5845754146575928
       ],
       [
         "trait personality inventory",
@@ -3135,7 +3135,7 @@
       ],
       [
         "personality inventory stpi",
-        0.5631136298179626
+        0.5631135106086731
       ],
       [
         "personality questionnaire literature",
@@ -3143,7 +3143,7 @@
       ],
       [
         "trait personality",
-        0.5597867369651794
+        0.5597867965698242
       ],
       [
         "personality factors",
@@ -3157,15 +3157,15 @@
       ],
       [
         "bed rest introduction",
-        0.5774386525154114
+        0.577438473701477
       ],
       [
         "head bed rest",
-        0.5688756108283997
+        0.5688755512237549
       ],
       [
         "term bed rest",
-        0.539151668548584
+        0.5391517281532288
       ],
       [
         "bed rest",
@@ -3173,7 +3173,7 @@
       ],
       [
         "rest subjects",
-        0.45200178027153015
+        0.45200207829475403
       ],
       [
         "psychomotor performance",
@@ -3219,11 +3219,11 @@
       ],
       [
         "simulated real flight",
-        0.5343977212905884
+        0.5343976616859436
       ],
       [
         "traits flight experience",
-        0.5343500971794128
+        0.5343501567840576
       ],
       [
         "psychophysiological reactions simulated",
@@ -3231,7 +3231,7 @@
       ],
       [
         "psychophysiological response military",
-        0.5087305307388306
+        0.5087306499481201
       ]
     ],
     "76": [
@@ -3245,7 +3245,7 @@
       ],
       [
         "job stress factors",
-        0.5916926264762878
+        0.5916925668716431
       ],
       [
         "job stress",
@@ -3265,11 +3265,11 @@
       ],
       [
         "satisfaction military airline",
-        0.5155537724494934
+        0.5155537128448486
       ],
       [
         "job satisfaction military",
-        0.5111528038978577
+        0.5111528635025024
       ],
       [
         "job satisfaction",
@@ -3279,11 +3279,11 @@
     "77": [
       [
         "aerospace medicine history",
-        0.8346850275993347
+        0.8346851468086243
       ],
       [
         "aerospace medicine",
-        0.8107514381408691
+        0.8107514977455139
       ],
       [
         "aviation medicine",
@@ -3295,11 +3295,11 @@
       ],
       [
         "physiology aviation",
-        0.7135003209114075
+        0.7135000228881836
       ],
       [
         "physiology aviation aerospace",
-        0.7063500881195068
+        0.7063499093055725
       ],
       [
         "phenomenology aviation",
@@ -3311,11 +3311,11 @@
       ],
       [
         "historical phenomenology aviation",
-        0.6679905652999878
+        0.6679906845092773
       ],
       [
         "lows aviation medicine",
-        0.6667629480361938
+        0.6667630672454834
       ]
     ],
     "78": [
@@ -3341,7 +3341,7 @@
       ],
       [
         "factors sleep quality",
-        0.6476716995239258
+        0.647671639919281
       ],
       [
         "sleepiness",
@@ -3387,7 +3387,7 @@
       ],
       [
         "unusual attitude recovery",
-        0.62096107006073
+        0.6209608912467957
       ],
       [
         "attitude indicators",
@@ -3399,7 +3399,7 @@
       ],
       [
         "attitude recovery",
-        0.5876926183700562
+        0.5876924991607666
       ]
     ],
     "80": [
@@ -3413,11 +3413,11 @@
       ],
       [
         "flight attendants study",
-        0.5823232531547546
+        0.5823231339454651
       ],
       [
         "work engagement flight",
-        0.5810474753379822
+        0.5810475945472717
       ],
       [
         "korean flight attendants",
@@ -3425,7 +3425,7 @@
       ],
       [
         "burnout work engagement",
-        0.5501339435577393
+        0.5501338839530945
       ],
       [
         "engagement cabin crew",
@@ -3441,29 +3441,29 @@
       ],
       [
         "work engagement",
-        0.48945602774620056
+        0.4894561171531677
       ]
     ],
     "81": [
       [
         "behavioral airsickness management",
-        0.7158325910568237
+        0.7158326506614685
       ],
       [
         "airsickness management",
-        0.6851725578308105
+        0.6851723790168762
       ],
       [
         "managing airsickness symptoms",
-        0.671794593334198
+        0.6717947721481323
       ],
       [
         "reducing motion sickness",
-        0.671005368232727
+        0.6710052490234375
       ],
       [
         "behavioral airsickness",
-        0.6697403192520142
+        0.6697402596473694
       ],
       [
         "rehabilitation airsick",
@@ -3475,7 +3475,7 @@
       ],
       [
         "recurrent airsickness student",
-        0.6338534951210022
+        0.6338533759117126
       ],
       [
         "rehabilitation airsick aircrew",
@@ -3483,13 +3483,13 @@
       ],
       [
         "managing airsickness",
-        0.6229286193847656
+        0.622928261756897
       ]
     ],
     "82": [
       [
         "medical assistance travellers",
-        0.6748965382575989
+        0.6748963594436646
       ],
       [
         "travel health",
@@ -3513,19 +3513,19 @@
       ],
       [
         "travel related diseases",
-        0.5837559700012207
+        0.5837557911872864
       ],
       [
         "introduction air medical",
-        0.5706379413604736
+        0.5706378221511841
       ],
       [
         "patients purpose study",
-        0.527950644493103
+        0.5279505848884583
       ],
       [
         "patients purpose",
-        0.5199270844459534
+        0.5199271440505981
       ]
     ],
     "83": [
@@ -3555,7 +3555,7 @@
       ],
       [
         "human body exposure",
-        0.4881051778793335
+        0.4881051480770111
       ],
       [
         "increase vasoconstriction habituating",
@@ -3567,13 +3567,13 @@
       ],
       [
         "noise immediate exposure",
-        0.46722522377967834
+        0.46722525358200073
       ]
     ],
     "84": [
       [
         "auditory alerts",
-        0.7584021687507629
+        0.7584019899368286
       ],
       [
         "auditory warning",
@@ -3581,7 +3581,7 @@
       ],
       [
         "instructions auditory alerts",
-        0.7080779671669006
+        0.7080777883529663
       ],
       [
         "inattentional deafness objective",
@@ -3605,7 +3605,7 @@
       ],
       [
         "failure auditory attention",
-        0.5729304552078247
+        0.5729305744171143
       ],
       [
         "auditory cues",
@@ -3615,7 +3615,7 @@
     "85": [
       [
         "aviation human factors",
-        0.7687210440635681
+        0.7687211632728577
       ],
       [
         "overview aviation human",
@@ -3631,7 +3631,7 @@
       ],
       [
         "mission human factors",
-        0.5867176055908203
+        0.5867174863815308
       ],
       [
         "human factors training",
@@ -3639,7 +3639,7 @@
       ],
       [
         "human factors research",
-        0.5812579989433289
+        0.5812580585479736
       ],
       [
         "mitigating flight training",
@@ -3651,13 +3651,13 @@
       ],
       [
         "icao human factors",
-        0.5070176124572754
+        0.5070176720619202
       ]
     ],
     "86": [
       [
         "treatment fear flying",
-        0.7521038055419922
+        0.7521039843559265
       ],
       [
         "phobia fear flying",
@@ -3665,7 +3665,7 @@
       ],
       [
         "flying phobia",
-        0.7255153656005859
+        0.7255153059959412
       ],
       [
         "phobia flying",
@@ -3693,13 +3693,13 @@
       ],
       [
         "phobia fear",
-        0.5800358653068542
+        0.5800357460975647
       ]
     ],
     "87": [
       [
         "rapid decompression",
-        0.6672669649124146
+        0.6672670245170593
       ],
       [
         "naive subjects decompression",
@@ -3707,7 +3707,7 @@
       ],
       [
         "decompression",
-        0.6026953458786011
+        0.6026951670646667
       ],
       [
         "reduced oxygen breathing",
@@ -3727,7 +3727,7 @@
       ],
       [
         "oxygen breathing device",
-        0.49431881308555603
+        0.49431878328323364
       ],
       [
         "passenger oxygen equipment",
@@ -3735,7 +3735,7 @@
       ],
       [
         "physiological effects msogs",
-        0.48438969254493713
+        0.4843897223472595
       ]
     ],
     "88": [
@@ -3753,7 +3753,7 @@
       ],
       [
         "nocturnal aircraft noise",
-        0.5946957468986511
+        0.594696044921875
       ],
       [
         "noise inside cockpit",
@@ -3761,7 +3761,7 @@
       ],
       [
         "noise exposure",
-        0.5789652466773987
+        0.5789653062820435
       ],
       [
         "interior aircraft sound",
@@ -3795,31 +3795,31 @@
       ],
       [
         "cognitive evaluation",
-        0.5939037203788757
+        0.5939037799835205
       ],
       [
         "validity cognitive ability",
-        0.5936859250068665
+        0.5936858057975769
       ],
       [
         "cognitive ability personality",
-        0.58464515209198
+        0.5846452713012695
       ],
       [
         "wing aircraft cognitive",
-        0.5578708052635193
+        0.5578709244728088
       ],
       [
         "flying performance military",
-        0.5477543473243713
+        0.5477542877197266
       ],
       [
         "validity cognitive",
-        0.5397928357124329
+        0.5397928953170776
       ],
       [
         "intellectual abilities memory",
-        0.5390106439590454
+        0.5390107035636902
       ]
     ],
     "90": [
@@ -3829,7 +3829,7 @@
       ],
       [
         "pilots crew resource",
-        0.6815589070320129
+        0.6815590262413025
       ],
       [
         "pilot selection focused",
@@ -3849,25 +3849,25 @@
       ],
       [
         "performance pilots construed",
-        0.6164847612380981
+        0.6164846420288086
       ],
       [
         "pilots individuals widely",
-        0.6019170880317688
+        0.6019169688224792
       ],
       [
         "cockpit management",
-        0.5936548709869385
+        0.5936550498008728
       ],
       [
         "pilots advanced",
-        0.5894002914428711
+        0.5894004702568054
       ]
     ],
     "91": [
       [
         "pilots neck pain",
-        0.7977372407913208
+        0.797737181186676
       ],
       [
         "prevalence neck pain",
@@ -3875,11 +3875,11 @@
       ],
       [
         "pilots reporting neck",
-        0.6356253623962402
+        0.6356254816055298
       ],
       [
         "flight related neck",
-        0.6339594125747681
+        0.6339593529701233
       ],
       [
         "neck pain",
@@ -3887,15 +3887,15 @@
       ],
       [
         "pilots neck",
-        0.5845847725868225
+        0.5845847129821777
       ],
       [
         "related neck pain",
-        0.5756996273994446
+        0.5756997466087341
       ],
       [
         "pain introduction neck",
-        0.5595181584358215
+        0.559518039226532
       ],
       [
         "pain helicopter pilots",
@@ -3913,11 +3913,11 @@
       ],
       [
         "stress monitoring",
-        0.5861906409263611
+        0.5861905217170715
       ],
       [
         "pilot stress analysis",
-        0.5760141015052795
+        0.5760138630867004
       ],
       [
         "voice analysis",
@@ -3925,7 +3925,7 @@
       ],
       [
         "physiological condition speaker",
-        0.5502923130989075
+        0.5502921342849731
       ],
       [
         "human voice",
@@ -3937,7 +3937,7 @@
       ],
       [
         "mood state detection",
-        0.5047357082366943
+        0.5047356486320496
       ],
       [
         "performance voice space",
@@ -3955,7 +3955,7 @@
       ],
       [
         "stress responses shows",
-        0.7807256579399109
+        0.7807255983352661
       ],
       [
         "stress research",
@@ -4005,11 +4005,11 @@
       ],
       [
         "eeg cognitive",
-        0.6460487842559814
+        0.6460485458374023
       ],
       [
         "eeg cognitive state",
-        0.6253789663314819
+        0.6253790259361267
       ],
       [
         "workload mental",
@@ -4021,21 +4021,21 @@
       ],
       [
         "task engagement mental",
-        0.5933732986450195
+        0.5933734774589539
       ],
       [
         "physiological correlates mental",
-        0.5878742933273315
+        0.587874174118042
       ],
       [
         "posture workload mental",
-        0.5803219079971313
+        0.5803217887878418
       ]
     ],
     "95": [
       [
         "visual flight rules",
-        0.6131651997566223
+        0.6131649613380432
       ],
       [
         "meteorological conditions visual",
@@ -4055,19 +4055,19 @@
       ],
       [
         "flight instrument meteorological",
-        0.4960375130176544
+        0.49603742361068726
       ],
       [
         "flight rules vfr",
-        0.49513620138168335
+        0.49513623118400574
       ],
       [
         "pilot factors",
-        0.4888452887535095
+        0.4888453483581543
       ],
       [
         "pilots inadvertent",
-        0.4874952435493469
+        0.4874953031539917
       ],
       [
         "meteorological conditions vfr",
@@ -4077,7 +4077,7 @@
     "96": [
       [
         "movements microgravity",
-        0.7265380620956421
+        0.7265383005142212
       ],
       [
         "microgravity transfer perceptual",
@@ -4085,11 +4085,11 @@
       ],
       [
         "movements normal microgravity",
-        0.6897212266921997
+        0.6897211074829102
       ],
       [
         "movements microgravity background",
-        0.6783715486526489
+        0.6783714294433594
       ],
       [
         "motor activity microgravity",
@@ -4097,7 +4097,7 @@
       ],
       [
         "motor behaviour astronaut",
-        0.6243171095848083
+        0.6243171691894531
       ],
       [
         "microgravity",
@@ -4119,7 +4119,7 @@
     "97": [
       [
         "initial flights psychologic",
-        0.6396452188491821
+        0.639644980430603
       ],
       [
         "state trait anxiety",
@@ -4135,11 +4135,11 @@
       ],
       [
         "higher state anxiety",
-        0.5711815357208252
+        0.57118159532547
       ],
       [
         "investigated language anxiety",
-        0.5672726035118103
+        0.5672728419303894
       ],
       [
         "lower trait anxiety",
@@ -4151,7 +4151,7 @@
       ],
       [
         "anxiety",
-        0.5640273690223694
+        0.5640274286270142
       ],
       [
         "language anxiety",
@@ -4165,7 +4165,7 @@
       ],
       [
         "helicopter pilot terms",
-        0.7158841490745544
+        0.7158839702606201
       ],
       [
         "helicopters help pilots",
@@ -4181,7 +4181,7 @@
       ],
       [
         "helicopter operations",
-        0.7017972469329834
+        0.7017973065376282
       ],
       [
         "helicopter flights introduction",
@@ -4193,7 +4193,7 @@
       ],
       [
         "helicopter pilots views",
-        0.6883816123008728
+        0.6883814930915833
       ],
       [
         "helicopter operations review",
@@ -4203,7 +4203,7 @@
     "99": [
       [
         "cognitive impairment",
-        0.5758179426193237
+        0.5758180618286133
       ],
       [
         "hiv encephalopathy",
@@ -4215,7 +4215,7 @@
       ],
       [
         "impairment",
-        0.4957120716571808
+        0.49571219086647034
       ],
       [
         "medical neuropsychological conditions",
@@ -4223,7 +4223,7 @@
       ],
       [
         "involving hiv positive",
-        0.4786129295825958
+        0.47861286997795105
       ],
       [
         "neurocognitive impairments unreported",
@@ -4245,7 +4245,7 @@
     "100": [
       [
         "neurological aspects aviation",
-        0.8473985195159912
+        0.847398579120636
       ],
       [
         "headache flight related",
@@ -4253,15 +4253,15 @@
       ],
       [
         "related headache airplane",
-        0.6663731932640076
+        0.6663733124732971
       ],
       [
         "transport aircraft intraventricular",
-        0.6381673812866211
+        0.6381672024726868
       ],
       [
         "headache airplane headache",
-        0.633838951587677
+        0.6338390707969666
       ],
       [
         "headache flight",
@@ -4269,7 +4269,7 @@
       ],
       [
         "headache airplane",
-        0.6129266023635864
+        0.612926721572876
       ],
       [
         "neurological aspects",
@@ -4291,7 +4291,7 @@
       ],
       [
         "missions mars human",
-        0.6655857563018799
+        0.6655858159065247
       ],
       [
         "human missions mars",
@@ -4299,7 +4299,7 @@
       ],
       [
         "manned mars mission",
-        0.6089779138565063
+        0.6089780330657959
       ],
       [
         "mars pose health",
@@ -4307,7 +4307,7 @@
       ],
       [
         "mars settlement humans",
-        0.5801894664764404
+        0.5801891684532166
       ],
       [
         "manned mars",
@@ -4337,7 +4337,7 @@
       ],
       [
         "psychiatric screening flying",
-        0.7735593318939209
+        0.7735594511032104
       ],
       [
         "psychiatric screening combat",
@@ -4349,7 +4349,7 @@
       ],
       [
         "flying personnel alcohol",
-        0.6457480788230896
+        0.6457479596138
       ],
       [
         "screening combat pilots",
@@ -4365,21 +4365,21 @@
       ],
       [
         "screening instruments psychiatric",
-        0.6052101254463196
+        0.6052101850509644
       ]
     ],
     "103": [
       [
         "flight eeg changes",
-        0.6251025795936584
+        0.6251024007797241
       ],
       [
         "flight procedures devices",
-        0.5313466787338257
+        0.5313467383384705
       ],
       [
         "flight data ambulatory",
-        0.4919333755970001
+        0.49193325638771057
       ],
       [
         "onboard aircraft evaluation",
@@ -4417,7 +4417,7 @@
       ],
       [
         "ethical concerns",
-        0.5989720821380615
+        0.5989721417427063
       ],
       [
         "psychologists code conduct",
@@ -4429,11 +4429,11 @@
       ],
       [
         "potential ethical dilemma",
-        0.5540441870689392
+        0.5540443658828735
       ],
       [
         "potential ethical",
-        0.5410506725311279
+        0.5410505533218384
       ],
       [
         "prize psychologists interrogations",
@@ -4445,7 +4445,7 @@
       ],
       [
         "provide psychologists",
-        0.516852855682373
+        0.5168529152870178
       ],
       [
         "psychological research conducted",
@@ -4455,7 +4455,7 @@
     "105": [
       [
         "longevity military pilots",
-        0.7141446471214294
+        0.7141445875167847
       ],
       [
         "senior aviator medical",
@@ -4463,11 +4463,11 @@
       ],
       [
         "longevity military",
-        0.6021451354026794
+        0.6021449565887451
       ],
       [
         "illness civilian military",
-        0.5474540591239929
+        0.5474539995193481
       ],
       [
         "illness civilian",
@@ -4483,7 +4483,7 @@
       ],
       [
         "recent life change",
-        0.4710300862789154
+        0.4710301458835602
       ],
       [
         "healthy aviators determined",
@@ -4505,7 +4505,7 @@
       ],
       [
         "passengers depression",
-        0.6391997933387756
+        0.6391998529434204
       ],
       [
         "pandemic mental health",
@@ -4521,7 +4521,7 @@
       ],
       [
         "psychological distress",
-        0.5695479512214661
+        0.5695480108261108
       ],
       [
         "depression anxiety",
@@ -4529,21 +4529,21 @@
       ],
       [
         "anxiety stress",
-        0.5340666770935059
+        0.5340667963027954
       ],
       [
         "pandemic mental",
-        0.5221981406211853
+        0.5221980810165405
       ]
     ],
     "107": [
       [
         "pilots mental health",
-        0.7431681752204895
+        0.7431681156158447
       ],
       [
         "mental symptoms pilots",
-        0.6828857660293579
+        0.6828860640525818
       ],
       [
         "pilots mental",
@@ -4555,19 +4555,19 @@
       ],
       [
         "health pilots anthropomorphic",
-        0.5523176789283752
+        0.55231773853302
       ],
       [
         "emotional intelligence",
-        0.5351540446281433
+        0.535153865814209
       ],
       [
         "psychological evaluation",
-        0.49307602643966675
+        0.49307599663734436
       ],
       [
         "mental health safety",
-        0.49257147312164307
+        0.4925714135169983
       ],
       [
         "conceal psychological",
@@ -4575,7 +4575,7 @@
       ],
       [
         "importance endanger flight",
-        0.44561997056007385
+        0.44561973214149475
       ]
     ],
     "108": [
@@ -4585,11 +4585,11 @@
       ],
       [
         "psychosocial work environment",
-        0.6273660659790039
+        0.6273662447929382
       ],
       [
         "psychosocial work situation",
-        0.5709265470504761
+        0.5709266066551208
       ],
       [
         "symptoms psychosocial work",
@@ -4597,11 +4597,11 @@
       ],
       [
         "psychosocial job",
-        0.5606915354728699
+        0.5606916546821594
       ],
       [
         "job strain",
-        0.5386960506439209
+        0.5386962890625
       ],
       [
         "psychosocial work",
@@ -4617,7 +4617,7 @@
       ],
       [
         "associations psychosocial work",
-        0.5077682137489319
+        0.5077681541442871
       ]
     ],
     "109": [
@@ -4635,11 +4635,11 @@
       ],
       [
         "safety behavior",
-        0.6327978372573853
+        0.6327979564666748
       ],
       [
         "pilots flight attendants",
-        0.6218221783638
+        0.6218221187591553
       ],
       [
         "perspective flight attendants",
@@ -4647,19 +4647,19 @@
       ],
       [
         "psychological safety",
-        0.5903193950653076
+        0.5903192758560181
       ],
       [
         "effects psychological safety",
-        0.5902891755104065
+        0.590289294719696
       ],
       [
         "mindful safety practices",
-        0.5823489427566528
+        0.5823487043380737
       ],
       [
         "perceptions crew behaviour",
-        0.5793659687042236
+        0.5793660283088684
       ]
     ],
     "110": [
@@ -4673,7 +4673,7 @@
       ],
       [
         "stressors impact aircrew",
-        0.6535297632217407
+        0.6535298824310303
       ],
       [
         "stresses flight",
@@ -4685,7 +4685,7 @@
       ],
       [
         "occupational stress model",
-        0.6275145411491394
+        0.6275146007537842
       ],
       [
         "work stress",
@@ -4693,7 +4693,7 @@
       ],
       [
         "mission stressors",
-        0.6173065900802612
+        0.6173064112663269
       ],
       [
         "war stressors",
@@ -4701,7 +4701,7 @@
       ],
       [
         "work stress factors",
-        0.612486720085144
+        0.6124866604804993
       ]
     ],
     "111": [
@@ -4711,7 +4711,7 @@
       ],
       [
         "nutrients flight crew",
-        0.5718691349029541
+        0.5718690752983093
       ],
       [
         "immunosuppression spaceflight deconditioning",
@@ -4739,7 +4739,7 @@
       ],
       [
         "non physiological health",
-        0.4251132309436798
+        0.4251132011413574
       ],
       [
         "nutritional issues",
@@ -4749,7 +4749,7 @@
     "112": [
       [
         "remotely piloted aircraft",
-        0.6318559050559998
+        0.6318557262420654
       ],
       [
         "piloted aircraft training",
@@ -4765,11 +4765,11 @@
       ],
       [
         "air force remotely",
-        0.6107153296470642
+        0.6107150912284851
       ],
       [
         "force remotely piloted",
-        0.5920699238777161
+        0.5920698642730713
       ],
       [
         "piloted aircraft operators",
@@ -4781,7 +4781,7 @@
       ],
       [
         "piloted aircraft rpas",
-        0.5750857591629028
+        0.5750858783721924
       ],
       [
         "air force remote",
@@ -4799,7 +4799,7 @@
       ],
       [
         "perception night vision",
-        0.6517404317855835
+        0.6517406105995178
       ],
       [
         "night vision",
@@ -4823,11 +4823,11 @@
       ],
       [
         "vision goggles",
-        0.5787398219108582
+        0.578740119934082
       ],
       [
         "vision",
-        0.5745713114738464
+        0.5745713710784912
       ]
     ],
     "114": [
@@ -4837,7 +4837,7 @@
       ],
       [
         "mental health aircrew",
-        0.6167672276496887
+        0.6167673468589783
       ],
       [
         "personnel psychological diathesis",
@@ -4853,15 +4853,15 @@
       ],
       [
         "medical psychological",
-        0.518006443977356
+        0.5180066227912903
       ],
       [
         "personnel deal dangers",
-        0.5108288526535034
+        0.510828971862793
       ],
       [
         "medical psychological preparation",
-        0.5071256160736084
+        0.5071254968643188
       ],
       [
         "army airmen",
@@ -4875,15 +4875,15 @@
     "115": [
       [
         "military readiness",
-        0.7689774632453918
+        0.768977165222168
       ],
       [
         "military readiness scale",
-        0.7266644239425659
+        0.7266642451286316
       ],
       [
         "military readiness lack",
-        0.6900533437728882
+        0.6900534629821777
       ],
       [
         "operations desert shield",
@@ -4903,11 +4903,11 @@
       ],
       [
         "operations desert",
-        0.5893105864524841
+        0.5893104672431946
       ],
       [
         "preparedness desert shield",
-        0.5867239236831665
+        0.5867238640785217
       ],
       [
         "military operations require",
@@ -4917,7 +4917,7 @@
     "116": [
       [
         "cabin crew fatigue",
-        0.6970264315605164
+        0.6970263719558716
       ],
       [
         "crew fatigue",
@@ -4925,11 +4925,11 @@
       ],
       [
         "fatigue long haul",
-        0.5490261316299438
+        0.549026370048523
       ],
       [
         "fatigue risk management",
-        0.5447958111763
+        0.5447959899902344
       ],
       [
         "fatigue risk",
@@ -4945,15 +4945,15 @@
       ],
       [
         "ulr scheduling cabin",
-        0.5020411610603333
+        0.502041220664978
       ],
       [
         "scheduling cabin crew",
-        0.493224561214447
+        0.49322476983070374
       ],
       [
         "haul night flights",
-        0.48983076214790344
+        0.48983073234558105
       ]
     ],
     "117": [
@@ -4963,7 +4963,7 @@
       ],
       [
         "pilot attitude proficiency",
-        0.6571862697601318
+        0.6571863293647766
       ],
       [
         "psychological testing pilot",
@@ -4971,7 +4971,7 @@
       ],
       [
         "testing pilots written",
-        0.6443424820899963
+        0.6443424224853516
       ],
       [
         "pilot attitude",
@@ -4991,17 +4991,17 @@
       ],
       [
         "personnel pilot crew",
-        0.5749307870864868
+        0.5749306082725525
       ],
       [
         "requirements airplane pilot",
-        0.5680466294288635
+        0.5680463910102844
       ]
     ],
     "118": [
       [
         "motivations air traffic",
-        0.6286301016807556
+        0.6286300420761108
       ],
       [
         "traits air traffic",
@@ -5009,15 +5009,15 @@
       ],
       [
         "flight safety psychological",
-        0.5902348160743713
+        0.5902348756790161
       ],
       [
         "factors aviation especially",
-        0.5572879314422607
+        0.5572878122329712
       ],
       [
         "industry air traffic",
-        0.5483027100563049
+        0.5483026504516602
       ],
       [
         "traffic controllers job",
@@ -5025,7 +5025,7 @@
       ],
       [
         "traffic control specialties",
-        0.5206743478775024
+        0.5206745266914368
       ],
       [
         "psychological readiness air",
@@ -5043,11 +5043,11 @@
     "119": [
       [
         "synthetic vision information",
-        0.7198562622070312
+        0.7198563814163208
       ],
       [
         "synthetic vision systems",
-        0.7186785340309143
+        0.7186786532402039
       ],
       [
         "synthetic vision",
@@ -5071,7 +5071,7 @@
       ],
       [
         "vision",
-        0.47228750586509705
+        0.4722873568534851
       ],
       [
         "sensor data fusion",
@@ -5079,29 +5079,29 @@
       ],
       [
         "investigated spatial",
-        0.38576585054397583
+        0.3857659697532654
       ]
     ],
     "120": [
       [
         "fatigue air traffic",
-        0.7422404289245605
+        0.7422403693199158
       ],
       [
         "fatigue countermeasure flight",
-        0.6367517113685608
+        0.6367515921592712
       ],
       [
         "effect fatigue air",
-        0.6128538846969604
+        0.6128537654876709
       ],
       [
         "fatigue stress air",
-        0.6115055680274963
+        0.6115053296089172
       ],
       [
         "fatigue affects workload",
-        0.5884093046188354
+        0.5884091854095459
       ],
       [
         "fatigue air",
@@ -5109,11 +5109,11 @@
       ],
       [
         "illustrate fatigue affects",
-        0.5816279053688049
+        0.5816277861595154
       ],
       [
         "job stress fatigue",
-        0.5780161023139954
+        0.5780161619186401
       ],
       [
         "effect fatigue",
@@ -5121,7 +5121,7 @@
       ],
       [
         "objective illustrate fatigue",
-        0.5595601797103882
+        0.5595600008964539
       ]
     ],
     "121": [
@@ -5131,7 +5131,7 @@
       ],
       [
         "study usafsam cardiovascular",
-        0.47510412335395813
+        0.4751040041446686
       ],
       [
         "force academy hypertension",
@@ -5139,15 +5139,15 @@
       ],
       [
         "factors early chronic",
-        0.4393840432167053
+        0.43938392400741577
       ],
       [
         "glomerular hypertension accelerated",
-        0.4318276345729828
+        0.4318279027938843
       ],
       [
         "chronic kidney disease",
-        0.42888036370277405
+        0.4288802444934845
       ],
       [
         "hypertension",
@@ -5155,11 +5155,11 @@
       ],
       [
         "flight serum",
-        0.42121514678001404
+        0.4212152659893036
       ],
       [
         "hypertension accelerated",
-        0.42041316628456116
+        0.4204133152961731
       ],
       [
         "hypertension accelerated glomerular",
@@ -5177,7 +5177,7 @@
       ],
       [
         "hypoxia awareness training",
-        0.7827216982841492
+        0.7827215194702148
       ],
       [
         "hypoxia training sessions",
@@ -5215,11 +5215,11 @@
       ],
       [
         "performing air traffic",
-        0.578326940536499
+        0.5783270001411438
       ],
       [
         "perception air traffic",
-        0.5738067626953125
+        0.573806881904602
       ],
       [
         "mental workload ratings",
@@ -5231,7 +5231,7 @@
       ],
       [
         "levels mental workload",
-        0.5530458092689514
+        0.5530456900596619
       ],
       [
         "mental workload",
@@ -5239,15 +5239,15 @@
       ],
       [
         "influences air traffic",
-        0.5361115336418152
+        0.53611159324646
       ],
       [
         "performance mental workload",
-        0.5265867114067078
+        0.5265869498252869
       ],
       [
         "traffic control task",
-        0.5045896768569946
+        0.5045897364616394
       ]
     ],
     "124": [
@@ -5257,11 +5257,11 @@
       ],
       [
         "hypertension military",
-        0.6746512651443481
+        0.6746513247489929
       ],
       [
         "hypertension air traffic",
-        0.63747638463974
+        0.6374762654304504
       ],
       [
         "office hypertension military",
@@ -5269,7 +5269,7 @@
       ],
       [
         "onset hypertension air",
-        0.6303747296333313
+        0.6303747892379761
       ],
       [
         "hypertension tested 1994",
@@ -5277,7 +5277,7 @@
       ],
       [
         "hypertension tested",
-        0.5967572927474976
+        0.5967572331428528
       ],
       [
         "hypertension",
@@ -5289,7 +5289,7 @@
       ],
       [
         "hypertension yoga relaxation",
-        0.5641089677810669
+        0.5641092658042908
       ]
     ],
     "125": [
@@ -5307,7 +5307,7 @@
       ],
       [
         "antarctic research",
-        0.5851821899414062
+        0.5851823091506958
       ],
       [
         "antarctic",
@@ -5315,15 +5315,15 @@
       ],
       [
         "antarctic station",
-        0.5756673812866211
+        0.5756674408912659
       ],
       [
         "australian antarctic",
-        0.5749635100364685
+        0.574963390827179
       ],
       [
         "japanese antarctic research",
-        0.5683597326278687
+        0.5683594346046448
       ],
       [
         "japanese antarctic",
@@ -5337,7 +5337,7 @@
     "126": [
       [
         "pilots effects fatigue",
-        0.7906500101089478
+        0.7906500697135925
       ],
       [
         "mental physical fatigue",
@@ -5349,7 +5349,7 @@
       ],
       [
         "physical fatigue",
-        0.7120083570480347
+        0.7120082974433899
       ],
       [
         "flying fatigue posturographic",
@@ -5365,11 +5365,11 @@
       ],
       [
         "physical fatigue validity",
-        0.6852527856826782
+        0.685252845287323
       ],
       [
         "measures fatigue",
-        0.6817148923873901
+        0.6817149519920349
       ],
       [
         "mental stress fatigue",
@@ -5383,7 +5383,7 @@
       ],
       [
         "peer support aviation",
-        0.8091824650764465
+        0.8091825842857361
       ],
       [
         "peer pilot volunteer",
@@ -5411,7 +5411,7 @@
       ],
       [
         "peers peer support",
-        0.5736533403396606
+        0.5736531615257263
       ],
       [
         "peer support programs",
@@ -5425,7 +5425,7 @@
       ],
       [
         "performance human centrifuge",
-        0.5080690383911133
+        0.5080692172050476
       ],
       [
         "simulated aerial combat",
@@ -5437,7 +5437,7 @@
       ],
       [
         "maneuvering tolerance influence",
-        0.4794701933860779
+        0.47947001457214355
       ],
       [
         "manoeuvres psychophysiological response",
@@ -5445,15 +5445,15 @@
       ],
       [
         "maneuvering tolerance",
-        0.47700053453445435
+        0.4770005941390991
       ],
       [
         "pilots flight activity",
-        0.47419384121894836
+        0.474193811416626
       ],
       [
         "human acceleration",
-        0.47019094228744507
+        0.4701908826828003
       ],
       [
         "pilots extreme limits",
@@ -5475,7 +5475,7 @@
       ],
       [
         "laboratory confirmed exposure",
-        0.49684542417526245
+        0.4968454837799072
       ],
       [
         "irradiation",
@@ -5483,15 +5483,15 @@
       ],
       [
         "overexposed radiofrequency radiation",
-        0.475278377532959
+        0.4752783477306366
       ],
       [
         "monkeys rapid decompression",
-        0.47282466292381287
+        0.4728248715400696
       ],
       [
         "incident radiation",
-        0.4674200415611267
+        0.4674201011657715
       ],
       [
         "laboratory experiments dose",
@@ -5499,7 +5499,7 @@
       ],
       [
         "microwave radiation category",
-        0.43742936849594116
+        0.43742939829826355
       ]
     ],
     "130": [
@@ -5517,11 +5517,11 @@
       ],
       [
         "measure stress aviation",
-        0.7154751420021057
+        0.7154750823974609
       ],
       [
         "stress performance",
-        0.7007856965065002
+        0.7007858753204346
       ],
       [
         "stress aviation background",
@@ -5537,29 +5537,29 @@
       ],
       [
         "indicator stress aviation",
-        0.6524390578269958
+        0.6524388790130615
       ],
       [
         "study stress affects",
-        0.6091110110282898
+        0.6091107726097107
       ]
     ],
     "131": [
       [
         "perceptions passenger air",
-        0.739677906036377
+        0.7396777272224426
       ],
       [
         "passenger attitudes flying",
-        0.7162630558013916
+        0.7162628173828125
       ],
       [
         "passengers attitudes",
-        0.7061142325401306
+        0.7061142921447754
       ],
       [
         "passengers attitudes help",
-        0.6919985413551331
+        0.6919986009597778
       ],
       [
         "passenger attitudes",
@@ -5575,11 +5575,11 @@
       ],
       [
         "passengers loyalty",
-        0.6068422794342041
+        0.6068423390388489
       ],
       [
         "pilots willingness operate",
-        0.6002177596092224
+        0.6002175211906433
       ],
       [
         "passenger loyalty study",
@@ -5589,7 +5589,7 @@
     "132": [
       [
         "pilot scheduling behavior",
-        0.6983543634414673
+        0.6983544230461121
       ],
       [
         "pilot scheduling",
@@ -5597,7 +5597,7 @@
       ],
       [
         "task scheduling",
-        0.6035833954811096
+        0.6035834550857544
       ],
       [
         "preview task scheduling",
@@ -5605,15 +5605,15 @@
       ],
       [
         "pilots flew simulated",
-        0.5653098821640015
+        0.5653098225593567
       ],
       [
         "performance workload experiment",
-        0.5616792440414429
+        0.5616794228553772
       ],
       [
         "prediction workload model",
-        0.5509627461433411
+        0.5509626269340515
       ],
       [
         "workload models",
@@ -5635,7 +5635,7 @@
       ],
       [
         "health behaviors airline",
-        0.6301350593566895
+        0.630135178565979
       ],
       [
         "pilots covid 19",
@@ -5643,11 +5643,11 @@
       ],
       [
         "covid 19 pandemic",
-        0.593271791934967
+        0.5932716131210327
       ],
       [
         "pandemic experience",
-        0.5703414678573608
+        0.5703416466712952
       ],
       [
         "pilots covid",
@@ -5663,7 +5663,7 @@
       ],
       [
         "pandemic experience thai",
-        0.5456583499908447
+        0.5456584692001343
       ],
       [
         "impact pandemic",
@@ -5673,11 +5673,11 @@
     "134": [
       [
         "aircraft instrument displays",
-        0.6690925359725952
+        0.6690924763679504
       ],
       [
         "pilots using analog",
-        0.6360036134719849
+        0.6360035538673401
       ],
       [
         "aircraft instrument",
@@ -5685,11 +5685,11 @@
       ],
       [
         "instrument displays use",
-        0.6011967062950134
+        0.6011965274810791
       ],
       [
         "instrument pilots significant",
-        0.5780715942382812
+        0.578071653842926
       ],
       [
         "information instrument flight",
@@ -5697,19 +5697,19 @@
       ],
       [
         "instrument displays",
-        0.5747774243354797
+        0.5747774839401245
       ],
       [
         "vor aircraft instrument",
-        0.5660548806190491
+        0.5660547614097595
       ],
       [
         "measured instrument airline",
-        0.5518060326576233
+        0.5518060922622681
       ],
       [
         "non instrument pilots",
-        0.543863832950592
+        0.5438638925552368
       ]
     ],
     "135": [
@@ -5719,7 +5719,7 @@
       ],
       [
         "pilots psychometric",
-        0.6140480637550354
+        0.6140478849411011
       ],
       [
         "instructors safety behaviors",
@@ -5735,23 +5735,23 @@
       ],
       [
         "pilots assessing",
-        0.5662054419517517
+        0.5662055015563965
       ],
       [
         "pilots related survey",
-        0.5650957226753235
+        0.5650957822799683
       ],
       [
         "performance pilots assessing",
-        0.5539869666099548
+        0.5539871454238892
       ],
       [
         "control self efficacy",
-        0.5458284020423889
+        0.5458282828330994
       ],
       [
         "pilots assessing locus",
-        0.5331649780273438
+        0.5331650972366333
       ]
     ],
     "136": [
@@ -5765,15 +5765,15 @@
       ],
       [
         "flying psychological",
-        0.8536577820777893
+        0.8536578416824341
       ],
       [
         "flying personnel psychological",
-        0.8408251404762268
+        0.8408252596855164
       ],
       [
         "psychological evaluation flying",
-        0.7936043739318848
+        0.7936041951179504
       ],
       [
         "flight instruction emotional",
@@ -5781,11 +5781,11 @@
       ],
       [
         "emotional suitability flying",
-        0.7532489895820618
+        0.7532491087913513
       ],
       [
         "suitability flying",
-        0.7240936160087585
+        0.7240933179855347
       ],
       [
         "combat flying",
@@ -5793,7 +5793,7 @@
       ],
       [
         "operational flying",
-        0.6923909187316895
+        0.692391037940979
       ]
     ],
     "137": [
@@ -5807,7 +5807,7 @@
       ],
       [
         "underwater evacuation training",
-        0.5505927205085754
+        0.5505927801132202
       ],
       [
         "introduction physiological effects",
@@ -5815,11 +5815,11 @@
       ],
       [
         "psychophysiological stress response",
-        0.5222156643867493
+        0.5222155451774597
       ],
       [
         "psychophysiological stress",
-        0.5181962251663208
+        0.5181963443756104
       ],
       [
         "physiological measures related",
@@ -5827,7 +5827,7 @@
       ],
       [
         "quitters underwater",
-        0.5017330646514893
+        0.5017331838607788
       ],
       [
         "water immersion",
@@ -5835,13 +5835,13 @@
       ],
       [
         "physiological responses stayers",
-        0.49574199318885803
+        0.4957421123981476
       ]
     ],
     "138": [
       [
         "pilot motivation performance",
-        0.812548816204071
+        0.8125490546226501
       ],
       [
         "pilot motivation",
@@ -5849,7 +5849,7 @@
       ],
       [
         "pilot motivation flight",
-        0.7284150123596191
+        0.7284151911735535
       ],
       [
         "pilot performance variety",
@@ -5857,7 +5857,7 @@
       ],
       [
         "motivation flight performance",
-        0.6952327489852905
+        0.6952328085899353
       ],
       [
         "pilot ability accomplish",
@@ -5873,11 +5873,11 @@
       ],
       [
         "pilot performance total",
-        0.6279799342155457
+        0.6279799938201904
       ],
       [
         "method pilot professional",
-        0.6044608354568481
+        0.6044607758522034
       ]
     ],
     "139": [
@@ -5903,15 +5903,15 @@
       ],
       [
         "passenger behaviour",
-        0.5304074287414551
+        0.5304074883460999
       ],
       [
         "examined perceived triggering",
-        0.5176166296005249
+        0.5176166892051697
       ],
       [
         "mass incidents flight",
-        0.5020318031311035
+        0.5020318627357483
       ],
       [
         "rapport building behaviors",
@@ -5925,11 +5925,11 @@
     "140": [
       [
         "arctic expedition",
-        0.5434817671775818
+        0.543481707572937
       ],
       [
         "portion expedition personality",
-        0.5336459875106812
+        0.533646285533905
       ],
       [
         "influences man arctic",
@@ -5937,11 +5937,11 @@
       ],
       [
         "person expedition teams",
-        0.5046411156654358
+        0.504641056060791
       ],
       [
         "mission study assessed",
-        0.479779988527298
+        0.4797801673412323
       ],
       [
         "introduction expeditions remote",
@@ -5953,11 +5953,11 @@
       ],
       [
         "person expedition",
-        0.4529608190059662
+        0.4529609680175781
       ],
       [
         "personality factors decisions",
-        0.4521870017051697
+        0.45218703150749207
       ],
       [
         "polar expedition",
@@ -5971,15 +5971,15 @@
       ],
       [
         "contaminated air",
-        0.6771144270896912
+        0.6771142482757568
       ],
       [
         "introduction aerotoxic",
-        0.6608695983886719
+        0.6608700156211853
       ],
       [
         "introduction aerotoxic syndrome",
-        0.6341778039932251
+        0.6341776847839355
       ],
       [
         "aerotoxic syndrome",
@@ -5991,7 +5991,7 @@
       ],
       [
         "illness aerospace workers",
-        0.6018738150596619
+        0.6018736958503723
       ],
       [
         "syndrome introduction aerotoxic",
@@ -5999,7 +5999,7 @@
       ],
       [
         "illness aerospace",
-        0.5792147517204285
+        0.5792149305343628
       ],
       [
         "aerotoxic",
@@ -6009,7 +6009,7 @@
     "142": [
       [
         "black hole illusion",
-        0.8118549585342407
+        0.8118547797203064
       ],
       [
         "illusion black hole",
@@ -6017,7 +6017,7 @@
       ],
       [
         "hole illusion black",
-        0.7408817410469055
+        0.740881621837616
       ],
       [
         "illusion cause pilots",
@@ -6025,7 +6025,7 @@
       ],
       [
         "hole illusion bhi",
-        0.6168225407600403
+        0.616822361946106
       ],
       [
         "illusion bhi analyzing",
@@ -6037,11 +6037,11 @@
       ],
       [
         "hole illusion visual",
-        0.5923171639442444
+        0.5923170447349548
       ],
       [
         "illusion bhi lighting",
-        0.5848886966705322
+        0.5848888158798218
       ],
       [
         "illusion bhi absence",
@@ -6063,7 +6063,7 @@
       ],
       [
         "physiological studies hypoxia",
-        0.6792296171188354
+        0.6792295575141907
       ],
       [
         "hypoxia modality dependent",
@@ -6071,7 +6071,7 @@
       ],
       [
         "hypoxia modality",
-        0.6764951348304749
+        0.6764950156211853
       ],
       [
         "hypoxia objective study",
@@ -6083,7 +6083,7 @@
       ],
       [
         "studies hypoxia",
-        0.6551971435546875
+        0.655197262763977
       ],
       [
         "improvement hypoxia",
@@ -6097,35 +6097,35 @@
       ],
       [
         "pilots teaching learning",
-        0.7586230039596558
+        0.7586230635643005
       ],
       [
         "pilots teaching",
-        0.7160934209823608
+        0.7160933017730713
       ],
       [
         "flight training organisations",
-        0.7142832279205322
+        0.714283287525177
       ],
       [
         "pilots competency based",
-        0.7082124352455139
+        0.7082123160362244
       ],
       [
         "teaching learning pilot",
-        0.6970529556274414
+        0.6970528960227966
       ],
       [
         "pilot training time",
-        0.6261624693870544
+        0.6261624097824097
       ],
       [
         "flight instruction challenge",
-        0.5806350708007812
+        0.5806349515914917
       ],
       [
         "syllabus influences flight",
-        0.5367045402526855
+        0.536704421043396
       ],
       [
         "specific learning experiences",
@@ -6143,27 +6143,27 @@
       ],
       [
         "experience air traffic",
-        0.5123369693756104
+        0.5123370289802551
       ],
       [
         "morbidity experience air",
-        0.4694101810455322
+        0.46941015124320984
       ],
       [
         "job perceptions",
-        0.44842204451560974
+        0.44842207431793213
       ],
       [
         "working test flight",
-        0.4409891664981842
+        0.4409891366958618
       ],
       [
         "impact psychosocial variables",
-        0.437813937664032
+        0.43781405687332153
       ],
       [
         "illness injury professional",
-        0.40036284923553467
+        0.4003627598285675
       ],
       [
         "impact psychosocial",
@@ -6197,7 +6197,7 @@
       ],
       [
         "ground air communications",
-        0.5035364627838135
+        0.5035364031791687
       ],
       [
         "control communications",
@@ -6205,7 +6205,7 @@
       ],
       [
         "technology induced delays",
-        0.49732109904289246
+        0.4973209798336029
       ],
       [
         "pilot controller",
@@ -6213,7 +6213,7 @@
       ],
       [
         "aircraft continuous",
-        0.4545934200286865
+        0.45459339022636414
       ]
     ],
     "147": [
@@ -6227,7 +6227,7 @@
       ],
       [
         "symptoms simulator sickness",
-        0.8399506211280823
+        0.8399507403373718
       ],
       [
         "simulator sickness",
@@ -6239,7 +6239,7 @@
       ],
       [
         "recovery simulator sickness",
-        0.7613081336021423
+        0.7613080143928528
       ],
       [
         "symptoms simulator",
@@ -6247,7 +6247,7 @@
       ],
       [
         "simulator sickness 25",
-        0.7330264449119568
+        0.7330265641212463
       ],
       [
         "pilots undergoing simulator",
@@ -6255,7 +6255,7 @@
       ],
       [
         "undergoing simulator",
-        0.7047945261001587
+        0.7047944664955139
       ]
     ]
   },
