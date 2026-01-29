@@ -7,7 +7,6 @@ app = marimo.App(width="full")
 @app.cell
 def _():
     # Imports
-    import itertools
     from pathlib import Path
     from bertopic import BERTopic
     from dotenv import load_dotenv
@@ -27,13 +26,14 @@ def _():
 def _(Path):
     # Define paths
     DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
-    OUT_FOLDER = Path("./out") / "sentence_transformers" / "all_mini_lm_l6_v2"
+    OUT_FOLDER = Path("./out") / "sentence_transformers" / "all_MiniLM_L6_v2"
     EMBEDDING_FOLDER =  OUT_FOLDER / "embeddings"
     BERTOPIC_FOLDER = OUT_FOLDER / "bertopic"
     IMGS_FOLDER = OUT_FOLDER / "imgs"
 
     # Define other constants
-    IMGS_FOLDER.exists()
+    if not IMGS_FOLDER.exists():
+        IMGS_FOLDER.mkdir(parents=True, exist_ok=True)
     return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDING_FOLDER, IMGS_FOLDER
 
 
@@ -51,13 +51,14 @@ def _(EMBEDDING_FOLDER):
     # Get embedding_model_name
     with (EMBEDDING_FOLDER / "embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
-    return
+    embedding_model_name
+    return (embedding_model_name,)
 
 
 @app.cell
-def _(BERTOPIC_FOLDER, BERTopic, docs, embedding_model, np, pd):
+def _(BERTOPIC_FOLDER, BERTopic, docs, embedding_model_name, np, pd):
     # Load BERTopic related files
-    topic_model = BERTopic.load(BERTOPIC_FOLDER, embedding_model=embedding_model)
+    topic_model = BERTopic.load(BERTOPIC_FOLDER, embedding_model=embedding_model_name)
     probs = np.load(file=BERTOPIC_FOLDER / "probs.npy")
     topic_model.update_topics(docs)
     topics = topic_model.topics_

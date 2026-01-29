@@ -10,7 +10,8 @@ def _():
     from pathlib import Path
     import numpy as np
     import pandas as pd
-    from lib.bertopic.sentence_transformers.model_all_mini_lm_l6_v2 import get_bertopic_model
+    from lib.utils_embeddings import normalize_model_name
+    from lib.bertopic.sentence_transformers.model_base import get_bertopic_model
     return Path, get_bertopic_model, np, pd
 
 
@@ -18,10 +19,11 @@ def _():
 def _(Path):
     # Define paths
     DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
-    OUTPATH = Path("out") / "sentence_transformers" / "all_mini_lm_l6_v2"
-    EMBEDDINGS_FOLDER = OUTPATH / "embeddings"
-    BERTOPIC_FOLDER = OUTPATH / "bertopic"
-    BERTOPIC_FOLDER.exists()
+    OUT_FOLDER = Path("out") / "sentence_transformers" / "all_MiniLM_L6_v2"
+    EMBEDDINGS_FOLDER = OUT_FOLDER / "embeddings"
+    BERTOPIC_FOLDER = OUT_FOLDER / "bertopic"
+    if not BERTOPIC_FOLDER.exists():
+        BERTOPIC_FOLDER.mkdir(parents=True, exist_ok=True)
     return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDINGS_FOLDER
 
 
@@ -54,16 +56,16 @@ def _(EMBEDDINGS_FOLDER, np):
 def _(df):
     # Get Docs
     docs = df.doc.to_list()
-    return (docs,)
+    return
 
 
 @app.cell
-def _(docs, embeddings, get_bertopic_model):
+def _(df, embeddings, get_bertopic_model):
     # Get BERTopic model
     topic_model = get_bertopic_model()
 
     # Fit BERTopic model
-    topics, probs = topic_model.fit_transform(docs, embeddings=embeddings)
+    topics, probs = topic_model.fit_transform(df.doc.to_list(), embeddings=embeddings)
     return probs, topic_model, topics
 
 
@@ -109,7 +111,7 @@ def _(df):
 
 @app.cell
 def _(df):
-    df[df.topic.eq(47)]
+    df[df.topic.eq(0)]
     return
 
 

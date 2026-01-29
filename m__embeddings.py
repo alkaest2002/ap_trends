@@ -10,16 +10,25 @@ def _():
 
     import pandas as pd
     import numpy as np
-    from lib.utils_embeddings import get_sentence_transformer
-    return Path, get_sentence_transformer, np, pd
+    from lib.utils_embeddings import get_sentence_transformer, normalize_model_name
+    return Path, get_sentence_transformer, normalize_model_name, np, pd
 
 
 @app.cell
-def _(Path):
+def _():
+    BASE_MODEL = "all-MiniLM-L6-v2"
+    SPECTER2_PUBMED = "wwydmanski/specter2_pubmed-v0.7-full"
+    return (SPECTER2_PUBMED,)
+
+
+@app.cell
+def _(Path, SPECTER2_PUBMED, normalize_model_name):
     DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
-    EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
-    EMBEDDINGS_FOLDER = Path("out") / "sentence_transformers" / EMBEDDINGS_MODEL_NAME.replace("-", "_") /  "embeddings"
-    EMBEDDINGS_FOLDER.exists()
+    EMBEDDINGS_MODEL_NAME = SPECTER2_PUBMED
+
+    EMBEDDINGS_FOLDER = Path("out") / "sentence_transformers" / normalize_model_name(EMBEDDINGS_MODEL_NAME) /  "embeddings"
+    if not EMBEDDINGS_FOLDER.exists():
+        EMBEDDINGS_FOLDER.mkdir(parents=True, exist_ok=True)
     return DATASET_FOLDER, EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME
 
 
