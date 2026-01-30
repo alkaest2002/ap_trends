@@ -1,8 +1,11 @@
+from os import getenv
 from typing import Any
 
+import openai
 from bertopic import BERTopic
-from bertopic.representation import KeyBERTInspired, MaximalMarginalRelevance
+from bertopic.representation import KeyBERTInspired, MaximalMarginalRelevance, OpenAI
 from bertopic.vectorizers import ClassTfidfTransformer
+from dotenv import load_dotenv
 from hdbscan import HDBSCAN
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, CountVectorizer
 from umap import UMAP
@@ -13,18 +16,21 @@ stop_words = ENGLISH_STOP_WORDS.union({
     "<title>", "</title>", "title", "<excerpt>", "</excerpt>", "excerpt",
 })
 
+load_dotenv()
+
+client = openai.OpenAI(api_key=getenv("OPENAI_APIKEY"))
 
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
-        "n_neighbors": 5,
-        "n_components": 8,
+        "n_neighbors": 4,
+        "n_components": 12,
         "min_dist": 0.0,
         "metric": "cosine",
         "random_state": 42
     },
     "hdbscan": {
-        "min_cluster_size": 4,
+        "min_cluster_size": 5,
         "metric": "euclidean",
         "cluster_selection_method": "eom",
         "prediction_data": True,
@@ -32,6 +38,8 @@ default_bertopic_settings: dict[str, Any] = {
     "vectorizer": {
         "stop_words": list(stop_words),
         "ngram_range":  (1, 3),
+        "min_df": .4,
+        "max_df": .7,
     },
     "ctfidf": {
         "bm25_weighting": True,
@@ -43,6 +51,9 @@ default_bertopic_settings: dict[str, Any] = {
         "maximal_marginal_relevance": {
             "diversity": 0.5
         },
+        "openai": {
+            "model": "gpt-4o-mini"
+        }
     }
 }
 
@@ -78,6 +89,7 @@ def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
         MaximalMarginalRelevance(
             **default_bertopic_settings["representation"]["maximal_marginal_relevance"]
         ),
+        OpenAI(client=client, **default_bertopic_settings["representation"]["openai"]),
     ]
 
     # All steps together
