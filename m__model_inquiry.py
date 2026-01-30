@@ -70,44 +70,18 @@ def _(BERTOPIC_FOLDER, BERTopic, docs, embedding_model_name, np, pd):
 
 @app.cell
 def _(df):
-    df[df.doc.str.contains("suic")].topic.value_counts()
-    return
-
-
-@app.cell
-def _(df):
+    # Explore topics
     df[df.topic.eq(9)]
     return
 
 
 @app.cell
-def _(IMGS_FOLDER, colors, plt, topics_info):
-    def plot2():
-        fig, ax = plt.subplots(nrows=1, ncols=1)
-
-        # Colorize features
-        ax.tick_params(color=colors["base"], labelcolor=colors["base"])
-        ax.spines[:].set_color(colors["base"])
-        ax.xaxis.label.set_color(colors["base"])
-        ax.yaxis.label.set_color(colors["base"])
-
-        topics_info.Count[1:].plot(kind="hist", color="#6982A9", label="Frequenza")
-        ax.set_ylabel("Frequenza")
-        ax.set_xlabel("Cluster")
-        fig.savefig(IMGS_FOLDER / "img_2.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
-        plt.show()
-
-    plot2()
-    return
-
-
-@app.cell
 def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
-    def plot3():
+    def plot_elbow():
         y = topics_info.Count[1:]
         x = range(1, len(y)+1)
         kneedle = KneeLocator(x, y, S=2, curve="convex", direction="decreasing")
-        elbow = round(kneedle.elbow, 1)
+        elbow = round(kneedle.elbow, 0)
 
         fig, ax = plt.subplots(nrows=1, ncols=1)
 
@@ -123,30 +97,26 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
             text=f"cluster {elbow}, dim {y[elbow]}", 
             color=colors["base"],
             xy=(elbow +1 , y[elbow]+1), 
-            xytext=(elbow+5*5, y[elbow] + 5),
+            xytext=(elbow+3*5, y[elbow] + 2),
             arrowprops=dict(facecolor=colors["base"], edgecolor=colors["base"], arrowstyle='->,head_width=.15')
         )
         ax.legend(frameon=False)
         ax.set_ylabel("Frequenza")
         ax.set_xlabel("Cluster")
-        fig.savefig(IMGS_FOLDER / "img_3.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
+        fig.savefig(IMGS_FOLDER / "img_elbow.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
         plt.show()
         return elbow
 
-    elbow = plot3()
+    elbow = plot_elbow()
+    elbow
     return (elbow,)
 
 
 @app.cell
-def _(topics_info):
-    topics_info
-    return
-
-
-@app.cell
 def _(elbow, mo, topics_info):
+    # Creat markdown list of most important clusters
     cloud = (topics_info
-        .nlargest(elbow +1, "Count")
+        .nlargest(elbow +2, "Count")
         .iloc[1:, :]
         .loc[:, ["Topic","Representation"]]
         .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
@@ -158,11 +128,22 @@ def _(elbow, mo, topics_info):
 
 
 @app.cell
-def _(df, pd):
+def _(df):
+    # Define most prolific counturies
     countries = ["EU", "United States", "China", "United Kingdom", "Australia"]
-    c1 = df.year.between(2025, 2025)
+
+    # Set condition to filter topics
+    c1 = df.year.between(2021, 2025)
     c2 = df.topic.ne(-1)
+
+    # Filter topics
     filtered_data = df.loc[c1 & c2, ["year","country","topic"]]
+    return countries, filtered_data
+
+
+@app.cell
+def _(countries, filtered_data, pd):
+    # Prepare data for pivot table
     pivot_data = (
         pd.concat([
             filtered_data,
@@ -172,10 +153,13 @@ def _(df, pd):
             .drop(columns=["country"])
             .dropna(subset=["country_"])
     )
+
+    # Create pivot table
     pivot_table = (
         pd.pivot_table(pivot_data, index="country_",columns="year", values="topic", aggfunc=set, fill_value="-")
     )
 
+    # Customize pivot table
     (
        pivot_table.loc[pivot_table.index.isin(countries)]
             .reindex(countries)
