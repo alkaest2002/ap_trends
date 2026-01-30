@@ -52,7 +52,8 @@ default_bertopic_settings: dict[str, Any] = {
             "diversity": 0.5
         },
         "openai": {
-            "model": "gpt-4o-mini"
+            "model": "gpt-4o-mini",
+            "temperature": 0,
         }
     }
 }
