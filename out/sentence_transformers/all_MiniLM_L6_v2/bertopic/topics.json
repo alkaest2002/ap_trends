@@ -2,7 +2,7 @@
   "topic_representations": {
     "-1": [
       [
-        "Air Traffic Management Factors",
+        "Aviation safety factors",
         1
       ]
     ],
@@ -14,7 +14,7 @@
     ],
     "1": [
       [
-        "Aircraft display design",
+        "Aviation display design",
         1
       ]
     ],
@@ -26,25 +26,25 @@
     ],
     "3": [
       [
-        "Air traffic control",
+        "Air Traffic Control",
         1
       ]
     ],
     "4": [
       [
-        "Flight training performance",
+        "Flight Training Performance",
         1
       ]
     ],
     "5": [
       [
-        "Age effects in aviation",
+        "Age and pilot performance",
         1
       ]
     ],
     "6": [
       [
-        "Aviation Communication Challenges",
+        "Aviation Communication Factors",
         1
       ]
     ],
@@ -56,7 +56,7 @@
     ],
     "8": [
       [
-        "Flight Training Innovations",
+        "Pilot training techniques",
         1
       ]
     ],
@@ -74,13 +74,13 @@
     ],
     "11": [
       [
-        "Motion sickness treatment",
+        "Motion sickness training",
         1
       ]
     ],
     "12": [
       [
-        "Psychophysiological effects of hypoxia",
+        "Effects of Hypoxia",
         1
       ]
     ],
@@ -98,55 +98,55 @@
     ],
     "15": [
       [
-        "Effects of time zone travel",
+        "Effects of Jet Lag",
         1
       ]
     ],
     "16": [
       [
-        "Psychological analysis of pilots",
+        "Pilot psychological assessment",
         1
       ]
     ],
     "17": [
       [
-        "Aviation Personnel Selection",
+        "Personality Assessment in Aviation",
         1
       ]
     ],
     "18": [
       [
-        "Situation Awareness in Aviation",
+        "Pilot Situation Awareness",
         1
       ]
     ],
     "19": [
       [
-        "Aviation Medicine Challenges",
+        "Aviation medicine challenges",
         1
       ]
     ],
     "20": [
       [
-        "Human factors in aviation safety",
+        "Aviation safety research",
         1
       ]
     ],
     "21": [
       [
-        "Pilot fatigue risks",
+        "Pilot fatigue issues",
         1
       ]
     ],
     "22": [
       [
-        "Biomedical research in space",
+        "Space health risks",
         1
       ]
     ],
     "23": [
       [
-        "Aviation Psychology Programs",
+        "Psychology in Military Training",
         1
       ]
     ],
@@ -158,7 +158,7 @@
     ],
     "25": [
       [
-        "Pilot Risk Assessment",
+        "Pilot risk perception",
         1
       ]
     ],
@@ -188,49 +188,49 @@
     ],
     "30": [
       [
-        "Human factors in spaceflight",
+        "Psychological aspects of space missions",
         1
       ]
     ],
     "31": [
       [
-        "Heart Rate and Stress",
+        "Pilots' cardiovascular stress",
         1
       ]
     ],
     "32": [
       [
-        "Air Traffic Control Performance",
+        "Air traffic control performance",
         1
       ]
     ],
     "33": [
       [
-        "Alcohol and Pilot Performance",
+        "Alcohol effects on pilots",
         1
       ]
     ],
     "34": [
       [
-        "Positive Psychological Capital",
+        "Psychological capital in service industry",
         1
       ]
     ],
     "35": [
       [
-        "Pilot Spatial Disorientation",
+        "Spatial Disorientation Training",
         1
       ]
     ],
     "36": [
       [
-        "Psychological effects in military training",
+        "Psychological factors in military training",
         1
       ]
     ],
     "37": [
       [
-        "Nursing in Aeromedical Evacuations",
+        "Aeromedical nursing responsibilities",
         1
       ]
     ],
@@ -242,13 +242,13 @@
     ],
     "39": [
       [
-        "Astronaut selection evaluation",
+        "Astronaut selection criteria",
         1
       ]
     ],
     "40": [
       [
-        "Pilot Stress Management",
+        "Stress management in pilots",
         1
       ]
     ],
@@ -266,67 +266,67 @@
     ],
     "43": [
       [
-        "Pilot error analysis",
+        "Pilot error factors",
         1
       ]
     ],
     "44": [
       [
-        "History of aviation medicine",
+        "Aviation Medicine History",
         1
       ]
     ],
     "45": [
       [
-        "Psychological effects of expeditions",
+        "Psychological Adaptation in Antarctica",
         1
       ]
     ],
     "46": [
       [
-        "Training effectiveness principles",
+        "Training and Learning Techniques",
         1
       ]
     ],
     "47": [
       [
-        "Medical support for pilots",
+        "Pilot medical screening",
         1
       ]
     ],
     "48": [
       [
-        "Personality and Air Traffic Control",
+        "Personality assessment in air traffic control",
         1
       ]
     ],
     "49": [
       [
-        "Stress in military aviators",
+        "Stress among military aviators",
         1
       ]
     ],
     "50": [
       [
-        "Psychological effects in aviation",
+        "Psychology of Air Force",
         1
       ]
     ],
     "51": [
       [
-        "Health risks flight attendants",
+        "Health and well-being of female flight attendants",
         1
       ]
     ],
     "52": [
       [
-        "Air traffic selection testing",
+        "Air Traffic Control Selection",
         1
       ]
     ],
     "53": [
       [
-        "Psychosocial issues in space missions",
+        "Psychosocial challenges in space missions",
         1
       ]
     ],
@@ -338,25 +338,25 @@
     ],
     "55": [
       [
-        "Aviation Psychology Research",
+        "Psychology in Military",
         1
       ]
     ],
     "56": [
       [
-        "Effects of rotation perception",
+        "Effects of rotation on perception",
         1
       ]
     ],
     "57": [
       [
-        "Cognitive performance under extreme conditions",
+        "Environmental effects on cognition",
         1
       ]
     ],
     "58": [
       [
-        "Cognitive performance in pilots",
+        "Effects of Stimulants on Performance",
         1
       ]
     ],
@@ -368,19 +368,19 @@
     ],
     "60": [
       [
-        "High-G training effectiveness",
+        "High-G training techniques",
         1
       ]
     ],
     "61": [
       [
-        "Spatial Disorientation Research",
+        "Visual Perception in Aviation",
         1
       ]
     ],
     "62": [
       [
-        "Flight training evaluation",
+        "Pilot training evaluation",
         1
       ]
     ],
@@ -398,7 +398,7 @@
     ],
     "65": [
       [
-        "Multisensory target localization",
+        "Multisensory localization research",
         1
       ]
     ],
@@ -416,19 +416,19 @@
     ],
     "68": [
       [
-        "Pilot Training Performance",
+        "Cognitive Abilities in Pilot Training",
         1
       ]
     ],
     "69": [
       [
-        "Prospective memory in air traffic control",
+        "Prospective Memory in Air Traffic Control",
         1
       ]
     ],
     "70": [
       [
-        "Weather-related aviation safety",
+        "Weather-related pilot decision making",
         1
       ]
     ],
@@ -440,13 +440,13 @@
     ],
     "72": [
       [
-        "Job satisfaction and stress",
+        "Job satisfaction aviation",
         1
       ]
     ],
     "73": [
       [
-        "Mental fatigue and performance",
+        "Mental fatigue assessment",
         1
       ]
     ],
@@ -464,7 +464,7 @@
     ],
     "76": [
       [
-        "Effects of cockpit decompression",
+        "Aeromedical effects of decompression",
         1
       ]
     ],
@@ -476,19 +476,19 @@
     ],
     "78": [
       [
-        "Stress responses in pilots",
+        "Physiological responses in pilots",
         1
       ]
     ],
     "79": [
       [
-        "Team Performance Analysis",
+        "Team Performance Dynamics",
         1
       ]
     ],
     "80": [
       [
-        "Mindfulness in aviation",
+        "Mindfulness in Aviation",
         1
       ]
     ],
@@ -500,7 +500,7 @@
     ],
     "82": [
       [
-        "Virtual reality therapy for phobias",
+        "Virtual reality therapy",
         1
       ]
     ],
@@ -512,31 +512,31 @@
     ],
     "84": [
       [
-        "Cognitive performance under stress",
+        "Cognitive function under stress",
         1
       ]
     ],
     "85": [
       [
-        "Psychophysiological effects of pilots",
+        "Psychophysiological effects of flight",
         1
       ]
     ],
     "86": [
       [
-        "Aviation medical conditions",
+        "Aviation health issues",
         1
       ]
     ],
     "87": [
       [
-        "Air safety psychology",
+        "Aviation mental health",
         1
       ]
     ],
     "88": [
       [
-        "Pilot Performance Assessment",
+        "Pilot training effectiveness",
         1
       ]
     ],
@@ -548,19 +548,19 @@
     ],
     "90": [
       [
-        "Aircraft Maintenance Training",
+        "Aircraft maintenance training",
         1
       ]
     ],
     "91": [
       [
-        "Pilot work-related stress",
+        "Work-related stress in pilots",
         1
       ]
     ],
     "92": [
       [
-        "Occupational health research",
+        "Occupational health studies",
         1
       ]
     ],
@@ -572,31 +572,31 @@
     ],
     "94": [
       [
-        "Organizational information systems",
+        "Organizational Information Systems",
         1
       ]
     ],
     "95": [
       [
-        "Health effects in pilots",
+        "Health effects of smoking among pilots",
         1
       ]
     ],
     "96": [
       [
-        "Aircrew Health Issues",
+        "Aircrew Pain Management",
         1
       ]
     ],
     "97": [
       [
-        "Pilot decision making",
+        "Pilot Decision Making",
         1
       ]
     ],
     "98": [
       [
-        "Military aeronautics adaptability",
+        "Military personnel adaptability",
         1
       ]
     ],
@@ -614,13 +614,13 @@
     ],
     "101": [
       [
-        "Pilot cognitive screening",
+        "Pilot screening evaluations",
         1
       ]
     ],
     "102": [
       [
-        "Flight Deck Information Discrepancies",
+        "Flight deck information reliability",
         1
       ]
     ],
@@ -632,31 +632,31 @@
     ],
     "104": [
       [
-        "Pilot Error Research",
+        "Pilot error and personality",
         1
       ]
     ],
     "105": [
       [
-        "Aviation human factors",
+        "Human factors in aviation",
         1
       ]
     ],
     "106": [
       [
-        "Stress in aviation",
+        "Stress and Pilot Performance",
         1
       ]
     ],
     "107": [
       [
-        "Cabin Crew Well-being",
+        "Emotional well-being in aviation",
         1
       ]
     ],
     "108": [
       [
-        "Aviation safety behavior",
+        "Aviation Safety Behaviors",
         1
       ]
     ],
@@ -674,7 +674,7 @@
     ],
     "111": [
       [
-        "Sensory effects in space",
+        "Sensory challenges in spaceflight",
         1
       ]
     ],
@@ -686,13 +686,13 @@
     ],
     "113": [
       [
-        "Pilot incapacitation incidents",
+        "Pilot incapacitation in aviation",
         1
       ]
     ],
     "114": [
       [
-        "Auditory alerts in aviation",
+        "Auditory alarm systems",
         1
       ]
     ],
@@ -710,7 +710,7 @@
     ],
     "117": [
       [
-        "Air Traffic Control Workload",
+        "Mental workload in air traffic control",
         1
       ]
     ],
@@ -734,7 +734,7 @@
     ],
     "121": [
       [
-        "Aviation maintenance errors",
+        "Aviation maintenance safety",
         1
       ]
     ]
@@ -3863,129 +3863,129 @@
     ]
   ],
   "topic_labels": {
-    "-1": "-1_Air Traffic Management Factors",
+    "-1": "-1_Aviation safety factors",
     "0": "0_Human factors in aviation",
-    "1": "1_Aircraft display design",
+    "1": "1_Aviation display design",
     "2": "2_Psychological challenges in space",
-    "3": "3_Air traffic control",
-    "4": "4_Flight training performance",
-    "5": "5_Age effects in aviation",
-    "6": "6_Aviation Communication Challenges",
+    "3": "3_Air Traffic Control",
+    "4": "4_Flight Training Performance",
+    "5": "5_Age and pilot performance",
+    "6": "6_Aviation Communication Factors",
     "7": "7_Fear of flying",
-    "8": "8_Flight Training Innovations",
+    "8": "8_Pilot training techniques",
     "9": "9_Pilot mental health",
     "10": "10_Pilot selection research",
-    "11": "11_Motion sickness treatment",
-    "12": "12_Psychophysiological effects of hypoxia",
+    "11": "11_Motion sickness training",
+    "12": "12_Effects of Hypoxia",
     "13": "13_Pilot workload assessment",
     "14": "14_Psychological impacts of aviation accidents",
-    "15": "15_Effects of time zone travel",
-    "16": "16_Psychological analysis of pilots",
-    "17": "17_Aviation Personnel Selection",
-    "18": "18_Situation Awareness in Aviation",
-    "19": "19_Aviation Medicine Challenges",
-    "20": "20_Human factors in aviation safety",
-    "21": "21_Pilot fatigue risks",
-    "22": "22_Biomedical research in space",
-    "23": "23_Aviation Psychology Programs",
+    "15": "15_Effects of Jet Lag",
+    "16": "16_Pilot psychological assessment",
+    "17": "17_Personality Assessment in Aviation",
+    "18": "18_Pilot Situation Awareness",
+    "19": "19_Aviation medicine challenges",
+    "20": "20_Aviation safety research",
+    "21": "21_Pilot fatigue issues",
+    "22": "22_Space health risks",
+    "23": "23_Psychology in Military Training",
     "24": "24_Stress in air traffic control",
-    "25": "25_Pilot Risk Assessment",
+    "25": "25_Pilot risk perception",
     "26": "26_Aircraft noise effects",
     "27": "27_Landing flare analysis",
     "28": "28_Human error analysis",
     "29": "29_Crew Resource Management Training",
-    "30": "30_Human factors in spaceflight",
-    "31": "31_Heart Rate and Stress",
-    "32": "32_Air Traffic Control Performance",
-    "33": "33_Alcohol and Pilot Performance",
-    "34": "34_Positive Psychological Capital",
-    "35": "35_Pilot Spatial Disorientation",
-    "36": "36_Psychological effects in military training",
-    "37": "37_Nursing in Aeromedical Evacuations",
+    "30": "30_Psychological aspects of space missions",
+    "31": "31_Pilots' cardiovascular stress",
+    "32": "32_Air traffic control performance",
+    "33": "33_Alcohol effects on pilots",
+    "34": "34_Psychological capital in service industry",
+    "35": "35_Spatial Disorientation Training",
+    "36": "36_Psychological factors in military training",
+    "37": "37_Aeromedical nursing responsibilities",
     "38": "38_Cognitive effects of altitude",
-    "39": "39_Astronaut selection evaluation",
-    "40": "40_Pilot Stress Management",
+    "39": "39_Astronaut selection criteria",
+    "40": "40_Stress management in pilots",
     "41": "41_Urban Air Mobility",
     "42": "42_Pilot cognitive workload",
-    "43": "43_Pilot error analysis",
-    "44": "44_History of aviation medicine",
-    "45": "45_Psychological effects of expeditions",
-    "46": "46_Training effectiveness principles",
-    "47": "47_Medical support for pilots",
-    "48": "48_Personality and Air Traffic Control",
-    "49": "49_Stress in military aviators",
-    "50": "50_Psychological effects in aviation",
-    "51": "51_Health risks flight attendants",
-    "52": "52_Air traffic selection testing",
-    "53": "53_Psychosocial issues in space missions",
+    "43": "43_Pilot error factors",
+    "44": "44_Aviation Medicine History",
+    "45": "45_Psychological Adaptation in Antarctica",
+    "46": "46_Training and Learning Techniques",
+    "47": "47_Pilot medical screening",
+    "48": "48_Personality assessment in air traffic control",
+    "49": "49_Stress among military aviators",
+    "50": "50_Psychology of Air Force",
+    "51": "51_Health and well-being of female flight attendants",
+    "52": "52_Air Traffic Control Selection",
+    "53": "53_Psychosocial challenges in space missions",
     "54": "54_Adaptation to microgravity",
-    "55": "55_Aviation Psychology Research",
-    "56": "56_Effects of rotation perception",
-    "57": "57_Cognitive performance under extreme conditions",
-    "58": "58_Cognitive performance in pilots",
+    "55": "55_Psychology in Military",
+    "56": "56_Effects of rotation on perception",
+    "57": "57_Environmental effects on cognition",
+    "58": "58_Effects of Stimulants on Performance",
     "59": "59_Psychological effects of stress",
-    "60": "60_High-G training effectiveness",
-    "61": "61_Spatial Disorientation Research",
-    "62": "62_Flight training evaluation",
+    "60": "60_High-G training techniques",
+    "61": "61_Visual Perception in Aviation",
+    "62": "62_Pilot training evaluation",
     "63": "63_Pilot stress responses",
     "64": "64_Air Traffic Management",
-    "65": "65_Multisensory target localization",
+    "65": "65_Multisensory localization research",
     "66": "66_Air medical transport",
     "67": "67_Synthetic vision systems",
-    "68": "68_Pilot Training Performance",
-    "69": "69_Prospective memory in air traffic control",
-    "70": "70_Weather-related aviation safety",
+    "68": "68_Cognitive Abilities in Pilot Training",
+    "69": "69_Prospective Memory in Air Traffic Control",
+    "70": "70_Weather-related pilot decision making",
     "71": "71_Pilot Safety Behavior",
-    "72": "72_Job satisfaction and stress",
-    "73": "73_Mental fatigue and performance",
+    "72": "72_Job satisfaction aviation",
+    "73": "73_Mental fatigue assessment",
     "74": "74_Attitude Indicator Design",
     "75": "75_Pilot decision-making",
-    "76": "76_Effects of cockpit decompression",
+    "76": "76_Aeromedical effects of decompression",
     "77": "77_Human factors in aviation",
-    "78": "78_Stress responses in pilots",
-    "79": "79_Team Performance Analysis",
-    "80": "80_Mindfulness in aviation",
+    "78": "78_Physiological responses in pilots",
+    "79": "79_Team Performance Dynamics",
+    "80": "80_Mindfulness in Aviation",
     "81": "81_Crew Resource Management",
-    "82": "82_Virtual reality therapy for phobias",
+    "82": "82_Virtual reality therapy",
     "83": "83_Psychological effects of bed rest",
-    "84": "84_Cognitive performance under stress",
-    "85": "85_Psychophysiological effects of pilots",
-    "86": "86_Aviation medical conditions",
-    "87": "87_Air safety psychology",
-    "88": "88_Pilot Performance Assessment",
+    "84": "84_Cognitive function under stress",
+    "85": "85_Psychophysiological effects of flight",
+    "86": "86_Aviation health issues",
+    "87": "87_Aviation mental health",
+    "88": "88_Pilot training effectiveness",
     "89": "89_Air Traffic Controller Stress",
-    "90": "90_Aircraft Maintenance Training",
-    "91": "91_Pilot work-related stress",
-    "92": "92_Occupational health research",
+    "90": "90_Aircraft maintenance training",
+    "91": "91_Work-related stress in pilots",
+    "92": "92_Occupational health studies",
     "93": "93_Psychosocial work health",
-    "94": "94_Organizational information systems",
-    "95": "95_Health effects in pilots",
-    "96": "96_Aircrew Health Issues",
-    "97": "97_Pilot decision making",
-    "98": "98_Military aeronautics adaptability",
+    "94": "94_Organizational Information Systems",
+    "95": "95_Health effects of smoking among pilots",
+    "96": "96_Aircrew Pain Management",
+    "97": "97_Pilot Decision Making",
+    "98": "98_Military personnel adaptability",
     "99": "99_Military readiness assessment",
     "100": "100_Air Traffic Controllers' Well-Being",
-    "101": "101_Pilot cognitive screening",
-    "102": "102_Flight Deck Information Discrepancies",
+    "101": "101_Pilot screening evaluations",
+    "102": "102_Flight deck information reliability",
     "103": "103_Psychological health challenges",
-    "104": "104_Pilot Error Research",
-    "105": "105_Aviation human factors",
-    "106": "106_Stress in aviation",
-    "107": "107_Cabin Crew Well-being",
-    "108": "108_Aviation safety behavior",
+    "104": "104_Pilot error and personality",
+    "105": "105_Human factors in aviation",
+    "106": "106_Stress and Pilot Performance",
+    "107": "107_Emotional well-being in aviation",
+    "108": "108_Aviation Safety Behaviors",
     "109": "109_Military personnel selection",
     "110": "110_Pilot performance assessment",
-    "111": "111_Sensory effects in space",
+    "111": "111_Sensory challenges in spaceflight",
     "112": "112_Pilots' mental health",
-    "113": "113_Pilot incapacitation incidents",
-    "114": "114_Auditory alerts in aviation",
+    "113": "113_Pilot incapacitation in aviation",
+    "114": "114_Auditory alarm systems",
     "115": "115_Pilot training effectiveness",
     "116": "116_Pilot training effectiveness",
-    "117": "117_Air Traffic Control Workload",
+    "117": "117_Mental workload in air traffic control",
     "118": "118_Psychology and War",
     "119": "119_Air Traffic Control Factors",
     "120": "120_Simulator sickness effects",
-    "121": "121_Aviation maintenance errors"
+    "121": "121_Aviation maintenance safety"
   },
   "custom_labels": null,
   "_outliers": 1,
