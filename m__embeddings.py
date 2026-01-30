@@ -6,25 +6,21 @@ app = marimo.App(width="full")
 
 @app.cell
 def _():
+    # Imports
     from pathlib import Path
 
     import pandas as pd
     import numpy as np
+
     from lib.utils_embeddings import get_sentence_transformer, normalize_model_name
     return Path, get_sentence_transformer, normalize_model_name, np, pd
 
 
 @app.cell
-def _():
-    BASE_MODEL = "all-MiniLM-L6-v2"
-    SPECTER2_PUBMED = "wwydmanski/specter2_pubmed-v0.7-full"
-    return (SPECTER2_PUBMED,)
-
-
-@app.cell
-def _(Path, SPECTER2_PUBMED, normalize_model_name):
+def _(Path, normalize_model_name):
+    # Define Paths
     DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
-    EMBEDDINGS_MODEL_NAME = SPECTER2_PUBMED
+    EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
 
     EMBEDDINGS_FOLDER = Path("out") / "sentence_transformers" / normalize_model_name(EMBEDDINGS_MODEL_NAME) /  "embeddings"
     if not EMBEDDINGS_FOLDER.exists():
@@ -34,6 +30,7 @@ def _(Path, SPECTER2_PUBMED, normalize_model_name):
 
 @app.cell
 def _(DATASET_FOLDER, pd):
+    # Load dataset
     df = pd.read_csv(DATASET_FOLDER / "dataset.csv")
     df.shape
     return (df,)
@@ -41,19 +38,21 @@ def _(DATASET_FOLDER, pd):
 
 @app.cell
 def _(df):
+    # Sample dataset
     df.sample(5, random_state=42)
     return
 
 
 @app.cell
 def _(EMBEDDINGS_MODEL_NAME, df, get_sentence_transformer):
-    texts_to_embed = df.doc.to_list()
-    embeddings = get_sentence_transformer(texts_to_embed, EMBEDDINGS_MODEL_NAME)
+    # Compute docs embeddings 
+    embeddings = get_sentence_transformer(df.doc.to_list(), EMBEDDINGS_MODEL_NAME)
     return (embeddings,)
 
 
 @app.cell
 def _(EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME, Path, embeddings, np):
+    # Persist embeddings
     embedding_model_name_filepath = Path(EMBEDDINGS_FOLDER / "embedding_model_name.txt")
     with embedding_model_name_filepath.open("w") as f:
         f.write(EMBEDDINGS_MODEL_NAME)
@@ -65,12 +64,8 @@ def _(EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME, Path, embeddings, np):
 
 @app.cell
 def _(embeddings, np):
+    # Show embeddings dim
     np.array(embeddings).shape
-    return
-
-
-@app.cell
-def _():
     return
 
 

@@ -22,8 +22,10 @@ def _(Path):
     OUT_FOLDER = Path("out") / "sentence_transformers" / "all_MiniLM_L6_v2"
     EMBEDDINGS_FOLDER = OUT_FOLDER / "embeddings"
     BERTOPIC_FOLDER = OUT_FOLDER / "bertopic"
-    if not BERTOPIC_FOLDER.exists():
-        BERTOPIC_FOLDER.mkdir(parents=True, exist_ok=True)
+
+    for folder in {EMBEDDINGS_FOLDER, BERTOPIC_FOLDER}:
+        if not folder.exists():
+            folder.mkdir(parents=True, exist_ok=True)
     return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDINGS_FOLDER
 
 
@@ -98,7 +100,8 @@ def _(topic_info):
 
 @app.cell
 def _(topic_info):
-    topic_info.shape[0]-1
+    # Count Number of clusters
+    "Number of meaningful clusters", topic_info.shape[0]-1
     return
 
 
@@ -111,18 +114,21 @@ def _(df, topic_info):
 
 @app.cell
 def _(df):
+    # Explore words
     df[df.doc.str.contains("suic")]
     return
 
 
 @app.cell
 def _(df):
+    # Explore topics
     df[df.topic.eq(0)]
     return
 
 
 @app.cell
-def _():
+def _(topic_info):
+    topic_info[topic_info.Representation.str[0].str.contains("Attitude")]
     return
 
 

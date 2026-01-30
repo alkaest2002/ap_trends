@@ -8,13 +8,10 @@ app = marimo.App(width="full")
 def _():
     from pathlib import Path
     import orjson
-    import pycountry
     import spacy
-    import numpy as np
     import pandas as pd
     from lib.utils_base import extract_countries
     from lib.utils_pandas import make_excerpt, make_text_to_embed
-    from langdetect import detect
 
     nlp = spacy.load("en_core_web_lg")
     return (
@@ -33,7 +30,8 @@ def _(Path):
     # Define paths
     DATASET_FOLDER = Path("./dataset")
     OUTPUT_FOLDER = DATASET_FOLDER / "titles_with_excerpts_2"
-    OUTPUT_FOLDER.exists()
+    if not OUTPUT_FOLDER.exists():
+        OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
     return DATASET_FOLDER, OUTPUT_FOLDER
 
 
@@ -60,12 +58,12 @@ def _(
     # Lowercase all columns
     df.columns = df.columns.str.lower().str.replace(" ", "_")
 
-    # add lowercased title
+    # Add lowercased title
     df["title_lowercase"] = df.title.str.lower().str.extract(r"^([^\.]+)\.?$")
 
-    # drop duplicated titles
+    # Drop duplicated titles
     df = df.drop_duplicates(subset="title_lowercase")
-    metadata["lossy_ops"].append(("Drop duplicate titles", df.shape[0]))
+    metadata["lossy_ops"].append(("Drop duplicate titles", df.shape[0]))  # ty:ignore[possibly-missing-attribute]
 
     # Compute country
     df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)

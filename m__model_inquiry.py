@@ -20,7 +20,7 @@ def _():
 
     # Get configured plt env
     plt, colors = configure_matplotlib_environment()
-    return BERTopic, KneeLocator, Path, colors, mo, np, pd, plt
+    return BERTopic, KneeLocator, Path, colors, np, pd, plt
 
 
 @app.cell
@@ -31,11 +31,18 @@ def _(Path):
     EMBEDDING_FOLDER =  OUT_FOLDER / "embeddings"
     BERTOPIC_FOLDER = OUT_FOLDER / "bertopic"
     IMGS_FOLDER = OUT_FOLDER / "imgs"
+    OTHER_FOLDER = OUT_FOLDER / "other"
 
-    # Define other constants
-    if not IMGS_FOLDER.exists():
-        IMGS_FOLDER.mkdir(parents=True, exist_ok=True)
-    return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDING_FOLDER, IMGS_FOLDER
+    for folder in {IMGS_FOLDER, OTHER_FOLDER}:
+        if not folder.exists():
+            folder.mkdir(parents=True, exist_ok=True)
+    return (
+        BERTOPIC_FOLDER,
+        DATASET_FOLDER,
+        EMBEDDING_FOLDER,
+        IMGS_FOLDER,
+        OTHER_FOLDER,
+    )
 
 
 @app.cell
@@ -113,8 +120,8 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
 
 
 @app.cell
-def _(elbow, mo, topics_info):
-    # Creat markdown list of most important clusters
+def _(OTHER_FOLDER, elbow, topics_info):
+    # Create list of most important clusters
     cloud = (topics_info
         .nlargest(elbow +2, "Count")
         .iloc[1:, :]
@@ -123,26 +130,24 @@ def _(elbow, mo, topics_info):
         .to_list()
     )
 
-    mo.md("\n\n".join(cloud))
+    # Persist list
+    with (OTHER_FOLDER / "topics.txt").open("w") as fout:
+        fout.write("\n".join(cloud))
     return
 
 
 @app.cell
-def _(df):
-    # Define most prolific counturies
-    countries = ["EU", "United States", "China", "United Kingdom", "Australia"]
+def _(df, pd):
+    # Define specific counturies
+    countries = ["EU", "United States", "China"]
 
     # Set condition to filter topics
-    c1 = df.year.between(2021, 2025)
+    c1 = df.year.between(2023, 2025)
     c2 = df.topic.ne(-1)
 
     # Filter topics
     filtered_data = df.loc[c1 & c2, ["year","country","topic"]]
-    return countries, filtered_data
 
-
-@app.cell
-def _(countries, filtered_data, pd):
     # Prepare data for pivot table
     pivot_data = (
         pd.concat([
@@ -167,6 +172,48 @@ def _(countries, filtered_data, pd):
             .apply(lambda x: sorted(list(x)))
         
     )
+    return
+
+
+@app.cell
+def _(OTHER_FOLDER, df, topics_info):
+    # Get 2025 for selected countries Topics
+    def get_topics_per_country():
+        for country in ["EU", "United States", "China"]:
+            with (OTHER_FOLDER / f"{country}_topics.txt").open("w") as fout:
+                topics_list = (
+                    (df.loc[df.year.between(2025, 2025) & df.country.str.contains(country)]
+                        .merge(topics_info, left_on="topic", right_on="Topic")
+                        ["Representation"].unique())
+                )
+                fout.write("\n".join([ t[2:-2] for t in topics_list]))
+    get_topics_per_country()
+    return
+
+
+@app.cell
+def _(OTHER_FOLDER, df, topics_info):
+    # Get 2025 for selected countries Topics
+    def get_common_topics_per_country():
+        for country, other_countries in [
+            ("EU", ("United States", "China")),
+            ("United States", ("EU", "China")),
+            ("China", ("United States", "EU")),
+        ]:
+            with (OTHER_FOLDER / f"{country}_common_topics.txt").open("w") as fout:
+                df_year = df.loc[df.year.between(2025, 2025)]
+                other_countries_topics = (
+                    df_year.loc[df_year.country.str.contains(f"{other_countries[0]}|{other_countries[1]}", regex=True, na=False), "topic"].
+                        to_list()
+                )
+                topics_list = (
+                    (df_year.loc[df_year.country.str.contains(country) & (df_year.topic.isin(list(set(other_countries_topics))))]
+                        .merge(topics_info, left_on="topic", right_on="Topic")
+                        ["Representation"].unique())
+                )
+            
+                fout.write("\n".join([ t[2:-2] for t in topics_list]))
+    get_common_topics_per_country()
     return
 
 

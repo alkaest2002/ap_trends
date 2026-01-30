@@ -12,10 +12,10 @@ def _():
     from pathlib import Path
     from lib.utils_base import configure_matplotlib_environment
 
-    # Get configured plt env
+    # Get configured plt environment
     plt, colors = configure_matplotlib_environment()
 
-    # Define other constants
+    # Define constants
     BASE_COLOR = colors["base"]
     COLOR_1 = colors["color_1"]
     COLOR_2 = colors["color_2"]
@@ -28,7 +28,8 @@ def _(Path):
     DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
     IMGS_FOLDER = Path("out/_base") / "imgs"
 
-    IMGS_FOLDER.exists()
+    if not IMGS_FOLDER.exists():
+        IMGS_FOLDER.mkdir(parents=True, exist_ok=True)
     return DATASET_FOLDER, IMGS_FOLDER
 
 
