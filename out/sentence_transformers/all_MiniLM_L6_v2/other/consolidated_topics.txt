@@ -32,5 +32,3 @@
 31 - Pilots' cardiovascular stress
 32 - Air traffic control performance
 33 - Alcohol effects on pilots
-34 - Psychological capital in service industry
-35 - Spatial Disorientation Training
