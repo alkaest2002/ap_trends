@@ -142,7 +142,7 @@ def _(IMGS_FOLDER, colors, df, plt):
         ax.xaxis.label.set_color(colors["base"])
         ax.yaxis.label.set_color(colors["base"])
     
-        ax.set_ylabel("ID tema", labelpad=0)
+        ax.set_ylabel("ID Cluster", labelpad=0)
         ax.set_xlabel("Anni")
         fig.savefig(IMGS_FOLDER / "img_topic_trajectories.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
         plt.show()
