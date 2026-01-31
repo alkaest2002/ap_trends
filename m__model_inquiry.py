@@ -85,11 +85,8 @@ def _(df):
 @app.cell
 def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
     def plot_elbow():
-        y = topics_info.Count[1:]
-        x = range(1, len(y)+1)
-        kneedle = KneeLocator(x, y, S=2, curve="convex", direction="decreasing")
-        elbow = round(kneedle.elbow, 0)
 
+        # Create figure and axex
         fig, ax = plt.subplots(nrows=1, ncols=1)
 
         # Colorize features
@@ -98,8 +95,17 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
         ax.xaxis.label.set_color(colors["base"])
         ax.yaxis.label.set_color(colors["base"])
 
+        # Compute data
+        y = topics_info.Count[1:]
+        x = range(1, len(y)+1)
+        kneedle = KneeLocator(x, y, S=2, curve="convex", direction="decreasing")
+        elbow = round(kneedle.elbow, 0)
+
+        # Ploat data
         ax.axvline(elbow, linestyle="--", label="gomito")
         ax.plot(x,y, label="dim cluster", color="orange")
+
+        # Customize plot
         ax.annotate(
             text=f"cluster {elbow}, dim {y[elbow]}", 
             color=colors["base"],
@@ -112,6 +118,7 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
         ax.set_xlabel("Cluster")
         fig.savefig(IMGS_FOLDER / "img_elbow.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
         plt.show()
+    
         return y[elbow]
 
     min_cluster_size = plot_elbow()
@@ -122,7 +129,17 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
 @app.cell
 def _(IMGS_FOLDER, colors, df, plt):
     def plot_topic_trajectories():
-   
+
+        # Create figure and axes
+        fig, ax = plt.subplots(nrows=1, ncols=1)
+
+        # Colorize features
+        ax.tick_params(color=colors["base"], labelcolor=colors["base"])
+        ax.spines[:].set_color(colors["base"])
+        ax.xaxis.label.set_color(colors["base"])
+        ax.yaxis.label.set_color(colors["base"])
+
+        # Compute data
         data = (
             df
                 .groupby(["topic","year"])
@@ -130,20 +147,17 @@ def _(IMGS_FOLDER, colors, df, plt):
                 .drop(-1, level=0, axis=0)
                 .reindex(level=0, axis=0)
         )
-    
-        fig, ax = plt.subplots(nrows=1, ncols=1)
 
+        # Plot data
         for g_label, g_data in data.groupby(axis=0, level=0):
             ax.plot(g_data.index.get_level_values(-1), g_data.index.get_level_values(0), color=colors["color_1"])
     
-        # Colorize features
-        ax.tick_params(color=colors["base"], labelcolor=colors["base"])
-        ax.spines[:].set_color(colors["base"])
-        ax.xaxis.label.set_color(colors["base"])
-        ax.yaxis.label.set_color(colors["base"])
-    
+
+        # Customize plot
         ax.set_ylabel("ID Cluster", labelpad=0)
         ax.set_xlabel("Anni")
+
+        # Persist
         fig.savefig(IMGS_FOLDER / "img_topic_trajectories.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
         plt.show()
 
@@ -155,6 +169,9 @@ def _(IMGS_FOLDER, colors, df, plt):
 def _(OTHER_FOLDER, min_cluster_size, topics_info):
     # Create list of most important clusters
     def get_list_of_most_important_cluster():
+
+        # Get most importante clusters
+        # i.e., with the minimun cluster size
         topics = (topics_info
             .loc[topics_info.Count.gt(min_cluster_size), :]
             .iloc[1:, :]
@@ -163,9 +180,10 @@ def _(OTHER_FOLDER, min_cluster_size, topics_info):
             .to_list()
         )
     
-        # Persist list
+        # Persist
         with (OTHER_FOLDER / "consolidated_topics.txt").open("w") as fout:
             fout.write("\n".join(topics))
+
     get_list_of_most_important_cluster()
     return
 
@@ -179,7 +197,8 @@ def _(OTHER_FOLDER, df, topics_info):
         most_recent_topics = df.loc[df.year.ge(year_to_split), "topic"].unique()
         least_recent_topics = df.loc[df.year.lt(year_to_split), "topic"].unique()
         emerging_topics = sorted([t for t in most_recent_topics if t not in least_recent_topics])
-        
+
+        # Get emerging clusters
         topics = (
             topics_info
                 .loc[topics_info.Topic.isin(emerging_topics),  ["Topic","Representation"]]
@@ -190,6 +209,7 @@ def _(OTHER_FOLDER, df, topics_info):
         # Persist list
         with (OTHER_FOLDER / "emerging_topics.txt").open("w") as fout:
             fout.write("\n".join(topics))
+
     get_list_of_emergent_cluster()
     return
 
@@ -206,6 +226,7 @@ def _(OTHER_FOLDER, df, topics_info):
                         ["Representation"].unique())
                 )
                 fout.write("\n".join([ t[2:-2] for t in topics_list]))
+
     get_topics_per_country()
     return
 
@@ -232,6 +253,7 @@ def _(OTHER_FOLDER, df, topics_info):
                 )
             
                 fout.write("\n".join([ t[2:-2] for t in topics_list]))
+
     get_common_topics_per_country()
     return
 
