@@ -73,11 +73,11 @@ def _(BASE_COLOR, COLOR_1, COLOR_2, IMGS_FOLDER, df, plt):
     )
 
     # Customize plot
-    ax.set_xlabel("anni")
     xticks = range(1920, 2026, 10)
     xlabels = [f'{x}' for x in xticks]
     ax.set_xticks(xticks, labels=xlabels)
-    ax.set_ylabel("Nr pubblicazioni")
+    ax.set_xlabel("Anni", labelpad=10)
+    ax.set_ylabel("Nr pubblicazioni", labelpad=0)
     ax.legend(frameon=False)
 
     # Save plot as svg

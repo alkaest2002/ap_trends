@@ -108,7 +108,7 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
             arrowprops=dict(facecolor=colors["base"], edgecolor=colors["base"], arrowstyle='->,head_width=.15')
         )
         ax.legend(frameon=False)
-        ax.set_ylabel("Frequenza")
+        ax.set_ylabel("Frequenza", labelpad=10)
         ax.set_xlabel("Cluster")
         fig.savefig(IMGS_FOLDER / "img_elbow.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
         plt.show()
@@ -142,7 +142,7 @@ def _(IMGS_FOLDER, colors, df, plt):
         ax.xaxis.label.set_color(colors["base"])
         ax.yaxis.label.set_color(colors["base"])
     
-        ax.set_ylabel("ID tema")
+        ax.set_ylabel("ID tema", labelpad=0)
         ax.set_xlabel("Anni")
         fig.savefig(IMGS_FOLDER / "img_topic_trajectories.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
         plt.show()
