@@ -122,7 +122,7 @@ def _(df):
 @app.cell
 def _(df):
     # Explore topics
-    df[df.topic.eq(0)]
+    df[df.topic.eq(108)]
     return
 
 

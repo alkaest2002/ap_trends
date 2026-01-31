@@ -112,11 +112,11 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
         ax.set_xlabel("Cluster")
         fig.savefig(IMGS_FOLDER / "img_elbow.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
         plt.show()
-        return elbow
+        return y[elbow]
 
-    elbow = plot_elbow()
-    elbow
-    return (elbow,)
+    min_cluster_size = plot_elbow()
+    min_cluster_size
+    return (min_cluster_size,)
 
 
 @app.cell
@@ -152,11 +152,11 @@ def _(IMGS_FOLDER, colors, df, plt):
 
 
 @app.cell
-def _(OTHER_FOLDER, elbow, topics_info):
+def _(OTHER_FOLDER, min_cluster_size, topics_info):
     # Create list of most important clusters
     def get_list_of_most_important_cluster():
         topics = (topics_info
-            .nlargest(elbow +2, "Count")
+            .loc[topics_info.Count.gt(min_cluster_size), :]
             .iloc[1:, :]
             .loc[:, ["Topic","Representation"]]
             .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
@@ -171,13 +171,14 @@ def _(OTHER_FOLDER, elbow, topics_info):
 
 
 @app.cell
-def _(OTHER_FOLDER, df, np, topics_info):
+def _(OTHER_FOLDER, df, topics_info):
     # Create list of emerging clusters
     def get_list_of_emergent_cluster():
-    
-        most_recent_topic = np.sort(df[df.topic.isin(df[df.year.ge(2005)].topic.to_list())].topic.unique())
-        least_recent_topic = np.sort(df[df.topic.isin(df[df.year.lt(2005)].topic.to_list())].topic.unique())
-        emerging_topics = [t for t in most_recent_topic if t not in least_recent_topic]
+
+        year_to_split = 2000
+        most_recent_topics = df.loc[df.year.ge(year_to_split), "topic"].unique()
+        least_recent_topics = df.loc[df.year.lt(year_to_split), "topic"].unique()
+        emerging_topics = sorted([t for t in most_recent_topics if t not in least_recent_topics])
         
         topics = (
             topics_info
