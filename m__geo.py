@@ -11,6 +11,7 @@ def _():
     import pandas as pd
     from pathlib import Path
     from lib.utils_base import configure_matplotlib_environment
+    from lib.utils_base import get_eu_countries
 
     # Get configured plt environment
     plt, colors = configure_matplotlib_environment()
@@ -19,7 +20,9 @@ def _():
     BASE_COLOR = colors["base"]
     COLOR_1 = colors["color_1"]
     COLOR_2 = colors["color_2"]
-    return BASE_COLOR, COLOR_1, COLOR_2, Path, np, pd, plt
+
+    EU_COUNTRIES = get_eu_countries()
+    return BASE_COLOR, COLOR_1, COLOR_2, EU_COUNTRIES, Path, np, pd, plt
 
 
 @app.cell
@@ -27,10 +30,12 @@ def _(Path):
     # Define PATHS
     DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
     IMGS_FOLDER = Path("out/_base") / "imgs"
+    OTHER_FOLDER = Path("out/_base") / "other"
 
-    if not IMGS_FOLDER.exists():
-        IMGS_FOLDER.mkdir(parents=True, exist_ok=True)
-    return DATASET_FOLDER, IMGS_FOLDER
+    for folder in {IMGS_FOLDER, OTHER_FOLDER}:
+        if not folder.exists():
+            folder.mkdir(parents=True, exist_ok=True)
+    return DATASET_FOLDER, IMGS_FOLDER, OTHER_FOLDER
 
 
 @app.cell
@@ -76,7 +81,7 @@ def _(BASE_COLOR, COLOR_1, COLOR_2, IMGS_FOLDER, df, plt):
     ax.legend(frameon=False)
 
     # Save plot as svg
-    fig.savefig(IMGS_FOLDER / "img_1.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
+    fig.savefig(IMGS_FOLDER / "img_publications_per_year.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
     plt.show()
     return
 
@@ -105,33 +110,42 @@ def _(df, np, pd):
 
 
 @app.cell
-def _(data, pd):
-    # Compute stats for last 10 years (5+5)
-    y_2021_2025 = data[data.year.between(2021, 2025, inclusive="both")].groupby("country").size()
-    y_2016_2020 = data[data.year.between(2016, 2020, inclusive="both")].groupby("country").size()
+def _(EU_COUNTRIES, OTHER_FOLDER, data, pd):
+    # Compute stats for MOST PROLIFIC
+    y_most_recent = data[data.year.between(2001, 2025, inclusive="both")].groupby("country").size()
+    y_least_recent = data[data.year.between(1925, 2000, inclusive="both")].groupby("country").size()
 
     # Compute most profilic countries
-    most_profilic_2021_2025 = y_2021_2025.nlargest(5)
-    most_profilic_2016_2020 = y_2016_2020.reindex(most_profilic_2021_2025.index)
+    most_recent_profilic = y_most_recent.nlargest(50)
+    least_recent_profilic = y_least_recent.nlargest(50)
 
     # Combine results
     final = pd.concat([
-            most_profilic_2016_2020,
-            most_profilic_2021_2025
+            most_recent_profilic,
+            least_recent_profilic
         ], 
-        axis=1, keys=["2016-2020", "2021-2025"]
-    )
+        axis=1, keys=["most_recent", "least_recent"]
+    ).reset_index(drop=False)
 
     # Compute % of change
     final["pct_change"] = (
-        final.loc[:, "2021-2025"]
-            .div(final.loc[:, "2016-2020"])
+        final.loc[:, "most_recent"]
+            .div(final.loc[:, "least_recent"])
             .mul(100)
             .round(1)
     )
 
-    # Sort data
-    final.sort_values(by="2021-2025", ascending=False)
+    # Create CSV tables
+    for nlargest_column in {"most_recent", "pct_change"}:
+        (
+            final
+                .nlargest(10, columns=nlargest_column)
+                .loc[~final.country.isin(EU_COUNTRIES)]
+                .iloc[:5, :]
+                .set_index("country")
+                .apply(lambda x: pd.to_numeric(x, downcast="integer"))
+                .to_csv(OTHER_FOLDER / f"largest_{nlargest_column}.csv")
+        )
     return
 
 

@@ -120,6 +120,38 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
 
 
 @app.cell
+def _(IMGS_FOLDER, colors, df, plt):
+    def plot_topic_trajectories():
+   
+        data = (
+            df
+                .groupby(["topic","year"])
+                .size()
+                .drop(-1, level=0, axis=0)
+                .reindex(level=0, axis=0)
+        )
+    
+        fig, ax = plt.subplots(nrows=1, ncols=1)
+
+        for g_label, g_data in data.groupby(axis=0, level=0):
+            ax.plot(g_data.index.get_level_values(-1), g_data.index.get_level_values(0), color=colors["color_1"])
+    
+        # Colorize features
+        ax.tick_params(color=colors["base"], labelcolor=colors["base"])
+        ax.spines[:].set_color(colors["base"])
+        ax.xaxis.label.set_color(colors["base"])
+        ax.yaxis.label.set_color(colors["base"])
+    
+        ax.set_ylabel("ID tema")
+        ax.set_xlabel("Anni")
+        fig.savefig(IMGS_FOLDER / "img_topic_trajectories.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
+        plt.show()
+
+    plot_topic_trajectories()
+    return
+
+
+@app.cell
 def _(OTHER_FOLDER, elbow, topics_info):
     # Create list of most important clusters
     cloud = (topics_info
@@ -131,7 +163,25 @@ def _(OTHER_FOLDER, elbow, topics_info):
     )
 
     # Persist list
-    with (OTHER_FOLDER / "topics.txt").open("w") as fout:
+    with (OTHER_FOLDER / "consolidated_topics.txt").open("w") as fout:
+        fout.write("\n".join(cloud))
+    return
+
+
+@app.cell
+def _(OTHER_FOLDER, elbow, topics_info):
+    # Create list of emerging clusters
+    # Create list of most important clusters
+    cloud = (topics_info
+        .nlargest(elbow +2, "Count")
+        .iloc[1:, :]
+        .loc[:, ["Topic","Representation"]]
+        .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
+        .to_list()
+    )
+
+    # Persist list
+    with (OTHER_FOLDER / "emerging_topics.txt").open("w") as fout:
         fout.write("\n".join(cloud))
     return
 
