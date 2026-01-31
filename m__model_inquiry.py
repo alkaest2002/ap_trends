@@ -154,80 +154,48 @@ def _(IMGS_FOLDER, colors, df, plt):
 @app.cell
 def _(OTHER_FOLDER, elbow, topics_info):
     # Create list of most important clusters
-    cloud = (topics_info
-        .nlargest(elbow +2, "Count")
-        .iloc[1:, :]
-        .loc[:, ["Topic","Representation"]]
-        .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
-        .to_list()
-    )
-
-    # Persist list
-    with (OTHER_FOLDER / "consolidated_topics.txt").open("w") as fout:
-        fout.write("\n".join(cloud))
+    def get_list_of_most_important_cluster():
+        topics = (topics_info
+            .nlargest(elbow +2, "Count")
+            .iloc[1:, :]
+            .loc[:, ["Topic","Representation"]]
+            .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
+            .to_list()
+        )
+    
+        # Persist list
+        with (OTHER_FOLDER / "consolidated_topics.txt").open("w") as fout:
+            fout.write("\n".join(topics))
+    get_list_of_most_important_cluster()
     return
 
 
 @app.cell
-def _(OTHER_FOLDER, elbow, topics_info):
+def _(OTHER_FOLDER, df, np, topics_info):
     # Create list of emerging clusters
-    # Create list of most important clusters
-    cloud = (topics_info
-        .nlargest(elbow +2, "Count")
-        .iloc[1:, :]
-        .loc[:, ["Topic","Representation"]]
-        .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
-        .to_list()
-    )
-
-    # Persist list
-    with (OTHER_FOLDER / "emerging_topics.txt").open("w") as fout:
-        fout.write("\n".join(cloud))
-    return
-
-
-@app.cell
-def _(df, pd):
-    # Define specific counturies
-    countries = ["EU", "United States", "China"]
-
-    # Set condition to filter topics
-    c1 = df.year.between(2023, 2025)
-    c2 = df.topic.ne(-1)
-
-    # Filter topics
-    filtered_data = df.loc[c1 & c2, ["year","country","topic"]]
-
-    # Prepare data for pivot table
-    pivot_data = (
-        pd.concat([
-            filtered_data,
-            filtered_data.country.str.split(" - ", expand=True).dropna(how="all")
-        ], axis=1)
-            .melt(id_vars=["year","country","topic"], value_name="country_")
-            .drop(columns=["country"])
-            .dropna(subset=["country_"])
-    )
-
-    # Create pivot table
-    pivot_table = (
-        pd.pivot_table(pivot_data, index="country_",columns="year", values="topic", aggfunc=set, fill_value="-")
-    )
-
-    # Customize pivot table
-    (
-       pivot_table.loc[pivot_table.index.isin(countries)]
-            .reindex(countries)
-            .squeeze()
-            .apply(lambda x: sorted(list(x)))
+    def get_list_of_emergent_cluster():
+    
+        most_recent_topic = np.sort(df[df.topic.isin(df[df.year.ge(2005)].topic.to_list())].topic.unique())
+        least_recent_topic = np.sort(df[df.topic.isin(df[df.year.lt(2005)].topic.to_list())].topic.unique())
+        emerging_topics = [t for t in most_recent_topic if t not in least_recent_topic]
         
-    )
+        topics = (
+            topics_info
+                .loc[topics_info.Topic.isin(emerging_topics),  ["Topic","Representation"]]
+                .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
+                .to_list()
+        )
+    
+        # Persist list
+        with (OTHER_FOLDER / "emerging_topics.txt").open("w") as fout:
+            fout.write("\n".join(topics))
+    get_list_of_emergent_cluster()
     return
 
 
 @app.cell
 def _(OTHER_FOLDER, df, topics_info):
-    # Get 2025 for selected countries Topics
+    # Get Topics per selected countries in 2025
     def get_topics_per_country():
         for country in ["EU", "United States", "China"]:
             with (OTHER_FOLDER / f"{country}_topics.txt").open("w") as fout:
@@ -243,7 +211,7 @@ def _(OTHER_FOLDER, df, topics_info):
 
 @app.cell
 def _(OTHER_FOLDER, df, topics_info):
-    # Get 2025 for selected countries Topics
+    # Get Common Topics per selected countries in 2025
     def get_common_topics_per_country():
         for country, other_countries in [
             ("EU", ("United States", "China")),
