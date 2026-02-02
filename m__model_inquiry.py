@@ -234,20 +234,20 @@ def _(OTHER_FOLDER, df, topics_info):
     # Get Topics per selected countries in 2025
     def get_topics_per_country():
         for country in ["EU", "United States", "China"]:
-            with (OTHER_FOLDER / f"{country}_topics.txt").open("w") as fout:
-                topics_list = (
-                    (df.loc[df.year.between(2025, 2025) & df.country.str.contains(country)]
+            with (OTHER_FOLDER / f"{country.lower()}_topics.txt").open("w") as fout:
+                topics = (
+                    df.loc[df.year.between(2016, 2025) & df.country.str.contains(country)]
                         .merge(topics_info, left_on="topic", right_on="Topic")
-                        ["Representation"].unique())
-                )
-                fout.write("\n".join([ t[2:-2] for t in topics_list]))
+                        ["Representation"]
+                ).value_counts()
+                fout.write("\n".join([ t[2:-2] for t in topics.nlargest(15).index]))
 
     get_topics_per_country()
     return
 
 
 @app.cell
-def _(OTHER_FOLDER, df, topics_info):
+def _(OTHER_FOLDER, Path, pd):
     # Get Common Topics per selected countries in 2025
     def get_common_topics_per_country():
         for country, other_countries in [
@@ -255,19 +255,15 @@ def _(OTHER_FOLDER, df, topics_info):
             ("United States", ("EU", "China")),
             ("China", ("United States", "EU")),
         ]:
-            with (OTHER_FOLDER / f"{country}_common_topics.txt").open("w") as fout:
-                df_year = df.loc[df.year.between(2025, 2025)]
-                other_countries_topics = (
-                    df_year.loc[df_year.country.str.contains(f"{other_countries[0]}|{other_countries[1]}", regex=True, na=False), "topic"].
-                        to_list()
-                )
-                topics_list = (
-                    (df_year.loc[df_year.country.str.contains(country) & (df_year.topic.isin(list(set(other_countries_topics))))]
-                        .merge(topics_info, left_on="topic", right_on="Topic")
-                        ["Representation"].unique())
-                )
+            country_topics = (OTHER_FOLDER / Path(f"{country.lower()}_topics.txt")).read_text().split("\n")
+            other_country_1_topics = (OTHER_FOLDER / Path(f"{other_countries[0].lower()}_topics.txt")).read_text().split("\n")
+            other_country_2_topics = (OTHER_FOLDER / Path(f"{other_countries[1].lower()}_topics.txt")).read_text().split("\n")
+            common_topics = pd.Series([*country_topics, *other_country_1_topics, *other_country_2_topics]).value_counts()
 
-                fout.write("\n".join([ t[2:-2] for t in topics_list]))
+        with Path(OTHER_FOLDER / "eu_usa_china_common_topcs.txt").open("w") as fout:
+            fout.write(
+                "\n".join(common_topics[common_topics.ge(2)].index.unique().to_list())
+            )
 
     get_common_topics_per_country()
     return
