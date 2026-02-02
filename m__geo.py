@@ -77,7 +77,7 @@ def _(BASE_COLOR, COLOR_1, COLOR_2, IMGS_FOLDER, df, plt):
     xlabels = [f'{x}' for x in xticks]
     ax.set_xticks(xticks, labels=xlabels)
     ax.set_xlabel("Anni", labelpad=10)
-    ax.set_ylabel("Nr pubblicazioni", labelpad=0)
+    ax.set_ylabel("Nr Pubblicazioni", labelpad=0)
     ax.legend(frameon=False)
 
     # Save plot as svg

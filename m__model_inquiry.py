@@ -102,20 +102,18 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
         elbow = round(kneedle.elbow, 0)
 
         # Ploat data
-        ax.axvline(elbow, linestyle="--", label="gomito")
-        ax.plot(x,y, label="dim cluster", color="orange")
+        ax.axvline(elbow, linestyle="--")
+        ax.plot(x,y, color="orange")
 
         # Customize plot
         ax.annotate(
-            text=f"cluster {elbow}, dim {y[elbow]}", 
+            text=f"ID Cluster: {elbow}, Nr. Pubblicazioni: {y[elbow]}", 
             color=colors["base"],
-            xy=(elbow +1 , y[elbow]+1), 
-            xytext=(elbow+3*5, y[elbow] + 2),
-            arrowprops=dict(facecolor=colors["base"], edgecolor=colors["base"], arrowstyle='->,head_width=.15')
+            xy=(elbow +1 , y[elbow]+1.5), 
         )
         ax.legend(frameon=False)
-        ax.set_ylabel("Frequenza", labelpad=10)
-        ax.set_xlabel("Cluster")
+        ax.set_ylabel("Nr Pubblicazioni", labelpad=10)
+        ax.set_xlabel("ID Cluster")
         fig.savefig(IMGS_FOLDER / "img_elbow.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
         plt.show()
     
