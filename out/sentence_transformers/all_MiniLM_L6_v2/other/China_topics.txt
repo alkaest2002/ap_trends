@@ -7,7 +7,7 @@ Pilot Situation Awareness
 Aviation display design
 Aviation Communication Factors
 Air Traffic Controllers' Well-Being
-Altitude Indicator Design
+Attitude Indicator Design
 Auditory alarm systems
 Pilot risk perception
 Air Traffic Control
