@@ -67,9 +67,7 @@ def _(EMBEDDING_FOLDER):
 def _(BERTOPIC_FOLDER, BERTopic, docs, embedding_model_name, np, pd):
     # Load BERTopic related files
     topic_model = BERTopic.load(BERTOPIC_FOLDER, embedding_model=embedding_model_name)
-    probs = np.load(file=BERTOPIC_FOLDER / "probs.npy")
     topic_model.update_topics(docs)
-    topics = topic_model.topics_
     topics_info = pd.read_csv(BERTOPIC_FOLDER / "topic_info.csv")
     topics_info.sort_values(by="Topic")
     return (topics_info,)

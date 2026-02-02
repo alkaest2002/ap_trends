@@ -27,7 +27,7 @@ def _():
 
 @app.cell
 def _(Path):
-    # Define PATHS
+    # Define paths
     DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
     IMGS_FOLDER = Path("out/_base") / "imgs"
     OTHER_FOLDER = Path("out/_base") / "other"
@@ -43,7 +43,7 @@ def _(DATASET_FOLDER, pd):
     # Load dataset
     df = pd.read_csv(DATASET_FOLDER / "dataset.csv")
 
-    # Restrict period to 1900-2025
+    # Restrict period to 1920-2025
     df = df[df.year.between(1920, 2025)]
     df.shape
     return (df,)
@@ -80,7 +80,7 @@ def _(BASE_COLOR, COLOR_1, COLOR_2, IMGS_FOLDER, df, plt):
     ax.set_ylabel("Nr Pubblicazioni", labelpad=0)
     ax.legend(frameon=False)
 
-    # Save plot as svg
+    # Persist figure
     fig.savefig(IMGS_FOLDER / "img_publications_per_year.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
     plt.show()
     return
@@ -104,14 +104,14 @@ def _(df, np, pd):
             .rename(columns={"value": "country"})
     )
 
-    #
+    # Restore "Unknown" entries to NaN
     data = data.replace("Unkown", np.nan)
     return (data,)
 
 
 @app.cell
 def _(EU_COUNTRIES, OTHER_FOLDER, data, pd):
-    # Compute stats for MOST PROLIFIC
+    # Compute stats for countries
     y_most_recent = data[data.year.between(2001, 2025, inclusive="both")].groupby("country").size()
     y_least_recent = data[data.year.between(1925, 2000, inclusive="both")].groupby("country").size()
 
