@@ -16,11 +16,26 @@ def _():
     import pandas as pd
     from sklearn.feature_extraction.text import CountVectorizer
     from lib.utils_pandas import get_topics_in_period
-    from lib.utils_base import configure_matplotlib_environment
+    from lib.utils_matplotlib import configure_matplotlib_environment, colorize_axes
 
     # Get configured plt env
     plt, colors = configure_matplotlib_environment()
-    return BERTopic, KneeLocator, Path, colors, np, pd, plt
+
+    # Define colors
+    BASE_COLOR = colors["base"]
+    COLOR_1 = colors["color_1"]
+    COLOR_2 = colors["color_2"]
+    return (
+        BERTopic,
+        COLOR_1,
+        KneeLocator,
+        Path,
+        colorize_axes,
+        colors,
+        np,
+        pd,
+        plt,
+    )
 
 
 @app.cell
@@ -67,7 +82,9 @@ def _(EMBEDDING_FOLDER):
 def _(BERTOPIC_FOLDER, BERTopic, docs, embedding_model_name, np, pd):
     # Load BERTopic related files
     topic_model = BERTopic.load(BERTOPIC_FOLDER, embedding_model=embedding_model_name)
+    probs = np.load(file=BERTOPIC_FOLDER / "probs.npy")
     topic_model.update_topics(docs)
+    topics = topic_model.topics_
     topics_info = pd.read_csv(BERTOPIC_FOLDER / "topic_info.csv")
     topics_info.sort_values(by="Topic")
     return (topics_info,)
@@ -81,17 +98,22 @@ def _(df):
 
 
 @app.cell
-def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
+def _(
+    COLOR_1,
+    IMGS_FOLDER,
+    KneeLocator,
+    colorize_axes,
+    colors,
+    plt,
+    topics_info,
+):
     def plot_elbow():
 
         # Create figure and axex
         fig, ax = plt.subplots(nrows=1, ncols=1)
 
         # Colorize features
-        ax.tick_params(color=colors["base"], labelcolor=colors["base"])
-        ax.spines[:].set_color(colors["base"])
-        ax.xaxis.label.set_color(colors["base"])
-        ax.yaxis.label.set_color(colors["base"])
+        ax = colorize_axes(ax)
 
         # Compute data
         y = topics_info.Count[1:]
@@ -101,7 +123,7 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
 
         # Ploat data
         ax.axvline(elbow, linestyle="--")
-        ax.plot(x,y, color="orange")
+        ax.plot(x,y, color=COLOR_1)
 
         # Customize plot
         ax.annotate(
@@ -114,7 +136,7 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
         ax.set_xlabel("ID Cluster")
         fig.savefig(IMGS_FOLDER / "img_elbow.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
         plt.show()
-    
+
         return y[elbow]
 
     min_cluster_size = plot_elbow()
@@ -123,17 +145,14 @@ def _(IMGS_FOLDER, KneeLocator, colors, plt, topics_info):
 
 
 @app.cell
-def _(IMGS_FOLDER, colors, df, plt):
+def _(IMGS_FOLDER, colorize_axes, colors, df, plt):
     def plot_topic_trajectories():
 
         # Create figure and axes
         fig, ax = plt.subplots(nrows=1, ncols=1)
 
         # Colorize features
-        ax.tick_params(color=colors["base"], labelcolor=colors["base"])
-        ax.spines[:].set_color(colors["base"])
-        ax.xaxis.label.set_color(colors["base"])
-        ax.yaxis.label.set_color(colors["base"])
+        ax = colorize_axes(ax)
 
         # Compute data
         data = (
@@ -147,7 +166,7 @@ def _(IMGS_FOLDER, colors, df, plt):
         # Plot data
         for g_label, g_data in data.groupby(axis=0, level=0):
             ax.plot(g_data.index.get_level_values(-1), g_data.index.get_level_values(0), color=colors["color_1"])
-    
+
 
         # Customize plot
         ax.set_ylabel("ID Cluster", labelpad=0)
@@ -175,7 +194,7 @@ def _(OTHER_FOLDER, min_cluster_size, topics_info):
             .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
             .to_list()
         )
-    
+
         # Persist
         with (OTHER_FOLDER / "consolidated_topics.txt").open("w") as fout:
             fout.write("\n".join(topics))
@@ -201,7 +220,7 @@ def _(OTHER_FOLDER, df, topics_info):
                 .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
                 .to_list()
         )
-    
+
         # Persist list
         with (OTHER_FOLDER / "emerging_topics.txt").open("w") as fout:
             fout.write("\n".join(topics))
@@ -247,7 +266,7 @@ def _(OTHER_FOLDER, df, topics_info):
                         .merge(topics_info, left_on="topic", right_on="Topic")
                         ["Representation"].unique())
                 )
-            
+
                 fout.write("\n".join([ t[2:-2] for t in topics_list]))
 
     get_common_topics_per_country()

@@ -10,19 +10,19 @@ def _():
     import numpy as np
     import pandas as pd
     from pathlib import Path
-    from lib.utils_base import configure_matplotlib_environment
+    from lib.utils_matplotlib import configure_matplotlib_environment, colorize_axes
     from lib.utils_base import get_eu_countries
 
     # Get configured plt environment
     plt, colors = configure_matplotlib_environment()
 
-    # Define constants
+    # Define colors
     BASE_COLOR = colors["base"]
     COLOR_1 = colors["color_1"]
     COLOR_2 = colors["color_2"]
 
     EU_COUNTRIES = get_eu_countries()
-    return BASE_COLOR, COLOR_1, COLOR_2, EU_COUNTRIES, Path, np, pd, plt
+    return COLOR_1, COLOR_2, EU_COUNTRIES, Path, colorize_axes, np, pd, plt
 
 
 @app.cell
@@ -43,22 +43,19 @@ def _(DATASET_FOLDER, pd):
     # Load dataset
     df = pd.read_csv(DATASET_FOLDER / "dataset.csv")
 
-    # Restrict period to 1920-2025
+    # Restrict period to 1900-2025
     df = df[df.year.between(1920, 2025)]
     df.shape
     return (df,)
 
 
 @app.cell
-def _(BASE_COLOR, COLOR_1, COLOR_2, IMGS_FOLDER, df, plt):
+def _(COLOR_1, COLOR_2, IMGS_FOLDER, colorize_axes, df, plt):
     # Init figure
     fig, ax = plt.subplots(nrows=1, ncols=1)
 
     # Colorize features
-    ax.tick_params(color=BASE_COLOR, labelcolor=BASE_COLOR)
-    ax.spines[:].set_color(BASE_COLOR)
-    ax.xaxis.label.set_color(BASE_COLOR)
-    ax.yaxis.label.set_color(BASE_COLOR)
+    ax = colorize_axes(ax)
 
     # Plot data
     counts = df.year.value_counts(sort=False)
@@ -80,7 +77,7 @@ def _(BASE_COLOR, COLOR_1, COLOR_2, IMGS_FOLDER, df, plt):
     ax.set_ylabel("Nr Pubblicazioni", labelpad=0)
     ax.legend(frameon=False)
 
-    # Persist figure
+    # Save plot as svg
     fig.savefig(IMGS_FOLDER / "img_publications_per_year.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
     plt.show()
     return
@@ -104,14 +101,14 @@ def _(df, np, pd):
             .rename(columns={"value": "country"})
     )
 
-    # Restore "Unknown" entries to NaN
+    #
     data = data.replace("Unkown", np.nan)
     return (data,)
 
 
 @app.cell
 def _(EU_COUNTRIES, OTHER_FOLDER, data, pd):
-    # Compute stats for countries
+    # Compute stats for MOST PROLIFIC
     y_most_recent = data[data.year.between(2001, 2025, inclusive="both")].groupby("country").size()
     y_least_recent = data[data.year.between(1925, 2000, inclusive="both")].groupby("country").size()
 
