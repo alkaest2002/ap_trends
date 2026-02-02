@@ -1,9 +1,7 @@
 
 import contextlib
 import re
-from typing import Any
 
-import matplotlib.pyplot as plt
 import pycountry
 import spacy
 
@@ -131,28 +129,3 @@ def extract_countries(text: str, nlp_model: spacy.language.Language) -> str | No
         countries.add("EU")
 
     return " - ".join(sorted(countries)) if countries else None
-
-
-def configure_matplotlib_environment() -> Any:
-    """Configure matplotlib environment for consistent plotting style."""
-    # Set global matplotlib parameters
-    plt.rcParams.update(
-        {
-            "figure.figsize": (10, 6),
-            "axes.titlesize": 16,
-            "axes.labelsize": 14,
-            "xtick.labelsize": 12,
-            "ytick.labelsize": 12,
-            "legend.fontsize": 10,
-            "font.size": 12,
-            "font.family": "sans-serif",
-        }
-    )
-
-    colors: dict[str, str] = {
-        "base": "#3A4F43",
-        "color_1": "orange",
-        "color_2": "#00A2FF",
-    }
-
-    return plt, colors
