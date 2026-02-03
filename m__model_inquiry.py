@@ -259,7 +259,10 @@ def _(OTHER_FOLDER, Path, pd):
             country_topics = (OTHER_FOLDER / Path(f"{country.lower()}_topics.txt")).read_text().split("\n")
             other_country_1_topics = (OTHER_FOLDER / Path(f"{other_countries[0].lower()}_topics.txt")).read_text().split("\n")
             other_country_2_topics = (OTHER_FOLDER / Path(f"{other_countries[1].lower()}_topics.txt")).read_text().split("\n")
-            common_topics = pd.Series([*country_topics, *other_country_1_topics, *other_country_2_topics]).value_counts()
+            common_topics = (
+                pd.Series([*country_topics, *other_country_1_topics, *other_country_2_topics])
+                    .value_counts()
+            )
 
         with Path(OTHER_FOLDER / "eu_usa_china_common_topcs.txt").open("w") as fout:
             fout.write(
