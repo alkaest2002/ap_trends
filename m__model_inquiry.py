@@ -235,12 +235,13 @@ def _(OTHER_FOLDER, df, topics_info):
     def get_topics_per_country():
         for country in ["EU", "United States", "China"]:
             with (OTHER_FOLDER / f"{country.lower()}_topics.txt").open("w") as fout:
+                max_number_of_topics = 20
                 topics = (
-                    df.loc[df.year.between(2016, 2025) & df.country.str.contains(country)]
+                    df.loc[df.year.between(2020, 2025) & df.country.str.contains(country)]
                         .merge(topics_info, left_on="topic", right_on="Topic")
                         ["Representation"]
-                ).value_counts()
-                fout.write("\n".join([ t[2:-2] for t in topics.nlargest(15).index]))
+                ).value_counts().nlargest(max_number_of_topics).index
+                fout.write("\n".join([ t[2:-2] for t in topics]))
 
     get_topics_per_country()
     return
@@ -262,7 +263,7 @@ def _(OTHER_FOLDER, Path, pd):
 
         with Path(OTHER_FOLDER / "eu_usa_china_common_topcs.txt").open("w") as fout:
             fout.write(
-                "\n".join(common_topics[common_topics.ge(2)].index.unique().to_list())
+                "\n".join(sorted(common_topics[common_topics.ge(2)].index.unique().to_list()))
             )
 
     get_common_topics_per_country()

@@ -128,7 +128,12 @@ def _(df):
 
 @app.cell
 def _(topic_info):
-    topic_info[topic_info.Representation.str[0].str.contains("Attitude")]
+    topic_info[topic_info.Representation.str[0].str.contains("health")]
+    return
+
+
+@app.cell
+def _():
     return
 
 
