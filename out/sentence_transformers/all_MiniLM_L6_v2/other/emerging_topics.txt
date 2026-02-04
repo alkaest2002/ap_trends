@@ -1,12 +1,12 @@
-34 - Psychological capital in service industry
-64 - Air Traffic Management
-70 - Weather-related pilot decision making
-72 - Job satisfaction aviation
-80 - Mindfulness in Aviation
-92 - Occupational health studies
-103 - Psychological health challenges
-107 - Emotional well-being in aviation
-108 - Aviation Safety Behaviors
-115 - Pilot training effectiveness
-117 - Mental workload in air traffic control
-121 - Aviation maintenance safety
+Air Traffic Management
+Aviation Safety Behavior
+Aviation Maintenance Safety
+Flight Attendant Well-Being
+Health Impacts Of Workplace Stress
+Job Satisfaction During Covid-19
+Mental Workload In Air Traffic Control
+Mindfulness Training In Military
+Pilot Performance Training
+Psychological Capital In Service
+Remotely Piloted Aircraft Careers
+Weather-Related Aviation Safety

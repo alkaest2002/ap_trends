@@ -1,4 +1,3 @@
-Age-Related Pilot Performance
 Air Traffic Control
 Air Traffic Control Training
 Astronaut Psychological Training
@@ -8,13 +7,10 @@ Biomedical Research In Space
 Human Factors In Aviation
 Human Factors In Aviation Safety
 Military Aviation Medicine
-Pilot Communication Challenges
 Pilot Fatigue Issues
 Pilot Mental Health
+Pilot Psychological Testing
 Pilot Risk Assessment
-Pilot Safety Behaviors
 Pilot Selection Research
 Psychological Effects Of Aviation Accidents
-Remotely Piloted Aircraft Careers
-Stress In Air Traffic Control
-Urban Air Mobility
+Work-Related Stress In Pilots

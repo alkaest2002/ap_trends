@@ -68,7 +68,7 @@ def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
                 default_bertopic_settings[key].update(value)
 
     # Step 1 - Embedder
-    embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+    embedding_model = SentenceTransformer("all-MiniLM-L6-v2", token=getenv("HF_TOKEN"))
 
     # Step 2 - Reduce dimensionality
     umap_model = UMAP(**default_bertopic_settings["umap"])
