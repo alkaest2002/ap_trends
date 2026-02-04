@@ -247,7 +247,7 @@ def _(OTHER_FOLDER, df, topics_info):
                         ["Representation"].str[2:-2].str.title()
                 )
             
-                # Filter topic 
+                # Filter topics 
                 filtered_topics = (
                     topics
                         .value_counts()
