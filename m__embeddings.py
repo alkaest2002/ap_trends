@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.19.6"
+__generated_with = "0.19.7"
 app = marimo.App(width="full")
 
 
@@ -66,6 +66,11 @@ def _(EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME, Path, embeddings, np):
 def _(embeddings, np):
     # Show embeddings dim
     np.array(embeddings).shape
+    return
+
+
+@app.cell
+def _():
     return
 
 

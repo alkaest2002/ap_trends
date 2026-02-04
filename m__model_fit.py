@@ -58,44 +58,38 @@ def _(EMBEDDINGS_FOLDER, np):
 def _(df):
     # Get Docs
     docs = df.doc.to_list()
-    return
+    return (docs,)
 
 
 @app.cell
-def _(df, embeddings, get_bertopic_model):
+def _(docs, embeddings, get_bertopic_model):
     # Get BERTopic model
     topic_model = get_bertopic_model()
 
     # Fit BERTopic model
-    topics, probs = topic_model.fit_transform(df.doc.to_list(), embeddings=embeddings)
-    return probs, topic_model, topics
+    topics, probs = topic_model.fit_transform(docs, embeddings=embeddings)
+    return (topic_model,)
 
 
 @app.cell
-def _(BERTOPIC_FOLDER, DATASET_FOLDER, df, np, probs, topic_model, topics):
-    # Persist BERTopic model
-    topic_model.save(path=BERTOPIC_FOLDER, serialization="safetensors")
+def _(docs, topic_model):
+    # Get original topic info
+    topic_info_original = topic_model.get_topic_info()
+    topic_info_original["theme"] = topic_info_original["Representation"].str[0]
 
-    # Persist probabilities
-    np.save(BERTOPIC_FOLDER / "probs.npy", probs)
+    # define consolidation function
+    def consoldiation_fn(x, topic_model, docs):
+        print(f"consolidating {x}")
+        return topic_model.merge_topics(docs, x)
 
-    # Add topics to dataset
-    df["topic"] = topics
+    # Consolidate duplicated themes
+    topcis_list = topic_info_original.groupby("theme").Topic.agg(list)
+    topcis_list[topcis_list.str.len().gt(1)].apply(consoldiation_fn, topic_model=topic_model, docs=docs)
 
-    # Persist dataset with topics
-    df.to_csv(DATASET_FOLDER / "dataset_topic.csv", index=False)
-
-    # Persist topics info
+    # Get updated topic info
     topic_info = topic_model.get_topic_info()
-    topic_info.to_csv(BERTOPIC_FOLDER / "topic_info.csv", index=False)
+    topic_info.head()
     return (topic_info,)
-
-
-@app.cell
-def _(topic_info):
-    # Show topics 
-    topic_info.sort_values(by="Topic")
-    return
 
 
 @app.cell
@@ -106,9 +100,9 @@ def _(topic_info):
 
 
 @app.cell
-def _(df, topic_info):
-    # Compute number of uncategorized articles
-    topic_info.loc[:, ["Count"]].sum().rdiv(df.topic.eq(-1).sum()).squeeze()
+def _(df, topic_model):
+    # update topics in df
+    df["topic"] = topic_model.topics_
     return
 
 
@@ -122,13 +116,28 @@ def _(df):
 @app.cell
 def _(df):
     # Explore topics
-    df[df.topic.eq(108)]
+    df[df.topic.eq(0)]
     return
 
 
 @app.cell
-def _(topic_info):
-    topic_info[topic_info.Representation.str[0].str.contains("health")]
+def _(BERTOPIC_FOLDER, np, topic_model):
+    # Persist BERTopic model
+    topic_model.save(path=BERTOPIC_FOLDER, serialization="safetensors")
+
+    # Persist probabilities
+    np.save(BERTOPIC_FOLDER / "probs.npy", topic_model.probabilities_)
+    return
+
+
+@app.cell
+def _(BERTOPIC_FOLDER, DATASET_FOLDER, df, topic_model):
+    # Persist dataset with topics
+    df.to_csv(DATASET_FOLDER / "dataset_topic.csv", index=False)
+
+    # Persist topics info
+    topic_info_final = topic_model.get_topic_info()
+    topic_info_final.to_csv(BERTOPIC_FOLDER / "topic_info.csv", index=False)
     return
 
 

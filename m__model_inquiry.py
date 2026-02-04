@@ -120,6 +120,7 @@ def _(
         x = range(1, len(y)+1)
         kneedle = KneeLocator(x, y, S=2, curve="convex", direction="decreasing")
         elbow = round(kneedle.elbow, 0)
+        cluster_id = topics_info[topics_info.Count.gt(y[elbow])].Topic.nlargest(1)
 
         # Ploat data
         ax.axvline(elbow, linestyle="--")
@@ -127,13 +128,13 @@ def _(
 
         # Customize plot
         ax.annotate(
-            text=f"ID Cluster: {elbow}, Nr. Pubblicazioni: {y[elbow]}", 
+            text=f"Min nr. Pubblicazioni: {y[elbow]}", 
             color=colors["base"],
             xy=(elbow +1 , y[elbow]+1.5), 
         )
         ax.legend(frameon=False)
         ax.set_ylabel("Nr Pubblicazioni", labelpad=10)
-        ax.set_xlabel("ID Cluster")
+        ax.set_xlabel("ID Tema")
         fig.savefig(IMGS_FOLDER / "img_elbow.svg", format="svg", bbox_inches="tight", transparent=True, pad_inches=0.05)
         plt.show()
 
@@ -169,7 +170,7 @@ def _(IMGS_FOLDER, colorize_axes, colors, df, plt):
 
 
         # Customize plot
-        ax.set_ylabel("ID Cluster", labelpad=0)
+        ax.set_ylabel("ID Tema", labelpad=0)
         ax.set_xlabel("Anni")
 
         # Persist
@@ -191,7 +192,8 @@ def _(OTHER_FOLDER, min_cluster_size, topics_info):
             .loc[topics_info.Count.gt(min_cluster_size), :]
             .iloc[1:, :]
             .loc[:, ["Topic","Representation"]]
-            .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
+            .sort_values("Representation")
+            .apply(lambda x: f"{x.Representation[2:-2].title()}", axis=1)
             .to_list()
         )
 
@@ -217,7 +219,8 @@ def _(OTHER_FOLDER, df, topics_info):
         topics = (
             topics_info
                 .loc[topics_info.Topic.isin(emerging_topics),  ["Topic","Representation"]]
-                .apply(lambda x: f"{x.Topic} - {x.Representation[2:-2]}", axis=1)
+                .sort_values("Representation")
+                .apply(lambda x: f"{x.Representation[2:-2].title()}", axis=1)
                 .to_list()
         )
 
@@ -236,12 +239,26 @@ def _(OTHER_FOLDER, df, topics_info):
         for country in ["EU", "United States", "China"]:
             with (OTHER_FOLDER / f"{country.lower()}_topics.txt").open("w") as fout:
                 max_number_of_topics = 20
+
+                # Get all topics
                 topics = (
                     df.loc[df.year.between(2020, 2025) & df.country.str.contains(country)]
                         .merge(topics_info, left_on="topic", right_on="Topic")
-                        ["Representation"]
-                ).value_counts().nlargest(max_number_of_topics).index
-                fout.write("\n".join([ t[2:-2] for t in topics]))
+                        ["Representation"].str[2:-2].str.title()
+                )
+            
+                # Filter topic 
+                filtered_topics = (
+                    topics
+                        .value_counts()
+                        .nlargest(max_number_of_topics)
+                        .index
+                            .sort_values()
+                        .str.title()
+                )
+            
+                # Persist
+                fout.write("\n".join(filtered_topics))
 
     get_topics_per_country()
     return
@@ -264,9 +281,9 @@ def _(OTHER_FOLDER, Path, pd):
                     .value_counts()
             )
 
-        with Path(OTHER_FOLDER / "eu_usa_china_common_topcs.txt").open("w") as fout:
+        with Path(OTHER_FOLDER / "eu_usa_china_common_topics.txt").open("w") as fout:
             fout.write(
-                "\n".join(sorted(common_topics[common_topics.ge(2)].index.unique().to_list()))
+                "\n".join(sorted(common_topics[common_topics.ge(2)].index.unique().sort_values().to_list()))
             )
 
     get_common_topics_per_country()
