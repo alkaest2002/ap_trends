@@ -78,13 +78,15 @@ def _(docs, topic_model):
     topic_info_original["theme"] = topic_info_original["Representation"].str[0]
 
     # define consolidation function
-    def consoldiation_fn(x, topic_model, docs):
-        print(f"consolidating {x}")
-        return topic_model.merge_topics(docs, x)
+    def consoldation_fn(x, topic_model, docs):
+        topics =  [t for t in x if t != -1]
+        if len(topics) > 1:
+            print(f"consolidating {topics}")
+            topic_model.merge_topics(docs, topics)
 
     # Consolidate duplicated themes
     topcis_list = topic_info_original.groupby("theme").Topic.agg(list)
-    topcis_list[topcis_list.str.len().gt(1)].apply(consoldiation_fn, topic_model=topic_model, docs=docs)
+    topcis_list[topcis_list.str.len().gt(1)].apply(consoldation_fn, topic_model=topic_model, docs=docs)
 
     # Get updated topic info
     topic_info = topic_model.get_topic_info()
@@ -95,7 +97,7 @@ def _(docs, topic_model):
 @app.cell
 def _(topic_info):
     # Count Number of clusters
-    "Number of meaningful clusters", topic_info.shape[0]-1
+    "Numero di temi", topic_info.shape[0]-1, "Articoli non categorizzati", topic_info.iloc[0].Count / topic_info.Count.sum()
     return
 
 
@@ -103,6 +105,12 @@ def _(topic_info):
 def _(df, topic_model):
     # update topics in df
     df["topic"] = topic_model.topics_
+    return
+
+
+@app.cell
+def _(topic_info):
+    topic_info[topic_info.Representation.str[0].str.contains('Pilot', na=False)]
     return
 
 
@@ -116,7 +124,7 @@ def _(df):
 @app.cell
 def _(df):
     # Explore topics
-    df[df.topic.eq(0)]
+    df[df.topic.isin([18])]
     return
 
 
@@ -138,6 +146,12 @@ def _(BERTOPIC_FOLDER, DATASET_FOLDER, df, topic_model):
     # Persist topics info
     topic_info_final = topic_model.get_topic_info()
     topic_info_final.to_csv(BERTOPIC_FOLDER / "topic_info.csv", index=False)
+    return
+
+
+@app.cell
+def _():
+    print("finish")
     return
 
 

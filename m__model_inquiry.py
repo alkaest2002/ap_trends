@@ -292,6 +292,12 @@ def _(OTHER_FOLDER, Path, pd):
 
 @app.cell
 def _():
+    print("finish")
+    return
+
+
+@app.cell
+def _():
     return
 
 
