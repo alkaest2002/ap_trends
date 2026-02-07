@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.19.6"
+__generated_with = "0.19.7"
 app = marimo.App(width="full")
 
 
@@ -30,7 +30,7 @@ def _():
 def _(Path):
     # Define paths
     DATASET_FOLDER = Path("./dataset")
-    OUTPUT_FOLDER = DATASET_FOLDER / "titles_with_excerpts_2"
+    OUTPUT_FOLDER = DATASET_FOLDER / "title_with_abstract"
     if not OUTPUT_FOLDER.exists():
         OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
     return DATASET_FOLDER, OUTPUT_FOLDER
@@ -70,7 +70,7 @@ def _(
     df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)
 
     # Make excerpt
-    df["excerpt"] = make_excerpt(df, column="abstract", num_paragraphs=2)
+    df["excerpt"] = make_excerpt(df, column="abstract", num_paragraphs=-1)
 
     # Make doc
     df["doc"] = make_text_to_embed(df, ["title", "excerpt"])

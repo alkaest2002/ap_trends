@@ -19,10 +19,11 @@ def _():
 @app.cell
 def _(Path, normalize_model_name):
     # Define Paths
-    DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
+    TYPE_OF_DOC = "title_with_excerpt_2"
+    DATASET_FOLDER = Path("./dataset") / TYPE_OF_DOC
     EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
+    EMBEDDINGS_FOLDER = Path("out") / "sentence_transformers" / normalize_model_name(EMBEDDINGS_MODEL_NAME) / TYPE_OF_DOC /  "embeddings"
 
-    EMBEDDINGS_FOLDER = Path("out") / "sentence_transformers" / normalize_model_name(EMBEDDINGS_MODEL_NAME) /  "embeddings"
     if not EMBEDDINGS_FOLDER.exists():
         EMBEDDINGS_FOLDER.mkdir(parents=True, exist_ok=True)
     return DATASET_FOLDER, EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME
@@ -39,7 +40,7 @@ def _(DATASET_FOLDER, pd):
 @app.cell
 def _(df):
     # Sample dataset
-    df.sample(5, random_state=42)
+    df.sample(5)
     return
 
 

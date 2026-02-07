@@ -41,14 +41,15 @@ def _():
 @app.cell
 def _(Path):
     # Define paths
-    DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
-    OUT_FOLDER = Path("./out") / "sentence_transformers" / "all_MiniLM_L6_v2"
+    TYPE_OF_DOC = "title_with_excerpt_2"
+    DATASET_FOLDER = Path("./dataset") / TYPE_OF_DOC
+    OUT_FOLDER = Path("./out") / "sentence_transformers" / "all_MiniLM_L6_v2" / TYPE_OF_DOC
     EMBEDDING_FOLDER =  OUT_FOLDER / "embeddings"
     BERTOPIC_FOLDER = OUT_FOLDER / "bertopic"
     IMGS_FOLDER = OUT_FOLDER / "imgs"
     OTHER_FOLDER = OUT_FOLDER / "other"
 
-    for folder in {IMGS_FOLDER, OTHER_FOLDER}:
+    for folder in {EMBEDDING_FOLDER, BERTOPIC_FOLDER, IMGS_FOLDER, OTHER_FOLDER}:
         if not folder.exists():
             folder.mkdir(parents=True, exist_ok=True)
     return (

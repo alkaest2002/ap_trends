@@ -18,8 +18,9 @@ def _():
 @app.cell
 def _(Path):
     # Define paths
-    DATASET_FOLDER = Path("./dataset/titles_with_excerpts_2/")
-    OUT_FOLDER = Path("out") / "sentence_transformers" / "all_MiniLM_L6_v2"
+    TYPE_OF_DOC = "title_with_excerpt_2"
+    DATASET_FOLDER = Path("./dataset") / TYPE_OF_DOC
+    OUT_FOLDER = Path("out") / "sentence_transformers" / "all_MiniLM_L6_v2" / TYPE_OF_DOC
     EMBEDDINGS_FOLDER = OUT_FOLDER / "embeddings"
     BERTOPIC_FOLDER = OUT_FOLDER / "bertopic"
 
@@ -124,7 +125,16 @@ def _(df):
 @app.cell
 def _(df):
     # Explore topics
-    df[df.topic.isin([18])]
+    df[df.topic.isin([3])]
+    return
+
+
+@app.cell
+def _(df, topic_model):
+    # Example of topics distribution
+    article = df.loc[334,:]
+    topics_distribution , _ = topic_model.approximate_distribution(article.doc)
+    article, topics_distribution.shape
     return
 
 

@@ -88,7 +88,7 @@ def make_excerpt(
     return (
        excerpt
             .str.split(r"\.\s+", regex=True)
-            .str[:num_paragraphs]
+            .str[:num_paragraphs if num_paragraphs > 0 else None]
             .str.join(". ")
             .add(".")
             .str.replace(r"^\.$", "", regex=True)
