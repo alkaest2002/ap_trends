@@ -132,7 +132,7 @@ def _(df):
 @app.cell
 def _(df, topic_info, topic_model):
     # Example of topics distribution
-    article = df.loc[334,:]
+    article = df.loc[354,:]
     topics_distribution , _ = topic_model.approximate_distribution(article.doc, use_embedding_model = True)
     main_topics = topics_distribution.argsort()[:, -4:].tolist()[0]
     topic_info[topic_info.Topic.isin(main_topics)]
