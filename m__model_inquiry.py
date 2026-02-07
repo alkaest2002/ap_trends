@@ -247,7 +247,7 @@ def _(OTHER_FOLDER, df, topics_info):
                         .merge(topics_info, left_on="topic", right_on="Topic")
                         ["Representation"].str[2:-2].str.title()
                 )
-            
+
                 # Filter topics 
                 filtered_topics = (
                     topics
@@ -257,7 +257,7 @@ def _(OTHER_FOLDER, df, topics_info):
                             .sort_values()
                         .str.title()
                 )
-            
+
                 # Persist
                 fout.write("\n".join(filtered_topics))
 
