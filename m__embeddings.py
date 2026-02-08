@@ -19,7 +19,7 @@ def _():
 @app.cell
 def _(Path, normalize_model_name):
     # Define Paths
-    TYPE_OF_DOC = "title_with_excerpt_2"
+    TYPE_OF_DOC = "title_with_excerpt_3"
     DATASET_FOLDER = Path("./dataset") / TYPE_OF_DOC
     EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
     EMBEDDINGS_FOLDER = Path("out") / "sentence_transformers" / normalize_model_name(EMBEDDINGS_MODEL_NAME) / TYPE_OF_DOC /  "embeddings"
