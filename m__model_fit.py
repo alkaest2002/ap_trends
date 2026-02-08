@@ -69,15 +69,15 @@ def _(docs, embeddings, get_bertopic_model):
 
     # Fit BERTopic model
     topics, probs = topic_model.fit_transform(docs, embeddings=embeddings)
-    return (topic_model,)
+
+    # Get original topic info
+    topic_info_original = topic_model.get_topic_info()
+    topic_info_original["theme"] = topic_info_original["Representation"].str[0].str.lower().str.strip()
+    return topic_info_original, topic_model
 
 
 @app.cell
-def _(docs, topic_model):
-    # Get original topic info
-    topic_info_original = topic_model.get_topic_info()
-    topic_info_original["theme"] = topic_info_original["Representation"].str[0]
-
+def _(docs, topic_info_original, topic_model):
     # define consolidation function
     def consoldation_fn(x, topic_model, docs):
         topics =  [t for t in x if t != -1]
@@ -91,7 +91,7 @@ def _(docs, topic_model):
 
     # Get updated topic info
     topic_info = topic_model.get_topic_info()
-    topic_info.head()
+    topic_info
     return (topic_info,)
 
 
@@ -125,7 +125,7 @@ def _(df):
 @app.cell
 def _(df):
     # Explore topics
-    df[df.topic.isin([3])]
+    df[df.topic.isin([9])]
     return
 
 
@@ -163,11 +163,6 @@ def _(BERTOPIC_FOLDER, DATASET_FOLDER, df, topic_model):
 @app.cell
 def _():
     print("finish")
-    return
-
-
-@app.cell
-def _():
     return
 
 
