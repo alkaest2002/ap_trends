@@ -30,7 +30,7 @@ def _():
 def _(Path):
     # Define paths
     DATASET_FOLDER = Path("./dataset")
-    OUTPUT_FOLDER = DATASET_FOLDER / "title_with_abstract"
+    OUTPUT_FOLDER = DATASET_FOLDER / "title_with_excerpt_3"
     if not OUTPUT_FOLDER.exists():
         OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
     return DATASET_FOLDER, OUTPUT_FOLDER
@@ -70,7 +70,7 @@ def _(
     df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)
 
     # Make excerpt
-    df["excerpt"] = make_excerpt(df, column="abstract", num_paragraphs=-1)
+    df["excerpt"] = make_excerpt(df, column="abstract", num_paragraphs=3)
 
     # Make doc
     df["doc"] = make_text_to_embed(df, ["title", "excerpt"])
