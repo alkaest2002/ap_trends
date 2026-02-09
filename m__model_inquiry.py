@@ -15,6 +15,7 @@ def _():
     import numpy as np
     import pandas as pd
     from sklearn.feature_extraction.text import CountVectorizer
+    from lib.utils_base import get_or_create_folders
     from lib.utils_pandas import get_topics_in_period
     from lib.utils_matplotlib import configure_matplotlib_environment, colorize_axes
 
@@ -32,32 +33,33 @@ def _():
         Path,
         colorize_axes,
         colors,
-        np,
+        get_or_create_folders,
         pd,
         plt,
     )
 
 
 @app.cell
-def _(Path):
+def _(get_or_create_folders):
     # Define paths
     TYPE_OF_DOC = "title_with_excerpt_2"
-    DATASET_FOLDER = Path("./dataset") / TYPE_OF_DOC
-    OUT_FOLDER = Path("./out") / "sentence_transformers" / "all_MiniLM_L6_v2" / TYPE_OF_DOC
-    EMBEDDING_FOLDER =  OUT_FOLDER / "embeddings"
-    BERTOPIC_FOLDER = OUT_FOLDER / "bertopic"
-    IMGS_FOLDER = OUT_FOLDER / "imgs"
-    OTHER_FOLDER = OUT_FOLDER / "other"
+    TYPE_OF_MODEL = "all-MiniLM-L6-v2"
+    [
+        DATASET_FOLDER,
+        EMBEDDING_FOLDER,
+        BERTOPIC_FOLDER,
+        IMGS_FOLDER,
+        OTHER_FOLDER
+    ] = get_or_create_folders(TYPE_OF_DOC, TYPE_OF_MODEL)
 
-    for folder in {EMBEDDING_FOLDER, BERTOPIC_FOLDER, IMGS_FOLDER, OTHER_FOLDER}:
-        if not folder.exists():
-            folder.mkdir(parents=True, exist_ok=True)
+    DATASET_FOLDER, EMBEDDING_FOLDER, BERTOPIC_FOLDER, IMGS_FOLDER, OTHER_FOLDER
     return (
         BERTOPIC_FOLDER,
         DATASET_FOLDER,
         EMBEDDING_FOLDER,
         IMGS_FOLDER,
         OTHER_FOLDER,
+        TYPE_OF_MODEL,
     )
 
 
@@ -67,25 +69,22 @@ def _(DATASET_FOLDER, pd):
     df = pd.read_csv(DATASET_FOLDER / "dataset_topic.csv")
     docs = df.doc.to_list()
     df.sample(5)
-    return df, docs
+    return (df,)
 
 
 @app.cell
-def _(EMBEDDING_FOLDER):
+def _(EMBEDDING_FOLDER, TYPE_OF_MODEL):
     # Get embedding_model_name
     with (EMBEDDING_FOLDER / "embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
-    embedding_model_name
+    embedding_model_name, TYPE_OF_MODEL
     return (embedding_model_name,)
 
 
 @app.cell
-def _(BERTOPIC_FOLDER, BERTopic, docs, embedding_model_name, np, pd):
+def _(BERTOPIC_FOLDER, BERTopic, embedding_model_name, pd):
     # Load BERTopic related files
     topic_model = BERTopic.load(BERTOPIC_FOLDER, embedding_model=embedding_model_name)
-    probs = np.load(file=BERTOPIC_FOLDER / "probs.npy")
-    topic_model.update_topics(docs)
-    topics = topic_model.topics_
     topics_info = pd.read_csv(BERTOPIC_FOLDER / "topic_info.csv")
     topics_info.sort_values(by="Topic")
     return (topics_info,)
@@ -119,7 +118,7 @@ def _(
         # Compute data
         y = topics_info.Count[1:]
         x = range(1, len(y)+1)
-        kneedle = KneeLocator(x, y, S=2, curve="convex", direction="decreasing")
+        kneedle = KneeLocator(x, y, S=3, curve="convex", direction="decreasing")
         elbow = round(kneedle.elbow, 0)
         cluster_id = topics_info[topics_info.Count.gt(y[elbow])].Topic.nlargest(1)
 
@@ -294,6 +293,16 @@ def _(OTHER_FOLDER, Path, pd):
 @app.cell
 def _():
     print("finish")
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
     return
 
 

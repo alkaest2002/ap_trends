@@ -12,20 +12,18 @@ def _():
     import pandas as pd
     import numpy as np
 
-    from lib.utils_embeddings import get_sentence_transformer, normalize_model_name
-    return Path, get_sentence_transformer, normalize_model_name, np, pd
+    from lib.utils_embeddings import get_sentence_transformer
+    from lib.utils_base import get_or_create_folders
+    return Path, get_or_create_folders, get_sentence_transformer, np, pd
 
 
 @app.cell
-def _(Path, normalize_model_name):
+def _(get_or_create_folders):
     # Define Paths
-    TYPE_OF_DOC = "title_with_excerpt_3"
-    DATASET_FOLDER = Path("./dataset") / TYPE_OF_DOC
+    TYPE_OF_DOC = "title_with_excerpt_2"
     EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
-    EMBEDDINGS_FOLDER = Path("out") / "sentence_transformers" / normalize_model_name(EMBEDDINGS_MODEL_NAME) / TYPE_OF_DOC /  "embeddings"
-
-    if not EMBEDDINGS_FOLDER.exists():
-        EMBEDDINGS_FOLDER.mkdir(parents=True, exist_ok=True)
+    [DATASET_FOLDER, EMBEDDINGS_FOLDER] = get_or_create_folders(TYPE_OF_DOC, EMBEDDINGS_MODEL_NAME)[:2]
+    DATASET_FOLDER, EMBEDDINGS_FOLDER
     return DATASET_FOLDER, EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME
 
 
@@ -67,6 +65,11 @@ def _(EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME, Path, embeddings, np):
 def _(embeddings, np):
     # Show embeddings dim
     np.array(embeddings).shape
+    return
+
+
+@app.cell
+def _():
     return
 
 

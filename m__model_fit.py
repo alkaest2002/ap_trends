@@ -10,23 +10,23 @@ def _():
     from pathlib import Path
     import numpy as np
     import pandas as pd
-    from lib.utils_embeddings import normalize_model_name
+    from lib.utils_base import get_or_create_folders
     from lib.bertopic.sentence_transformers.model_base import get_bertopic_model
-    return Path, get_bertopic_model, np, pd
+    return get_bertopic_model, get_or_create_folders, np, pd
 
 
 @app.cell
-def _(Path):
+def _(get_or_create_folders):
     # Define paths
     TYPE_OF_DOC = "title_with_excerpt_2"
-    DATASET_FOLDER = Path("./dataset") / TYPE_OF_DOC
-    OUT_FOLDER = Path("out") / "sentence_transformers" / "all_MiniLM_L6_v2" / TYPE_OF_DOC
-    EMBEDDINGS_FOLDER = OUT_FOLDER / "embeddings"
-    BERTOPIC_FOLDER = OUT_FOLDER / "bertopic"
+    TYPE_OF_MODEL = "all-MiniLM-L6-v2" 
+    [
+        DATASET_FOLDER,
+        EMBEDDINGS_FOLDER,
+        BERTOPIC_FOLDER
+    ] = get_or_create_folders(TYPE_OF_DOC, TYPE_OF_MODEL)[:3]
 
-    for folder in {EMBEDDINGS_FOLDER, BERTOPIC_FOLDER}:
-        if not folder.exists():
-            folder.mkdir(parents=True, exist_ok=True)
+    DATASET_FOLDER, EMBEDDINGS_FOLDER, BERTOPIC_FOLDER
     return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDINGS_FOLDER
 
 
@@ -111,7 +111,7 @@ def _(df, topic_model):
 
 @app.cell
 def _(topic_info):
-    topic_info[topic_info.Representation.str[0].str.contains('Pilot', na=False)]
+    topic_info[topic_info.Representation.str[0].str.contains('men', na=False)]
     return
 
 
@@ -163,6 +163,11 @@ def _(BERTOPIC_FOLDER, DATASET_FOLDER, df, topic_model):
 @app.cell
 def _():
     print("finish")
+    return
+
+
+@app.cell
+def _():
     return
 
 

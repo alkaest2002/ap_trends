@@ -11,13 +11,14 @@ def _():
     import orjson
     import spacy
     import pandas as pd
-    from lib.utils_base import extract_countries
+    from lib.utils_base import extract_countries, get_or_create_folders
     from lib.utils_pandas import make_excerpt, make_text_to_embed
 
     nlp = spacy.load("en_core_web_lg")
     return (
         Path,
         extract_countries,
+        get_or_create_folders,
         make_excerpt,
         make_text_to_embed,
         nlp,
@@ -27,18 +28,18 @@ def _():
 
 
 @app.cell
-def _(Path):
+def _(get_or_create_folders):
     # Define paths
-    DATASET_FOLDER = Path("./dataset")
-    OUTPUT_FOLDER = DATASET_FOLDER / "title_with_excerpt_3"
-    if not OUTPUT_FOLDER.exists():
-        OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
-    return DATASET_FOLDER, OUTPUT_FOLDER
+    TYPE_OF_DOC = "title_with_abstract"
+    NUM_OF_PARAGRAPH = -1
+    [DATASET_FOLDER] = get_or_create_folders(TYPE_OF_DOC)
+    DATASET_FOLDER
+    return DATASET_FOLDER, NUM_OF_PARAGRAPH
 
 
 @app.cell
 def _(
-    DATASET_FOLDER,
+    NUM_OF_PARAGRAPH,
     extract_countries,
     make_excerpt,
     make_text_to_embed,
@@ -53,7 +54,7 @@ def _(
     }
 
     # Load original dataset
-    df = pd.read_csv(DATASET_FOLDER / "scopus.csv")
+    df = pd.read_csv("./dataset/scopus.csv")
     metadata["size_before_processing"] = df.shape[0]
 
     # Lowercase all columns
@@ -70,7 +71,7 @@ def _(
     df["country"] = df.affiliations.apply(extract_countries, nlp_model=nlp)
 
     # Make excerpt
-    df["excerpt"] = make_excerpt(df, column="abstract", num_paragraphs=3)
+    df["excerpt"] = make_excerpt(df, column="abstract", num_paragraphs=NUM_OF_PARAGRAPH)
 
     # Make doc
     df["doc"] = make_text_to_embed(df, ["title", "excerpt"])
@@ -87,10 +88,11 @@ def _(metadata):
 
 
 @app.cell
-def _(DATASET_FOLDER, OUTPUT_FOLDER, Path, df, metadata, orjson):
+def _(DATASET_FOLDER, Path, df, metadata, orjson):
     # Persist
     df.loc[:, ["year","country","title","doc"]]\
-        .to_csv(OUTPUT_FOLDER / "dataset.csv", index=False)
+        .to_csv(DATASET_FOLDER / "dataset.csv", index=False)
+
     with Path(DATASET_FOLDER / "cleanup_recap.json").open("wb") as f:
         f.write(orjson.dumps(metadata, option=orjson.OPT_INDENT_2))
     return
