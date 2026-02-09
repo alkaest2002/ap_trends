@@ -144,11 +144,15 @@ def normalize_model_name(model_name: str) -> str:
     return model_name.replace(".", "_").replace("/", "__").replace("-", "_")
 
 
-def get_or_create_folders(type_of_doc: str, type_of_model: str | None = None) -> list[Path]:
+def get_or_create_folders(
+        type_of_doc: str,
+        type_of_family_model: str = "sentence_transformers",
+        type_of_model: str | None = None) -> list[Path]:
     """Get or create folders for storing documents and metadata.
 
     Args:
         type_of_doc: A string indicating the type of document (e.g., "accidents", "incidents")
+        type_of_family_model: A string indicating the family of the model (e.g., "sentence_transformers", "openai")
         type_of_model: A string indicating the type of model (e.g., "bert", "gpt")
 
     Returns:
@@ -162,7 +166,7 @@ def get_or_create_folders(type_of_doc: str, type_of_model: str | None = None) ->
     # If type_of_model is provided, create subfolders for that model's outputs
     if type_of_model is not None:
         normalized_model_name = normalize_model_name(type_of_model)
-        out_path = Path("output") / "sentence_transformers" / normalized_model_name / type_of_doc
+        out_path = Path("out") / type_of_family_model / normalized_model_name / type_of_doc
         out_bertopic_path = out_path / "bertopic"
         out_embeddings_path = out_path / "embeddings"
         out_imgs_path = out_path / "imgs"
