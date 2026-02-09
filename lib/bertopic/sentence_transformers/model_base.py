@@ -20,6 +20,18 @@ load_dotenv()
 
 client = openai.OpenAI(api_key=getenv("OPENAI_APIKEY"))
 
+openai_prompt = """
+I have a topic that contains the following documents: \n[DOCUMENTS]
+Moreover, the topic is described by the following keywords: [KEYWORDS]
+
+Based on the above information:
+- Give a short label of the topic reflecting the content of the documents and keywords provided.
+- The label should be capture the main theme.
+- The label should be very short (max 4 words) possible and in lower case.
+- The label should be unique, so keep track of any previous labels you have given to other topics.
+- Avoid the over-use of the term "aviation", but use it when it is necessary to capture the essence of the topic.
+"""
+
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
@@ -38,8 +50,8 @@ default_bertopic_settings: dict[str, Any] = {
     "vectorizer": {
         "stop_words": list(stop_words),
         "ngram_range":  (1, 3),
-        "min_df": .4,
-        "max_df": .7,
+        "min_df": .25,
+        "max_df": .85,
     },
     "ctfidf": {
         "bm25_weighting": True,
@@ -47,12 +59,16 @@ default_bertopic_settings: dict[str, Any] = {
     },
     "representation": {
         "KeyBERTInspired": {
+            "top_n_words": 15,
+            "nr_repr_docs": 10,
         },
         "maximal_marginal_relevance": {
-            "diversity": 0.5
+            "diversity": 0.7
         },
         "openai": {
             "model": "gpt-4o-mini",
+            "nr_docs": 4,
+            "prompt": openai_prompt,
             "temperature": 0,
         }
     }

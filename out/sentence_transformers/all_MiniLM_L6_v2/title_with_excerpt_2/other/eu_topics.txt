@@ -1,20 +1,20 @@
-Air Traffic Control Tasks
-Air Traffic Management
-Flight Attendants' Job Stress
-Flight Training Techniques
-Health Challenges In Space
-Human Factors In Aviation
-Human-System Integration
-Pilot Cardiovascular Stress
-Pilot Cognitive Workload
-Pilot Display Systems
-Pilot Fatigue Issues
-Pilot Mental Health
-Pilot Selection Validation
+Cockpit Automation Effects
+Cognitive Workload In Pilots
+Fatigue In Flight Operations
+Flight Training Effectiveness
+Future Air Traffic Management
+Isolated Environments Research
+Physiological Workload Assessment
+Pilot Health And Safety
+Pilot Performance Factors
+Pilot Performance Training
+Pilot Selection And Training
+Pilot Stress And Well-Being
+Pilot Visual Performance
 Pilot Workload Assessment
-Psychological Adaptation In Expeditions
 Psychological Capital In Aviation
-Psychological Challenges In Space
-Psychological Testing Of Pilots
-Spatial Disorientation In Pilots
-Work-Related Stress In Pilots
+Psychology Of Flight Personnel
+Spaceflight Medical Challenges
+Spaceflight Psychological Health
+Spatial Disorientation Training
+Trust And Performance Systems

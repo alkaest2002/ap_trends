@@ -1,20 +1,20 @@
-Aging And Pilot Performance
-Air Traffic Control
-Air Traffic Control Tasks
-Aircrew Pain Management
-Aviation Communication Challenges
-Flight Deck Information Reliability
-Gender And Aviation Issues
-Health Challenges In Space
-Human Factors In Aviation
-Human Factors In Aviation Safety
-Human-System Integration
-Military Aviation Medicine
-Pilot Fatigue Issues
-Pilot Mental Health
-Pilot Risk Assessment
-Pilot Safety Behaviors
-Psychological Challenges In Space
-Psychological Effects Of Aircraft Accidents
-Psychological Health In Military
-Stress In Air Traffic Control
+Air Traffic Control Performance
+Cockpit Automation Effects
+Cockpit Communication Effectiveness
+Fatigue In Flight Operations
+Gender Attitudes In Piloting
+Human Factors In Safety
+Military Pilot Psychology
+Pilot Health And Safety
+Pilot Information Reliability
+Pilot Performance And Aging
+Pilot Performance Factors
+Pilot Safety Behavior
+Pilot Selection And Training
+Pilot Visual Performance
+Remote Warrior Well-Being
+Risk Behavior In Pilots
+Safety And Psychology In Aviation
+Spaceflight Medical Challenges
+Spaceflight Psychological Health
+Stress And Performance In Atc
