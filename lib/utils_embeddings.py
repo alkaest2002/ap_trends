@@ -95,7 +95,7 @@ def get_sentence_transformer(
     docs: list[str],
     transformer_name: str = "all-MiniLM-L6-v2",
 ) -> NDArray:
-    """Get MiniLM L6 v2 embeddings for a list of texts using SentenceTransformer.
+    """Get embeddings for a list of texts using SentenceTransformer.
 
     Args:
         docs (list[str]): List of documents to get embeddings for.
@@ -108,8 +108,8 @@ def get_sentence_transformer(
     # Raise error if texts is empty
     validate_docs_(docs)
 
-    # Load the MiniLM L6 v2 model
+    # Load embedding model
     sentence_model = SentenceTransformer(transformer_name)
 
     # Compute embeddings
-    return sentence_model.encode(docs, show_progress_bar=False)
+    return sentence_model.encode(docs, show_progress_bar=True)
