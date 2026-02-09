@@ -1,6 +1,6 @@
-
 import contextlib
 import re
+from pathlib import Path
 
 import pycountry
 import spacy
@@ -129,3 +129,56 @@ def extract_countries(text: str, nlp_model: spacy.language.Language) -> str | No
         countries.add("EU")
 
     return " - ".join(sorted(countries)) if countries else None
+
+
+def normalize_model_name(model_name: str) -> str:
+    """Normalize the embedding model name for consistent file naming.
+
+    Args:
+        model_name (str): Original model name.
+
+    Returns:
+        str: Normalized model name.
+
+    """
+    return model_name.replace(".", "_").replace("/", "__").replace("-", "_")
+
+
+def get_or_create_folders(type_of_doc: str, type_of_model: str | None = None) -> list[Path]:
+    """Get or create folders for storing documents and metadata.
+
+    Args:
+        type_of_doc: A string indicating the type of document (e.g., "accidents", "incidents")
+        type_of_model: A string indicating the type of model (e.g., "bert", "gpt")
+
+    Returns:
+        A list containing the paths to the documents folder and the metadata folder.
+
+    """
+    # Define paths
+    base_dataset_path = Path("dataset")
+    dataset_path = base_dataset_path / type_of_doc
+
+    # If type_of_model is provided, create subfolders for that model's outputs
+    if type_of_model is not None:
+        normalized_model_name = normalize_model_name(type_of_model)
+        out_path = Path("output") / "sentence_transformers" / normalized_model_name / type_of_doc
+        out_bertopic_path = out_path / "bertopic"
+        out_embeddings_path = out_path / "embeddings"
+        out_imgs_path = out_path / "imgs"
+        out_other_path = out_path / "other"
+
+        # Create folders if they don't exist
+        for path in [dataset_path, out_bertopic_path, out_embeddings_path, out_imgs_path, out_other_path]:
+            path.mkdir(parents=True, exist_ok=True)
+
+        return [
+            dataset_path,
+            out_embeddings_path,
+            out_bertopic_path,
+            out_imgs_path,
+            out_other_path
+        ]
+
+    dataset_path.mkdir(parents=True, exist_ok=True)
+    return [dataset_path]

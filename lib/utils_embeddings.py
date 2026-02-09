@@ -32,19 +32,6 @@ def validate_docs_(docs: list[str]):
         raise ValueError(error_msg)
 
 
-def normalize_model_name(model_name: str) -> str:
-    """Normalize the embedding model name for consistent file naming.
-
-    Args:
-        model_name (str): Original model name.
-
-    Returns:
-        str: Normalized model name.
-
-    """
-    return model_name.replace(".", "_").replace("/", "__").replace("-", "_")
-
-
 def get_openai_embeddings(
     docs: list[str],
     embedding_model_name: str = "text-embedding-3-large",
