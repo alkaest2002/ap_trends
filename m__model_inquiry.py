@@ -43,23 +43,24 @@ def _():
 def _(get_or_create_folders):
     # Define paths
     TYPE_OF_DOC = "title_with_excerpt_2"
-    TYPE_OF_MODEL = "all-MiniLM-L6-v2"
+    TYPE_OF_FAMILY_MODEL = "sentence_transformers"
+    EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
     [
         DATASET_FOLDER,
         EMBEDDING_FOLDER,
         BERTOPIC_FOLDER,
         IMGS_FOLDER,
         OTHER_FOLDER
-    ] = get_or_create_folders(TYPE_OF_DOC, TYPE_OF_MODEL)
+    ] = get_or_create_folders(TYPE_OF_DOC, TYPE_OF_FAMILY_MODEL, EMBEDDINGS_MODEL_NAME)
 
     DATASET_FOLDER, EMBEDDING_FOLDER, BERTOPIC_FOLDER, IMGS_FOLDER, OTHER_FOLDER
     return (
         BERTOPIC_FOLDER,
         DATASET_FOLDER,
+        EMBEDDINGS_MODEL_NAME,
         EMBEDDING_FOLDER,
         IMGS_FOLDER,
         OTHER_FOLDER,
-        TYPE_OF_MODEL,
     )
 
 
@@ -73,11 +74,11 @@ def _(DATASET_FOLDER, pd):
 
 
 @app.cell
-def _(EMBEDDING_FOLDER, TYPE_OF_MODEL):
+def _(EMBEDDINGS_MODEL_NAME, EMBEDDING_FOLDER):
     # Get embedding_model_name
     with (EMBEDDING_FOLDER / "embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
-    embedding_model_name, TYPE_OF_MODEL
+    embedding_model_name, EMBEDDINGS_MODEL_NAME
     return (embedding_model_name,)
 
 
@@ -293,16 +294,6 @@ def _(OTHER_FOLDER, Path, pd):
 @app.cell
 def _():
     print("finish")
-    return
-
-
-@app.cell
-def _():
-    return
-
-
-@app.cell
-def _():
     return
 
 

@@ -8,10 +8,11 @@ app = marimo.App(width="full")
 def _():
     # Imports
     from pathlib import Path
+    from importlib import import_module
     import numpy as np
     import pandas as pd
-    from lib.utils_base import get_or_create_folders
-    from lib.bertopic.sentence_transformers.model_base import get_bertopic_model
+    from lib.utils_base import get_or_create_folders, normalize_model_name
+    from lib.bertopic.mode_base import get_bertopic_model
     return get_bertopic_model, get_or_create_folders, np, pd
 
 
@@ -19,15 +20,22 @@ def _():
 def _(get_or_create_folders):
     # Define paths
     TYPE_OF_DOC = "title_with_excerpt_2"
-    TYPE_OF_MODEL = "all-MiniLM-L6-v2" 
+    TYPE_OF_FAMILY_MODEL = "sentence_transformers"
+    EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
     [
         DATASET_FOLDER,
         EMBEDDINGS_FOLDER,
         BERTOPIC_FOLDER
-    ] = get_or_create_folders(TYPE_OF_DOC, TYPE_OF_MODEL)[:3]
+    ] = get_or_create_folders(TYPE_OF_DOC,TYPE_OF_FAMILY_MODEL, EMBEDDINGS_MODEL_NAME)[:3]
 
     DATASET_FOLDER, EMBEDDINGS_FOLDER, BERTOPIC_FOLDER
-    return BERTOPIC_FOLDER, DATASET_FOLDER, EMBEDDINGS_FOLDER
+    return (
+        BERTOPIC_FOLDER,
+        DATASET_FOLDER,
+        EMBEDDINGS_FOLDER,
+        EMBEDDINGS_MODEL_NAME,
+        TYPE_OF_FAMILY_MODEL,
+    )
 
 
 @app.cell
@@ -39,11 +47,11 @@ def _(DATASET_FOLDER, pd):
 
 
 @app.cell
-def _(EMBEDDINGS_FOLDER):
+def _(EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME):
     # Get embedding_model_name
     with (EMBEDDINGS_FOLDER / "embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
-    embedding_model_name
+    embedding_model_name, EMBEDDINGS_MODEL_NAME
     return
 
 
@@ -56,6 +64,12 @@ def _(EMBEDDINGS_FOLDER, np):
 
 
 @app.cell
+def _(EMBEDDINGS_MODEL_NAME, TYPE_OF_FAMILY_MODEL, get_bertopic_model):
+    topic_model = get_bertopic_model(TYPE_OF_FAMILY_MODEL, EMBEDDINGS_MODEL_NAME)
+    return (topic_model,)
+
+
+@app.cell
 def _(df):
     # Get Docs
     docs = df.doc.to_list()
@@ -63,17 +77,14 @@ def _(df):
 
 
 @app.cell
-def _(docs, embeddings, get_bertopic_model):
-    # Get BERTopic model
-    topic_model = get_bertopic_model()
-
+def _(docs, embeddings, topic_model):
     # Fit BERTopic model
     topics, probs = topic_model.fit_transform(docs, embeddings=embeddings)
 
     # Get original topic info
     topic_info_original = topic_model.get_topic_info()
     topic_info_original["theme"] = topic_info_original["Representation"].str[0].str.lower().str.strip()
-    return topic_info_original, topic_model
+    return (topic_info_original,)
 
 
 @app.cell
@@ -125,7 +136,7 @@ def _(df):
 @app.cell
 def _(df):
     # Explore topics
-    df[df.topic.isin([9])]
+    df[df.topic.isin([12])]
     return
 
 

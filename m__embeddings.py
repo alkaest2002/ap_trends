@@ -21,8 +21,10 @@ def _():
 def _(get_or_create_folders):
     # Define Paths
     TYPE_OF_DOC = "title_with_excerpt_2"
-    EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
-    [DATASET_FOLDER, EMBEDDINGS_FOLDER] = get_or_create_folders(TYPE_OF_DOC, EMBEDDINGS_MODEL_NAME)[:2]
+    TYPE_OF_FAMILY_MODEL = "sentence_transformers"
+    EMBEDDINGS_MODEL_NAME = "BAAI/bge-small-en-v1.5"
+
+    [DATASET_FOLDER, EMBEDDINGS_FOLDER] = get_or_create_folders(TYPE_OF_DOC, TYPE_OF_FAMILY_MODEL, EMBEDDINGS_MODEL_NAME)[:2]
     DATASET_FOLDER, EMBEDDINGS_FOLDER
     return DATASET_FOLDER, EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME
 
