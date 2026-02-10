@@ -24,8 +24,8 @@ client = openai.OpenAI(api_key=getenv("OPENAI_APIKEY"))
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
-        "n_neighbors": 9,
-        "n_components": 40,
+        "n_neighbors": 3,
+        "n_components": 5,
         "min_dist": 0.0,
         "metric": "cosine",
         "random_state": 42,
