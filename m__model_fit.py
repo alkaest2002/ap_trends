@@ -90,15 +90,33 @@ def _(docs, embeddings, topic_model):
 
 
 @app.cell
-def _(docs, topic_info_original, topic_model):
-    # Consolidate duplicated themes
+def _(BERTOPIC_FOLDER, docs, np, topic_info_original, topic_model):
+    # List-aggregate by theme
     theme_lists = topic_info_original.groupby("theme").Topic.agg(list)
+
+    # Get duplicated themes (theme lists longhe than 1)
     duplicated_themes = theme_lists[theme_lists.str.len().gt(1)].to_list()
-    duplicated_themes = list(map(lambda x: [t for t in x if t != -1], duplicated_themes))
+
+    # Omit -1 in any theme list
+    duplicated_themes = map(lambda x: [t for t in x if t != -1], duplicated_themes)
+
+    # Keep theme lists longer than 1
+    duplicated_themes = [l for l in duplicated_themes if len(l)>1]
+
+    # Update topics
     topic_model.merge_topics(docs, duplicated_themes)
 
-    # Get updated topic info
+    # Persist topics info
     topic_info = topic_model.get_topic_info()
+
+    # Add theme
+    topic_info["theme"] = topic_info_original["Representation"].str[0].str.lower().str.strip()
+
+    # Persist
+    topic_model.save(path=BERTOPIC_FOLDER, serialization="safetensors")
+    topic_info.to_csv(BERTOPIC_FOLDER / "topic_info.csv", index=False)
+    np.save(BERTOPIC_FOLDER / "probs.npy", topic_model.probabilities_)
+
     topic_info
     return (topic_info,)
 
@@ -111,61 +129,22 @@ def _(topic_info):
 
 
 @app.cell
-def _(df, topic_model):
-    # update topics in df
-    df["topic"] = topic_model.topics_
-    df.head()
-    return
+def _(BERTOPIC_FOLDER, df, topic_info, topic_model):
+    def update_df(df, topic_model):
+    
+        # Add topics to df
+        df["topic"] = topic_model.topics_
 
+        # Example of topics distribution
+        article = df.loc[354,:]
+        topics_distribution , _ = topic_model.approximate_distribution(article.doc, use_embedding_model = True)
+        main_topics = topics_distribution.argsort()[:, -4:].tolist()[0]
+        print("example topics distribution", topic_info[topic_info.Topic.isin(main_topics)].theme)
 
-@app.cell
-def _(topic_info):
-    topic_info[topic_info.Representation.str[0].str.contains('men', na=False)]
-    return
+        # Persist dataset with topics
+        df.to_csv(BERTOPIC_FOLDER / "dataset_topic.csv", index=False)
 
-
-@app.cell
-def _(df):
-    # Explore words
-    df[df.doc.str.contains("suic")]
-    return
-
-
-@app.cell
-def _(df):
-    # Explore topics
-    df[df.topic.isin([4])]
-    return
-
-
-@app.cell
-def _(df, topic_info, topic_model):
-    # Example of topics distribution
-    article = df.loc[354,:]
-    topics_distribution , _ = topic_model.approximate_distribution(article.doc, use_embedding_model = True)
-    main_topics = topics_distribution.argsort()[:, -4:].tolist()[0]
-    topic_info[topic_info.Topic.isin(main_topics)]
-    return
-
-
-@app.cell
-def _(BERTOPIC_FOLDER, np, topic_model):
-    # Persist BERTopic model
-    topic_model.save(path=BERTOPIC_FOLDER, serialization="safetensors")
-
-    # Persist probabilities
-    np.save(BERTOPIC_FOLDER / "probs.npy", topic_model.probabilities_)
-    return
-
-
-@app.cell
-def _(BERTOPIC_FOLDER, df, topic_model):
-    # Persist dataset with topics
-    df.to_csv(BERTOPIC_FOLDER / "dataset_topic.csv", index=False)
-
-    # Persist topics info
-    topic_info_final = topic_model.get_topic_info()
-    topic_info_final.to_csv(BERTOPIC_FOLDER / "topic_info.csv", index=False)
+    update_df(df, topic_model)
     return
 
 

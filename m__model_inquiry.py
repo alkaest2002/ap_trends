@@ -28,7 +28,6 @@ def _():
     COLOR_1 = colors["color_1"]
     COLOR_2 = colors["color_2"]
     return (
-        BERTopic,
         COLOR_1,
         KneeLocator,
         Path,
@@ -83,13 +82,12 @@ def _(EMBEDDING_FOLDER, TYPE_OF_EMBEDDINGS_MODEL):
     with (EMBEDDING_FOLDER / "embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
     embedding_model_name, TYPE_OF_EMBEDDINGS_MODEL
-    return (embedding_model_name,)
+    return
 
 
 @app.cell
-def _(BERTOPIC_FOLDER, BERTopic, embedding_model_name, pd):
+def _(BERTOPIC_FOLDER, pd):
     # Load BERTopic related files
-    topic_model = BERTopic.load(BERTOPIC_FOLDER, embedding_model=embedding_model_name)
     topics_info = pd.read_csv(BERTOPIC_FOLDER / "topic_info.csv")
     topics_info.sort_values(by="Topic")
     return (topics_info,)
@@ -213,7 +211,7 @@ def _(OTHER_FOLDER, min_cluster_size, topics_info):
 @app.cell
 def _(OTHER_FOLDER, df, topics_info):
     # Create list of emerging clusters
-    def get_list_of_emergent_cluster():
+    def get_list_of_emergent_cluster(topics_info):
 
         year_to_split = 2000
         most_recent_topics = df.loc[df.year.ge(year_to_split), "topic"].unique()
@@ -233,7 +231,7 @@ def _(OTHER_FOLDER, df, topics_info):
         with (OTHER_FOLDER / "emerging_topics.txt").open("w") as fout:
             fout.write("\n".join(topics))
 
-    get_list_of_emergent_cluster()
+    get_list_of_emergent_cluster(topics_info)
     return
 
 
