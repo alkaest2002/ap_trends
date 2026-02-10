@@ -204,7 +204,7 @@ def archive_results(params: dict[str, Any]) -> bool:
     """
     # MD5 dict for BERTopic parameters
     params_str = str(sorted(params.items())).encode()
-    params_hash = md5(params_str).hexdigest()  # noqa: S324
+    params_hash = md5(params_str, usedforsecurity=False).hexdigest()
     archive_folder = Path("acme/results_archive") / params_hash
     archive_folder.mkdir(parents=True, exist_ok=True)
 
