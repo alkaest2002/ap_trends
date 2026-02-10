@@ -22,11 +22,11 @@ def _(get_or_create_folders):
     # Define Paths
     TYPE_OF_DOC = "title_with_excerpt_2"
     TYPE_OF_FAMILY_MODEL = "sentence_transformers"
-    EMBEDDINGS_MODEL_NAME = "BAAI/bge-small-en-v1.5"
+    TYPE_OF_EMBEDDINGS_MODEL = "BAAI/bge-small-en-v1.5"
 
-    [DATASET_FOLDER, EMBEDDINGS_FOLDER] = get_or_create_folders(TYPE_OF_DOC, TYPE_OF_FAMILY_MODEL, EMBEDDINGS_MODEL_NAME)[:2]
+    [DATASET_FOLDER, EMBEDDINGS_FOLDER] = get_or_create_folders(TYPE_OF_DOC, TYPE_OF_FAMILY_MODEL, TYPE_OF_EMBEDDINGS_MODEL)[:2]
     DATASET_FOLDER, EMBEDDINGS_FOLDER
-    return DATASET_FOLDER, EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME
+    return DATASET_FOLDER, EMBEDDINGS_FOLDER, TYPE_OF_EMBEDDINGS_MODEL
 
 
 @app.cell
@@ -45,18 +45,18 @@ def _(df):
 
 
 @app.cell
-def _(EMBEDDINGS_MODEL_NAME, df, get_sentence_transformer):
+def _(TYPE_OF_EMBEDDINGS_MODEL, df, get_sentence_transformer):
     # Compute docs embeddings 
-    embeddings = get_sentence_transformer(df.doc.to_list(), EMBEDDINGS_MODEL_NAME)
+    embeddings = get_sentence_transformer(df.doc.to_list(), TYPE_OF_EMBEDDINGS_MODEL)
     return (embeddings,)
 
 
 @app.cell
-def _(EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME, Path, embeddings, np):
+def _(EMBEDDINGS_FOLDER, Path, TYPE_OF_EMBEDDINGS_MODEL, embeddings, np):
     # Persist embeddings
     embedding_model_name_filepath = Path(EMBEDDINGS_FOLDER / "embedding_model_name.txt")
     with embedding_model_name_filepath.open("w") as f:
-        f.write(EMBEDDINGS_MODEL_NAME)
+        f.write(TYPE_OF_EMBEDDINGS_MODEL)
 
     embeddings_filepath = Path(EMBEDDINGS_FOLDER / "embeddings.npy")
     np.save(embeddings_filepath, np.array(embeddings))

@@ -15,9 +15,10 @@ def _():
     import numpy as np
     import pandas as pd
     from sklearn.feature_extraction.text import CountVectorizer
-    from lib.utils_base import get_or_create_folders
+    from lib.utils_base import get_or_create_folders, archive_results
     from lib.utils_pandas import get_topics_in_period
     from lib.utils_matplotlib import configure_matplotlib_environment, colorize_axes
+    from lib.bertopic.model_base import get_bertopic_settings
 
     # Get configured plt env
     plt, colors = configure_matplotlib_environment()
@@ -31,8 +32,10 @@ def _():
         COLOR_1,
         KneeLocator,
         Path,
+        archive_results,
         colorize_axes,
         colors,
+        get_bertopic_settings,
         get_or_create_folders,
         pd,
         plt,
@@ -44,41 +47,42 @@ def _(get_or_create_folders):
     # Define paths
     TYPE_OF_DOC = "title_with_excerpt_2"
     TYPE_OF_FAMILY_MODEL = "sentence_transformers"
-    EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
+    TYPE_OF_EMBEDDINGS_MODEL = "all-MiniLM-L6-v2"
     [
         DATASET_FOLDER,
         EMBEDDING_FOLDER,
         BERTOPIC_FOLDER,
         IMGS_FOLDER,
         OTHER_FOLDER
-    ] = get_or_create_folders(TYPE_OF_DOC, TYPE_OF_FAMILY_MODEL, EMBEDDINGS_MODEL_NAME)
+    ] = get_or_create_folders(TYPE_OF_DOC, TYPE_OF_FAMILY_MODEL, TYPE_OF_EMBEDDINGS_MODEL)
 
     DATASET_FOLDER, EMBEDDING_FOLDER, BERTOPIC_FOLDER, IMGS_FOLDER, OTHER_FOLDER
     return (
         BERTOPIC_FOLDER,
-        DATASET_FOLDER,
-        EMBEDDINGS_MODEL_NAME,
         EMBEDDING_FOLDER,
         IMGS_FOLDER,
         OTHER_FOLDER,
+        TYPE_OF_DOC,
+        TYPE_OF_EMBEDDINGS_MODEL,
+        TYPE_OF_FAMILY_MODEL,
     )
 
 
 @app.cell
-def _(DATASET_FOLDER, pd):
+def _(BERTOPIC_FOLDER, pd):
     # Load dataset
-    df = pd.read_csv(DATASET_FOLDER / "dataset_topic.csv")
+    df = pd.read_csv(BERTOPIC_FOLDER / "dataset_topic.csv")
     docs = df.doc.to_list()
     df.sample(5)
     return (df,)
 
 
 @app.cell
-def _(EMBEDDINGS_MODEL_NAME, EMBEDDING_FOLDER):
+def _(EMBEDDING_FOLDER, TYPE_OF_EMBEDDINGS_MODEL):
     # Get embedding_model_name
     with (EMBEDDING_FOLDER / "embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
-    embedding_model_name, EMBEDDINGS_MODEL_NAME
+    embedding_model_name, TYPE_OF_EMBEDDINGS_MODEL
     return (embedding_model_name,)
 
 
@@ -185,7 +189,7 @@ def _(IMGS_FOLDER, colorize_axes, colors, df, plt):
 @app.cell
 def _(OTHER_FOLDER, min_cluster_size, topics_info):
     # Create list of most important clusters
-    def get_list_of_most_important_cluster():
+    def get_list_of_most_important_cluster(min_cluster_size = 30):
 
         # Get most importante clusters
         # i.e., with the minimun cluster size
@@ -202,7 +206,7 @@ def _(OTHER_FOLDER, min_cluster_size, topics_info):
         with (OTHER_FOLDER / "consolidated_topics.txt").open("w") as fout:
             fout.write("\n".join(topics))
 
-    get_list_of_most_important_cluster()
+    get_list_of_most_important_cluster(min_cluster_size)
     return
 
 
@@ -239,6 +243,7 @@ def _(OTHER_FOLDER, df, topics_info):
     def get_topics_per_country():
         for country in ["EU", "United States", "China"]:
             with (OTHER_FOLDER / f"{country.lower()}_topics.txt").open("w") as fout:
+                print(OTHER_FOLDER / f"{country.lower()}_topics.txt")
                 max_number_of_topics = 20
 
                 # Get all topics
@@ -288,6 +293,23 @@ def _(OTHER_FOLDER, Path, pd):
             )
 
     get_common_topics_per_country()
+    return
+
+
+@app.cell
+def _(
+    TYPE_OF_DOC,
+    TYPE_OF_EMBEDDINGS_MODEL,
+    TYPE_OF_FAMILY_MODEL,
+    archive_results,
+    get_bertopic_settings,
+):
+    settings = (
+        get_bertopic_settings(TYPE_OF_FAMILY_MODEL, TYPE_OF_EMBEDDINGS_MODEL) 
+            | { "type_of_model_family":  TYPE_OF_FAMILY_MODEL, "type_of_embedding_model": TYPE_OF_EMBEDDINGS_MODEL, "type_of_doc": TYPE_OF_DOC}
+    )
+
+    archive_results(settings)
     return
 
 

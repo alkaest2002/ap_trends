@@ -12,7 +12,7 @@ def _():
     import numpy as np
     import pandas as pd
     from lib.utils_base import get_or_create_folders, normalize_model_name
-    from lib.bertopic.mode_base import get_bertopic_model
+    from lib.bertopic.model_base import get_bertopic_model, get_bertopic_settings
     return get_bertopic_model, get_or_create_folders, np, pd
 
 
@@ -21,19 +21,19 @@ def _(get_or_create_folders):
     # Define paths
     TYPE_OF_DOC = "title_with_excerpt_2"
     TYPE_OF_FAMILY_MODEL = "sentence_transformers"
-    EMBEDDINGS_MODEL_NAME = "all-MiniLM-L6-v2"
+    TYPE_OF_EMBEDDINGS_MODEL = "all-MiniLM-L6-v2"
     [
         DATASET_FOLDER,
         EMBEDDINGS_FOLDER,
         BERTOPIC_FOLDER
-    ] = get_or_create_folders(TYPE_OF_DOC,TYPE_OF_FAMILY_MODEL, EMBEDDINGS_MODEL_NAME)[:3]
+    ] = get_or_create_folders(TYPE_OF_DOC,TYPE_OF_FAMILY_MODEL, TYPE_OF_EMBEDDINGS_MODEL)[:3]
 
     DATASET_FOLDER, EMBEDDINGS_FOLDER, BERTOPIC_FOLDER
     return (
         BERTOPIC_FOLDER,
         DATASET_FOLDER,
         EMBEDDINGS_FOLDER,
-        EMBEDDINGS_MODEL_NAME,
+        TYPE_OF_EMBEDDINGS_MODEL,
         TYPE_OF_FAMILY_MODEL,
     )
 
@@ -47,11 +47,11 @@ def _(DATASET_FOLDER, pd):
 
 
 @app.cell
-def _(EMBEDDINGS_FOLDER, EMBEDDINGS_MODEL_NAME):
+def _(EMBEDDINGS_FOLDER, TYPE_OF_EMBEDDINGS_MODEL):
     # Get embedding_model_name
     with (EMBEDDINGS_FOLDER / "embedding_model_name.txt").open("r") as f:
         embedding_model_name = f.read()
-    embedding_model_name, EMBEDDINGS_MODEL_NAME
+    embedding_model_name, TYPE_OF_EMBEDDINGS_MODEL
     return
 
 
@@ -64,8 +64,8 @@ def _(EMBEDDINGS_FOLDER, np):
 
 
 @app.cell
-def _(EMBEDDINGS_MODEL_NAME, TYPE_OF_FAMILY_MODEL, get_bertopic_model):
-    topic_model = get_bertopic_model(TYPE_OF_FAMILY_MODEL, EMBEDDINGS_MODEL_NAME)
+def _(TYPE_OF_EMBEDDINGS_MODEL, TYPE_OF_FAMILY_MODEL, get_bertopic_model):
+    topic_model = get_bertopic_model(TYPE_OF_FAMILY_MODEL, TYPE_OF_EMBEDDINGS_MODEL)
     return (topic_model,)
 
 
@@ -136,7 +136,7 @@ def _(df):
 @app.cell
 def _(df):
     # Explore topics
-    df[df.topic.isin([12])]
+    df[df.topic.isin([4])]
     return
 
 
@@ -161,9 +161,9 @@ def _(BERTOPIC_FOLDER, np, topic_model):
 
 
 @app.cell
-def _(BERTOPIC_FOLDER, DATASET_FOLDER, df, topic_model):
+def _(BERTOPIC_FOLDER, df, topic_model):
     # Persist dataset with topics
-    df.to_csv(DATASET_FOLDER / "dataset_topic.csv", index=False)
+    df.to_csv(BERTOPIC_FOLDER / "dataset_topic.csv", index=False)
 
     # Persist topics info
     topic_info_final = topic_model.get_topic_info()
