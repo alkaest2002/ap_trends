@@ -123,7 +123,7 @@ def _(
         # Compute data
         y = topics_info.Count[1:]
         x = range(1, len(y)+1)
-        kneedle = KneeLocator(x, y, S=3, curve="convex", direction="decreasing")
+        kneedle = KneeLocator(x, y, S=5, curve="convex", direction="decreasing")
         elbow = round(kneedle.elbow, 0)
         cluster_id = topics_info[topics_info.Count.gt(y[elbow])].Topic.nlargest(1)
 

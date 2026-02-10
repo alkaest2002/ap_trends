@@ -83,22 +83,19 @@ def _(docs, embeddings, topic_model):
 
     # Get original topic info
     topic_info_original = topic_model.get_topic_info()
+
+    # Add theme
     topic_info_original["theme"] = topic_info_original["Representation"].str[0].str.lower().str.strip()
     return (topic_info_original,)
 
 
 @app.cell
 def _(docs, topic_info_original, topic_model):
-    # define consolidation function
-    def consoldation_fn(x, topic_model, docs):
-        topics =  [t for t in x if t != -1]
-        if len(topics) > 1:
-            print(f"consolidating {topics}")
-            topic_model.merge_topics(docs, topics)
-
     # Consolidate duplicated themes
-    topcis_list = topic_info_original.groupby("theme").Topic.agg(list)
-    topcis_list[topcis_list.str.len().gt(1)].apply(consoldation_fn, topic_model=topic_model, docs=docs)
+    theme_lists = topic_info_original.groupby("theme").Topic.agg(list)
+    duplicated_themes = theme_lists[theme_lists.str.len().gt(1)].to_list()
+    duplicated_themes = list(map(lambda x: [t for t in x if t != -1], duplicated_themes))
+    topic_model.merge_topics(docs, duplicated_themes)
 
     # Get updated topic info
     topic_info = topic_model.get_topic_info()
@@ -117,6 +114,7 @@ def _(topic_info):
 def _(df, topic_model):
     # update topics in df
     df["topic"] = topic_model.topics_
+    df.head()
     return
 
 
