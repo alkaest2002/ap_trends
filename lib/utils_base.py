@@ -229,7 +229,7 @@ def archive_results(params: dict[str, Any]) -> bool:
     # Define list of files to archive
     files_to_archive = [
         base_path / "bertopic" / "topic_info.csv",
-        base_path / "bertopic" / "topic.json",
+        base_path / "bertopic" / "topics.json",
         base_path / "imgs" / "img_elbow.svg",
         base_path / "imgs" / "img_topic_trajectories.svg",
         base_path / "other" / "china_topics.txt",
