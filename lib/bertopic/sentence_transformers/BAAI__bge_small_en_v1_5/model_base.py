@@ -12,10 +12,6 @@ from umap import UMAP
 
 from sentence_transformers import SentenceTransformer
 
-stop_words = ENGLISH_STOP_WORDS.union({
-    "<title>", "</title>", "title", "<excerpt>", "</excerpt>", "excerpt",
-})
-
 load_dotenv()
 
 client = openai.OpenAI(api_key=getenv("OPENAI_APIKEY"))
@@ -32,6 +28,10 @@ Based on the above information:
 - Avoid the over-use of the term "aviation", but use it when it is necessary to capture the essence of the topic.
 """
 
+stop_words = ENGLISH_STOP_WORDS.union({
+    "<title>", "</title>", "title", "<excerpt>", "</excerpt>", "excerpt",
+})
+
 # Default BERTopic settings for topic modeling
 default_bertopic_settings: dict[str, Any] = {
     "umap": {
@@ -39,7 +39,8 @@ default_bertopic_settings: dict[str, Any] = {
         "n_components": 12,
         "min_dist": 0.0,
         "metric": "cosine",
-        "random_state": 42
+        "random_state": 42,
+        "n_jobs": 1
     },
     "hdbscan": {
         "min_cluster_size": 5,
@@ -73,6 +74,11 @@ default_bertopic_settings: dict[str, Any] = {
         }
     }
 }
+
+
+def get_bertopic_settings() -> dict[str, Any]:
+    """Get the default BERTopic settings."""
+    return default_bertopic_settings
 
 
 def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
@@ -113,10 +119,10 @@ def get_bertopic_model(overrides: dict[str, Any] | None = None) -> Any:
     return BERTopic(
         calculate_probabilities=True,
         top_n_words=5,
-        embedding_model=embedding_model,           # Step 1 - Extract embeddings
-        umap_model=umap_model,                     # Step 2 - Reduce dimensionality
-        hdbscan_model=hdbscan_model,               # Step 3 - Cluster reduced embeddings
-        vectorizer_model=vectorizer_model,         # Step 4 - Tokenize topics
-        ctfidf_model=ctfidf_model,                 # Step 5 - Extract topic words
-        representation_model=representation_model  # Step 6 - Fine-tune topic representations  # ty:ignore[invalid-argument-type]
+        embedding_model=embedding_model,
+        umap_model=umap_model,
+        hdbscan_model=hdbscan_model,
+        vectorizer_model=vectorizer_model,
+        ctfidf_model=ctfidf_model,
+        representation_model=representation_model  # ty:ignore[invalid-argument-type]
     )
