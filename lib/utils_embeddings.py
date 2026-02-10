@@ -1,5 +1,6 @@
 import time
 from os import getenv
+from typing import Any
 
 from dotenv import load_dotenv
 from numpy.typing import NDArray
@@ -94,12 +95,16 @@ def get_openai_embeddings(
 def get_sentence_transformer(
     docs: list[str],
     transformer_name: str = "all-MiniLM-L6-v2",
+    sentence_transformer_kwargs: dict[str, Any] | None = None,
+    sentence_model_kwargs: dict[str, Any] | None = None
 ) -> NDArray:
     """Get embeddings for a list of texts using SentenceTransformer.
 
     Args:
         docs (list[str]): List of documents to get embeddings for.
         transformer_name (str): Name of the SentenceTransformer model.
+        sentence_transformer_kwargs (dict[str, Any], optional): Additional keyword arguments for the SentenceTransformer. Defaults to None.
+        sentence_model_kwargs (dict[str, Any], optional): Additional keyword arguments for the SentenceTransformer model. Defaults to None.
 
     Returns:
         NDArray: Array of embedding vectors.
@@ -109,7 +114,7 @@ def get_sentence_transformer(
     validate_docs_(docs)
 
     # Load embedding model
-    sentence_model = SentenceTransformer(transformer_name)
+    sentence_model = SentenceTransformer(transformer_name, **(sentence_transformer_kwargs or {}))
 
     # Compute embeddings
-    return sentence_model.encode(docs, show_progress_bar=True)
+    return sentence_model.encode(docs, show_progress_bar=True, **(sentence_model_kwargs or {}))

@@ -1,6 +1,10 @@
 import contextlib
+import json
 import re
+import shutil
+from hashlib import md5
 from pathlib import Path
+from typing import Any
 
 import pycountry
 import spacy
@@ -186,3 +190,69 @@ def get_or_create_folders(
 
     dataset_path.mkdir(parents=True, exist_ok=True)
     return [dataset_path]
+
+
+def archive_results(params: dict[str, Any]) -> bool:
+    """Determine whether to archive results based on environment variable.
+
+    Args:
+        params: A dictionary of BERTopic parameters.
+
+    Returns:
+        bool: True if correctly archived, False otherwise.
+
+    """
+    # MD5 dict for BERTopic parameters
+    params_str = str(sorted(params.items())).encode()
+    params_hash = md5(params_str).hexdigest()  # noqa: S324
+    archive_folder = Path("acme/results_archive") / params_hash
+    archive_folder.mkdir(parents=True, exist_ok=True)
+
+    # Delete existing files in the archive folder
+    for file in archive_folder.glob("*"):
+        if file.is_file():
+            file.unlink()
+
+    # Get model_name and type_of_doc from dict
+    type_of_model_family = params.get("type_of_model_family", "unknown_family")
+    type_of_embedding_model = params.get("type_of_embedding_model", "unknown_model")
+    type_of_doc = params.get("type_of_doc", "unknown_doc")
+
+    # Set base path for archiving results
+    base_path = (
+        Path("out")
+            / type_of_model_family
+            / normalize_model_name(type_of_embedding_model)
+            / type_of_doc
+    )
+
+    # Define list of files to archive
+    files_to_archive = [
+        base_path / "bertopic" / "topic_info.csv",
+        base_path / "bertopic" / "topic.json",
+        base_path / "imgs" / "img_elbow.svg",
+        base_path / "imgs" / "img_topic_trajectories.svg",
+        base_path / "other" / "china_topics.txt",
+        base_path / "other" / "consolidated_topics.txt",
+        base_path / "other" / "emerging_topics.txt",
+        base_path / "other" / "eu_topics.txt",
+        base_path / "other" / "eu_china_usa_common_topics.txt",
+        base_path / "other" / "united states_topics.txt",
+    ]
+
+    try:
+        for file in files_to_archive:
+            if file.exists():
+                print(f"Archiving {file} to {archive_folder}")
+                shutil.copy(file, archive_folder / file.name)
+
+        # Save settigns json with Path
+        settings_path = archive_folder / "settings.json"
+        with settings_path.open("w") as f:
+            json.dump(params, f, indent=4)
+
+    except Exception as e:
+        print(f"Error archiving results: {e}")
+        return False
+
+    return True
