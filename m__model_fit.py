@@ -7,13 +7,14 @@ app = marimo.App(width="full")
 @app.cell
 def _():
     # Imports
-    from pathlib import Path
-    from importlib import import_module
+    import json
     import numpy as np
     import pandas as pd
+    from pathlib import Path
+    from importlib import import_module
     from lib.utils_base import get_or_create_folders, normalize_model_name
     from lib.bertopic.model_base import get_bertopic_model, get_bertopic_settings
-    return get_bertopic_model, get_or_create_folders, np, pd
+    return Path, get_bertopic_model, get_or_create_folders, json, np, pd
 
 
 @app.cell
@@ -24,15 +25,17 @@ def _(get_or_create_folders):
     TYPE_OF_EMBEDDINGS_MODEL = "all-MiniLM-L6-v2"
     [
         DATASET_FOLDER,
+        OUT_FOLDER,
         EMBEDDINGS_FOLDER,
         BERTOPIC_FOLDER
-    ] = get_or_create_folders(TYPE_OF_DOC,TYPE_OF_FAMILY_MODEL, TYPE_OF_EMBEDDINGS_MODEL)[:3]
+    ] = get_or_create_folders(TYPE_OF_DOC,TYPE_OF_FAMILY_MODEL, TYPE_OF_EMBEDDINGS_MODEL)[:4]
 
-    DATASET_FOLDER, EMBEDDINGS_FOLDER, BERTOPIC_FOLDER
+    DATASET_FOLDER, OUT_FOLDER, EMBEDDINGS_FOLDER, BERTOPIC_FOLDER
     return (
         BERTOPIC_FOLDER,
         DATASET_FOLDER,
         EMBEDDINGS_FOLDER,
+        OUT_FOLDER,
         TYPE_OF_EMBEDDINGS_MODEL,
         TYPE_OF_FAMILY_MODEL,
     )
@@ -129,17 +132,17 @@ def _(topic_info):
 
 
 @app.cell
-def _(BERTOPIC_FOLDER, df, topic_info, topic_model):
+def _(BERTOPIC_FOLDER, OUT_FOLDER, Path, df, json, topic_info, topic_model):
     def update_df(df, topic_model):
-    
+
         # Add topics to df
         df["topic"] = topic_model.topics_
 
-        # Example of topics distribution
-        article = df.loc[354,:]
-        topics_distribution , _ = topic_model.approximate_distribution(article.doc, use_embedding_model = True)
-        main_topics = topics_distribution.argsort()[:, -4:].tolist()[0]
-        print("example topics distribution", topic_info[topic_info.Topic.isin(main_topics)].theme)
+        # Persist topic stats
+        topics_stats = dict(clusters=topic_info.shape[0]-1, uncategorized_articles=topic_info.iloc[0].Count / topic_info.Count.sum())
+
+        with Path(OUT_FOLDER / "topic_stats.json").open("w") as fout:
+            fout.write(json.dumps(topics_stats))
 
         # Persist dataset with topics
         df.to_csv(BERTOPIC_FOLDER / "dataset_topic.csv", index=False)
