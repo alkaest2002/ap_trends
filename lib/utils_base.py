@@ -182,6 +182,7 @@ def get_or_create_folders(
 
         return [
             dataset_path,
+            out_path,
             out_embeddings_path,
             out_bertopic_path,
             out_imgs_path,
@@ -192,14 +193,14 @@ def get_or_create_folders(
     return [dataset_path]
 
 
-def archive_results(params: dict[str, Any]) -> bool:
+def archive_results(params: dict[str, Any]) -> str:
     """Determine whether to archive results based on environment variable.
 
     Args:
         params: A dictionary of BERTopic parameters.
 
     Returns:
-        bool: True if correctly archived, False otherwise.
+        str: Path to the archive folder if correctly archived, empty string otherwise.
 
     """
     # MD5 dict for BERTopic parameters
@@ -228,6 +229,7 @@ def archive_results(params: dict[str, Any]) -> bool:
 
     # Define list of files to archive
     files_to_archive = [
+        base_path / "topic_stats.json",
         base_path / "bertopic" / "topic_info.csv",
         base_path / "bertopic" / "topics.json",
         base_path / "imgs" / "img_elbow.svg",
@@ -253,6 +255,6 @@ def archive_results(params: dict[str, Any]) -> bool:
 
     except Exception as e:
         print(f"Error archiving results: {e}")
-        return False
+        return ""
 
-    return True
+    return str(archive_folder)
